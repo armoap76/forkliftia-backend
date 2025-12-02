@@ -13,7 +13,7 @@ class AskRequest(BaseModel):
 def ask_ai(payload: AskRequest):
     try:
         completion = client.chat.completions.create(
-            model="gpt-5-mini",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": payload.question}]
         )
         return {"answer": completion.choices[0].message["content"]}
