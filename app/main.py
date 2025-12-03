@@ -6,6 +6,14 @@ app = FastAPI(title="ForkliftIA Backend")
 
 client = OpenAI()  # usa OPENAI_API_KEY del entorno
 
+class DiagnosisRequest(BaseModel):
+    brand: str
+    model: str
+    series: str | None = None
+    error_code: str | None = None
+    symptom: str
+    checks_done: str | None = None
+
 class AskRequest(BaseModel):
     question: str
 
@@ -41,6 +49,12 @@ RESPONSE FORMAT (ALWAYS use this structure):
 Your responses must follow this structure every single time.
 """
 
+@app.post("/diagnosis")
+def diagnosis(payload: DiagnosisRequest):
+    return {
+        "status": "ok",
+        "received": payload.model_dump()
+    }
 
 @app.post("/ask")
 def ask_ai(payload: AskRequest):
