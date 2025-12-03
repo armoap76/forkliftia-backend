@@ -113,6 +113,10 @@ def get_case(case_id: int):
             return case
     raise HTTPException(status_code=404, detail="Case not found")
 
+@app.get("/cases")
+def list_cases():
+    return CASES
+
 
 @app.post("/ask")
 def ask_ai(payload: AskRequest):
