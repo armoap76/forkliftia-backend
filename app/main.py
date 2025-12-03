@@ -17,6 +17,19 @@ class DiagnosisRequest(BaseModel):
 class AskRequest(BaseModel):
     question: str
 
+class Case(BaseModel):
+    id: int
+    brand: str
+    model: str
+    series: str | None = None
+    error_code: str | None = None
+    symptom: str
+    checks_done: str | None = None
+    diagnosis: str
+
+
+CASES: list[Case] = []
+
 BASE_PROMPT = """
 You are ForkliftIA, an expert diagnostic assistant specialized in industrial forklifts, reach trucks, pallet jacks, and material handling equipment.
 
@@ -52,11 +65,10 @@ Your responses must follow this structure every single time.
 @app.post("/diagnosis")
 def diagnosis(payload: DiagnosisRequest):
     try:
-        # Construcción del prompt estructurado
         tech_prompt = f"""
 {BASE_PROMPT}
 
-Diagnose the following forklift case and answer **STRICTLY in the required structured format**:
+Diagnose the following forklift case and answer STRICTLY in the required structured format:
 
 Brand: {payload.brand}
 Model: {payload.model}
@@ -71,10 +83,35 @@ Checks Already Done: {payload.checks_done}
         )
 
         answer = resp.output[0].content[0].text
-        return {"diagnosis": answer}
+
+        # Guardar como "case" en memoria
+        case_id = len(CASES) + 1
+        case = Case(
+            id=case_id,
+            brand=payload.brand,
+            model=payload.model,
+            series=payload.series,
+            error_code=payload.error_code,
+            symptom=payload.symptom,
+            checks_done=payload.checks_done,
+            diagnosis=answer,
+        )
+        CASES.append(case)
+
+        return {
+            "case_id": case_id,
+            "diagnosis": answer
+        }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/cases/{case_id}")
+def get_case(case_id: int):
+    for case in CASES:
+        if case.id == case_id:
+            return case
+    raise HTTPException(status_code=404, detail="Case not found")
 
 
 @app.post("/ask")
