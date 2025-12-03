@@ -4,7 +4,7 @@ from openai import OpenAI
 
 app = FastAPI(title="ForkliftIA Backend")
 
-client = OpenAI()
+client = OpenAI()  # usa OPENAI_API_KEY del entorno
 
 class AskRequest(BaseModel):
     question: str
@@ -12,16 +12,17 @@ class AskRequest(BaseModel):
 @app.post("/ask")
 def ask_ai(payload: AskRequest):
     try:
-        completion = client.chat.completions.create(
+        resp = client.responses.create(
             model="gpt-4o-mini",
-            messages=[{"role": "user", "content": payload.question}]
+            input=payload.question,
         )
-        return {"answer": completion.choices[0].message.content}
-
+        answer = resp.output[0].content[0].text
+        return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/ping")
 def ping():
     return {"message": "forkliftia ok"}
+
 
