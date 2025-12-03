@@ -16,7 +16,8 @@ def ask_ai(payload: AskRequest):
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": payload.question}]
         )
-        return {"answer": completion.choices[0].message["content"]}
+        return {"answer": completion.choices[0].message.content}
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
