@@ -51,10 +51,31 @@ Your responses must follow this structure every single time.
 
 @app.post("/diagnosis")
 def diagnosis(payload: DiagnosisRequest):
-    return {
-        "status": "ok",
-        "received": payload.model_dump()
-    }
+    try:
+        # Construcción del prompt estructurado
+        tech_prompt = f"""
+{BASE_PROMPT}
+
+Diagnose the following forklift case and answer **STRICTLY in the required structured format**:
+
+Brand: {payload.brand}
+Model: {payload.model}
+Series: {payload.series}
+Error Code: {payload.error_code}
+Symptom: {payload.symptom}
+Checks Already Done: {payload.checks_done}
+"""
+        resp = client.responses.create(
+            model="gpt-4o-mini",
+            input=tech_prompt,
+        )
+
+        answer = resp.output[0].content[0].text
+        return {"diagnosis": answer}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.post("/ask")
 def ask_ai(payload: AskRequest):
