@@ -111,6 +111,8 @@ Checks Already Done: {payload.checks_done}
 
         return {
             "case_id": case_id,
+            "status": "ok",
+            "source": "ai_only",
             "diagnosis": answer
         }
 
