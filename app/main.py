@@ -1,8 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from openai import OpenAI
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="ForkliftIA Backend")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # luego afinamos, por ahora lo dejamos abierto
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 client = OpenAI()  # usa OPENAI_API_KEY del entorno
 
