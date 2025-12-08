@@ -37,6 +37,7 @@ class Case(BaseModel):
     symptom: str
     checks_done: str | None = None
     diagnosis: str
+    status: str = "open"   
 
 
 CASES: list[Case] = []
@@ -124,6 +125,7 @@ Checks Already Done: {payload.checks_done}
             symptom=payload.symptom,
             checks_done=payload.checks_done,
             diagnosis=answer,
+            status="open",
         )
         CASES.append(new_case)
 
