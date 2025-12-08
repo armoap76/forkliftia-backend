@@ -72,9 +72,23 @@ RESPONSE FORMAT (ALWAYS use this structure):
 
 Your responses must follow this structure every single time.
 """
-
 @app.post("/diagnosis")
 def diagnosis(payload: DiagnosisRequest):
+    # 1) Buscar si ya existe un caso similar en memoria
+    for case in CASES:
+        if (
+            case.brand.lower() == payload.brand.lower()
+            and case.model.lower() == payload.model.lower()
+            and (case.error_code or "").lower() == (payload.error_code or "").lower()
+        ):
+            # Reutilizamos diagnóstico anterior
+            return {
+                "case_id": case.id,
+                "diagnosis": case.diagnosis,
+                "source": "cases",  # viene de la base de casos
+            }
+
+    # 2) Si no hay coincidencia, le pedimos a la IA
     try:
         tech_prompt = f"""
 {BASE_PROMPT}
@@ -111,13 +125,14 @@ Checks Already Done: {payload.checks_done}
 
         return {
             "case_id": case_id,
-            "status": "ok",
-            "source": "ai_only",
-            "diagnosis": answer
+            "diagnosis": answer,
+            "source": "ai",  # viene del modelo
         }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
 
 @app.get("/cases/{case_id}")
 def get_case(case_id: int):
