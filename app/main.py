@@ -72,25 +72,28 @@ RESPONSE FORMAT (ALWAYS use this structure):
 
 Your responses must follow this structure every single time.
 """
+
 @app.post("/diagnosis")
 def diagnosis(payload: DiagnosisRequest):
     # 1) Buscar si ya existe un caso similar en memoria
+    similar_case = None
     for case in CASES:
         if (
             case.brand.lower() == payload.brand.lower()
             and case.model.lower() == payload.model.lower()
             and (case.error_code or "").lower() == (payload.error_code or "").lower()
         ):
-            # Reutilizamos diagnóstico anterior
-            return {
-                "case_id": case.id,
-                "diagnosis": case.diagnosis,
-                "source": "cases",  # viene de la base de casos
-            }
+            similar_case = case
+            break
 
-    # 2) Si no hay coincidencia, le pedimos a la IA
     try:
-        tech_prompt = f"""
+        # 2) Si hay caso similar, usamos su diagnóstico como base
+        if similar_case is not None:
+            answer = similar_case.diagnosis
+            source = "cases"
+        else:
+            # 3) Si no hay coincidencia, pedimos a la IA
+            tech_prompt = f"""
 {BASE_PROMPT}
 
 Diagnose the following forklift case and answer STRICTLY in the required structured format:
@@ -102,16 +105,17 @@ Error Code: {payload.error_code}
 Symptom: {payload.symptom}
 Checks Already Done: {payload.checks_done}
 """
-        resp = client.responses.create(
-            model="gpt-4o-mini",
-            input=tech_prompt,
-        )
+            resp = client.responses.create(
+                model="gpt-4o-mini",
+                input=tech_prompt,
+            )
 
-        answer = resp.output[0].content[0].text
+            answer = resp.output[0].content[0].text
+            source = "ai"
 
-        # Guardar como "case" en memoria
+        # 4) SIEMPRE crear un nuevo caso con NUEVO ID
         case_id = len(CASES) + 1
-        case = Case(
+        new_case = Case(
             id=case_id,
             brand=payload.brand,
             model=payload.model,
@@ -121,12 +125,12 @@ Checks Already Done: {payload.checks_done}
             checks_done=payload.checks_done,
             diagnosis=answer,
         )
-        CASES.append(case)
+        CASES.append(new_case)
 
         return {
             "case_id": case_id,
             "diagnosis": answer,
-            "source": "ai",  # viene del modelo
+            "source": source,
         }
 
     except Exception as e:
