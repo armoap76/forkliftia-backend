@@ -1,0 +1,35 @@
+{
+  "next_id": 3,
+  "cases": [
+    {
+      "id": 1,
+      "brand": "linde",
+      "model": "e20",
+      "series": "335",
+      "error_code": "e225",
+      "symptom": "no levanta carga",
+      "checks_done": "bateria ok",
+      "diagnosis": "🔍 PROBABLE CAUSE:  \nError code E225 on a Linde E20 Series 335 typically indicates a fault in the lift motor circuit or an issue with the lift motor itself. Since the truck does not lift the load (\"no levanta carga\"), the problem is likely related to the lift motor, its wiring, or the motor controller.\n\n📋 DIAGNOSTIC STEPS:  \n1. Verify the lift motor wiring harness and connectors for damage, corrosion, or loose connections.  \n2. Measure the voltage at the lift motor terminals during a lift command to confirm power delivery.  \n3. Test the lift motor windings for continuity and insulation resistance to ground.  \n4. Inspect the motor controller or inverter module for fault codes or visible damage.  \n5. Check the lift limit switches and safety interlocks that could inhibit lifting.  \n6. Review the truck’s diagnostic software for any logged faults related to the lift system.  \n7. If available, perform a motor function test via the truck’s diagnostic interface.\n\n⚠️ SAFETY NOTE:  \nAlways ensure the forklift is on a stable surface and the load is removed or secured before performing electrical tests or motor inspections. Disconnect the battery before inspecting wiring to prevent accidental short circuits.\n\n📚 REFERENCE:  \nLinde E20 Series 335 Service Manual – Electrical Troubleshooting Section  \nLinde Error Code List – E225: Lift Motor Circuit Fault\n\n💡 SIMILAR CASES:  \n- Faulty lift motor brushes or commutator causing intermittent operation.  \n- Damaged lift motor cable causing open circuit or short to ground.  \n- Controller board failure resulting in no output to lift motor despite command input.",
+      "status": "resolved",
+      "source": "ai",
+      "tags": [],
+      "created_at": "2025-12-18T23:35:06.737206",
+      "updated_at": "2025-12-19T20:19:10.334907"
+    },
+    {
+      "id": 2,
+      "brand": "linde",
+      "model": "e20",
+      "series": "335",
+      "error_code": "e225",
+      "symptom": "no levanta carga",
+      "checks_done": "bateria ok",
+      "diagnosis": "🔍 PROBABLE CAUSE:  \nError code E225 on a Linde E20 (Series 335) typically indicates a fault related to the hydraulic system or the lift motor control circuit. Since the symptom is \"no levanta carga\" (does not lift load) and the battery is confirmed good, the issue likely involves:  \n- Hydraulic pump motor failure or electrical fault  \n- Faulty lift solenoid valve or wiring  \n- Lift motor controller malfunction  \n- Hydraulic pressure sensor or switch failure  \n\n📋 DIAGNOSTIC STEPS:  \n1. Verify the hydraulic pump motor operation by listening for motor activation or measuring current draw during lift command.  \n2. Inspect wiring and connectors between the controller and the lift motor/solenoid for damage or loose connections.  \n3. Test the lift solenoid valve operation by manually activating it (if safe and possible) or using a diagnostic tool to command lift function.  \n4. Check hydraulic pressure sensors or switches for correct operation and signal output to the controller.  \n5. Scan the truck’s control unit with Linde diagnostic software to confirm if E225 is accompanied by any secondary fault codes.  \n6. Review the lift motor controller module for faults or error states; reset or replace if necessary.  \n\n⚠️ SAFETY NOTE:  \nAlways ensure the forklift is on a stable surface with the load lowered before performing electrical or hydraulic tests. Use proper lockout/tagout procedures to prevent accidental activation during diagnostics.  \n\n📚 REFERENCE:  \n- Linde E20 Series 335 Service Manual, Electrical and Hydraulic Troubleshooting sections  \n- Linde Diagnostic Software User Guide for error code interpretation and live data monitoring  \n\n💡 SIMILAR CASES:  \n- E225 errors often coincide with intermittent lift motor faults due to wiring harness wear near the mast.  \n- Cases where lift solenoid coil failure caused no lift despite battery and controller being functional.  \n- Hydraulic pressure sensor failures causing the controller to inhibit lift motor operation as a safety measure.",
+      "status": "open",
+      "source": "ai",
+      "tags": [],
+      "created_at": "2025-12-19T20:12:24.337359",
+      "updated_at": "2025-12-19T20:12:24.337359"
+    }
+  ]
+}

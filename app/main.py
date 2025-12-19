@@ -1,6 +1,9 @@
 import os
 from datetime import datetime
 
+from app.storage_json import JsonCaseStore
+from app.models import CaseCreate
+
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -23,7 +26,11 @@ app.add_middleware(
 security = HTTPBearer()
 
 # OpenAI client (lee OPENAI_API_KEY del environment)
+from dotenv import load_dotenv
+load_dotenv()
 client = OpenAI()
+store = JsonCaseStore("app/data/cases.json")
+
 
 SYSTEM_PROMPT = """You are ForkliftIA, an expert diagnostic assistant specialized in industrial forklifts, reach trucks, pallet jacks, and material handling equipment.
 
@@ -66,6 +73,38 @@ RULES:
 def ping():
     return {"message": "forkliftia ok"}
 
+@app.get("/cases")
+def list_cases(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    status: str | None = None,
+    limit: int = 50,
+):
+    token = credentials.credentials
+    if not token:
+        raise HTTPException(status_code=401, detail="Missing token")
+
+    return store.list_cases(status=status, limit=limit)
+
+@app.patch("/cases/{case_id}")
+def set_case_status(
+    case_id: int,
+    payload: dict,
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+):
+    token = credentials.credentials
+    if not token:
+        raise HTTPException(status_code=401, detail="Missing token")
+
+    status = payload.get("status")
+    if status not in ("open", "resolved"):
+        raise HTTPException(status_code=400, detail="status must be 'open' or 'resolved'")
+
+    updated = store.update_status(case_id, status)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Case not found")
+
+    return updated
+
 @app.post("/diagnosis")
 def diagnosis(
     payload: dict,
@@ -82,6 +121,21 @@ def diagnosis(
     error_code = payload.get("error_code") or "None provided"
     symptom = payload.get("symptom", "")
     checks_done = payload.get("checks_done") or "Nothing specified yet"
+
+    # 1) Buscar caso resuelto similar
+    match = store.find_resolved_by_key(
+        brand=brand,
+        model=model,
+        series=series or None,
+        error_code=None if error_code == "None provided" else error_code,
+    )
+
+    if match:
+        return {
+            "case_id": match.id,
+            "diagnosis": match.diagnosis or "",
+            "source": "cases",
+        }
 
     user_prompt = f"""NEW DIAGNOSTIC CASE:
 
@@ -116,13 +170,26 @@ Provide your diagnostic analysis following the standard format.
         # Texto final
         diagnosis_text = resp.output_text
 
-        case_id = f"CASE-{int(datetime.utcnow().timestamp() * 1000)}"
+        case = store.create_case(
+            CaseCreate(
+                brand=brand,
+                model=model,
+                series=series or None,
+                error_code=None if error_code == "None provided" else error_code,
+                symptom=symptom,
+                checks_done=checks_done,
+                diagnosis=diagnosis_text,
+                status="open",      # por ahora lo dejamos abierto
+                source="ai",
+            )
+        )
 
         return {
-            "case_id": case_id,
+            "case_id": case.id,
             "diagnosis": diagnosis_text,
             "source": "ai",
         }
+
 
     except Exception as e:
         # no tires el error completo al cliente en producción, pero por ahora sirve
