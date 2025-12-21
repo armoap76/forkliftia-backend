@@ -1,5 +1,5 @@
 {
-  "next_id": 3,
+  "next_id": 5,
   "cases": [
     {
       "id": 1,
@@ -30,6 +30,36 @@
       "tags": [],
       "created_at": "2025-12-19T20:12:24.337359",
       "updated_at": "2025-12-19T20:12:24.337359"
+    },
+    {
+      "id": 3,
+      "brand": "bt",
+      "model": "ose250",
+      "series": null,
+      "error_code": "c31",
+      "symptom": "mal funcionamiento del circuito hidraulico",
+      "checks_done": "bateria ok, contactor ok",
+      "diagnosis": "🔍 PROBABLE CAUSE:  \nEl código de error C31 en carretillas BT OSE250 generalmente indica un fallo en el sensor de presión hidráulica o en su cableado, provocando que el sistema interprete una carga máxima erróneamente y aumente la velocidad hidráulica. Esto puede deberse a un sensor defectuoso, conexiones flojas, cables dañados o interferencias eléctricas.\n\n📋 DIAGNOSTIC STEPS:  \n1. Realizar una inspección visual detallada del sensor hidráulico: buscar daños físicos, corrosión o suciedad.  \n2. Verificar la integridad del cableado del sensor: buscar cortes, aplastamientos, conexiones sueltas o terminales corroídos.  \n3. Medir la señal de salida del sensor con un multímetro o equipo de diagnóstico para confirmar que responde correctamente a cambios de presión.  \n4. Comparar la reacción hidráulica con los valores esperados según el manual técnico para el código C31.  \n5. Probar con un sensor hidráulico de repuesto si está disponible para descartar fallo interno del sensor.  \n6. Revisar la conexión a la unidad de control para asegurar que no haya falsos contactos o interferencias.  \n7. Borrar el código de error y realizar una prueba funcional para verificar si el problema persiste.  \n\n⚠️ SAFETY NOTE:  \nAntes de manipular el sistema hidráulico, asegúrese de que la carretilla esté apagada y bloqueada para evitar movimientos inesperados. Use equipo de protección personal adecuado para evitar lesiones por presión hidráulica o componentes eléctricos.\n\n📚 REFERENCE:  \n- Manual técnico BT OSE250, sección diagnóstico de sensores hidráulicos.  \n- Guía de códigos de error BT, código C31.  \n- Procedimientos estándar de inspección y prueba de sensores de presión hidráulica.\n\n💡 SIMILAR CASES:  \nCasos reportados donde el sensor de presión hidráulica presentaba falsos positivos por cables dañados o conectores corroídos, causando aumento erróneo de velocidad hidráulica y códigos C31. Reemplazo o reparación del cableado solucionó el problema.",
+      "status": "open",
+      "source": "ai",
+      "tags": [],
+      "created_at": "2025-12-20T16:09:24.413715",
+      "updated_at": "2025-12-20T16:09:24.413715"
+    },
+    {
+      "id": 4,
+      "brand": "bt",
+      "model": "ose250",
+      "series": null,
+      "error_code": "c31",
+      "symptom": "falla hidraulico",
+      "checks_done": "bateria ok, contactor ok",
+      "diagnosis": "🔍 PROBABLE CAUSE:  \nError code C31 in BT OSE250 indicates a fault in the hydraulic sensor or its wiring. The system misinterprets the sensor signal as a maximum load condition, causing an unintended increase in hydraulic speed. This is consistent with the manual’s description of sensor or cable failure leading to erroneous hydraulic behavior.\n\n📋 DIAGNOSTIC STEPS:  \n1. Visually inspect the hydraulic sensor for physical damage, contamination, or misalignment.  \n2. Examine the hydraulic sensor wiring harness for cuts, abrasions, loose connections, or corrosion at connectors.  \n3. Using a multimeter, verify continuity and resistance values of the sensor wiring according to the manufacturer’s specifications.  \n4. Check the sensor output signal with a diagnostic tool or oscilloscope to confirm it matches expected hydraulic load readings.  \n5. Compare hydraulic system response to the error code behavior; confirm if the system is increasing hydraulic speed erroneously.  \n6. Repair or replace any damaged sensor or wiring components found during inspection.  \n7. Clear the error code and test the system to verify the fault is resolved.\n\n⚠️ SAFETY NOTE:  \nAlways disconnect the battery and follow lockout/tagout procedures before inspecting or repairing electrical components to prevent accidental startup or electric shock. Use appropriate personal protective equipment when working around hydraulic systems to avoid injury from pressurized fluids.\n\n📚 REFERENCE:  \nBT OSE250 service manual, hydraulic sensor troubleshooting section; error code C31 diagnostic procedure.\n\n💡 SIMILAR CASES:  \nDocumented cases show that loose sensor connectors or damaged sensor cables frequently cause error C31, resulting in hydraulic speed anomalies. Replacing faulty cables or securing connectors typically resolves the issue.",
+      "status": "open",
+      "source": "ai",
+      "tags": [],
+      "created_at": "2025-12-20T21:27:53.355719",
+      "updated_at": "2025-12-20T21:27:53.355719"
     }
   ]
 }

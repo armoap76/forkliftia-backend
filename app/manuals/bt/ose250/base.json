@@ -1,0 +1,306 @@
+{
+"brand": "BT",
+"model": "OSE250",
+"errors": [
+{
+"code": "C3",
+"title": "Sensor de colisión TLS activado o defectuoso",
+"manual_summary": "El sistema detecta un problema en el sensor de colisión del TLS, por lo que detiene por completo la carretilla.",
+"actions_summary": "Verificar estado y fijación del sensor de colisión; revisar cableado y conectores del sensor TLS; comprobar que no haya impactos o deformaciones en la zona del sensor; reiniciar la carretilla tras las comprobaciones."
+},
+{
+"code": "C4",
+"title": "TLS fuera de modo de funcionamiento normal",
+"manual_summary": "El sistema TLS no entra en funcionamiento normal y bloquea todas las funciones de la carretilla, impidiendo la conducción.",
+"actions_summary": "Confirmar que el sistema TLS esté correctamente activado; revisar señales y cableado asociado al TLS; desconectar y reconectar alimentación para ver si vuelve al modo normal; si el bloqueo persiste, solicitar revisión del sistema TLS."
+},
+{
+"code": "C19",
+"title": "Parámetros de carretilla incorrectos",
+"manual_summary": "Los parámetros configurados de la carretilla han sido sustituidos por valores estándar, alterando las características de conducción.",
+"actions_summary": "Verificar comportamiento de la carretilla al conducir; comprobar en el panel si se indica cambio de parámetros; registrar cambios percibidos en aceleración y frenado; planificar reconfiguración de parámetros a valores correctos."
+},
+{
+"code": "C20",
+"title": "Mando de velocidad no neutro al conectar",
+"manual_summary": "Al encender la carretilla, el mando de velocidad no está en posición neutral, por lo que se bloquea la conducción.",
+"actions_summary": "Colocar el mando de velocidad en posición neutral; desconectar y volver a conectar la llave; comprobar que no quede trabado mecánicamente el mando; verificar que no haya activaciones involuntarias del control de marcha."
+},
+{
+"code": "C22",
+"title": "Botón de marcha pulsado al desconectar",
+"manual_summary": "Alguno de los botones de marcha estaba presionado al desconectar la llave de contacto, por eso no se permite conducir.",
+"actions_summary": "Soltar todos los botones de marcha; comprobar que no queden pegados o trabados; volver a conectar la llave de contacto; verificar que la señal de los botones responda correctamente."
+},
+{
+"code": "C26",
+"title": "Sin comunicación con servodirección al encender",
+"manual_summary": "Al encender la carretilla no hay comunicación con la unidad de servodirección, lo que bloquea la conducción.",
+"actions_summary": "Verificar conexiones eléctricas de la servodirección; revisar alimentación de la unidad de dirección; apagar y encender la carretilla para ver si se restablece la comunicación; observar si aparecen otros códigos relacionados con servodirección."
+},
+{
+"code": "C28",
+"title": "Interruptor de emergencia activado",
+"manual_summary": "El interruptor de emergencia está accionado y provoca la parada completa de la carretilla.",
+"actions_summary": "Comprobar que el interruptor de emergencia no esté presionado; girar o desbloquear el pulsador según diseño; verificar que el circuito de emergencia vuelva a estado normal; encender de nuevo la carretilla."
+},
+{
+"code": "C29",
+"title": "Aviso de hora de servicio",
+"manual_summary": "El sistema indica que ha llegado la hora de realizar el servicio de mantenimiento periódico.",
+"actions_summary": "Revisar el indicador de servicio en la pantalla; planificar y realizar el mantenimiento programado; registrar la intervención de servicio; confirmar que el aviso desaparezca tras el mantenimiento según procedimiento."
+},
+{
+"code": "C31",
+"title": "Problema en sensor hidráulico o su cableado",
+"manual_summary": "El sensor hidráulico o sus cables presentan un fallo, por lo que la carretilla interpreta carga máxima y aumenta la velocidad hidráulica.",
+"actions_summary": "Inspeccionar el sensor hidráulico visualmente; revisar integridad y conexiones del cableado; comprobar si la reacción hidráulica coincide con el código; corregir cualquier daño o desconexión observada."
+},
+{
+"code": "C35",
+"title": "Aviso de temperatura en servodirección",
+"manual_summary": "El sistema de servodirección registra una temperatura elevada y muestra un aviso en pantalla.",
+"actions_summary": "Comprobar si la carretilla estuvo trabajando de forma intensa; dejar enfriar la servodirección; revisar que el entorno de la unidad tenga ventilación adecuada; vigilar si el aviso se repite frecuentemente."
+},
+{
+"code": "C41",
+"title": "Tensión de batería muy baja",
+"manual_summary": "La tensión medida en la batería está por debajo del límite, y el sistema sólo muestra el tipo de error en pantalla.",
+"actions_summary": "Verificar nivel de carga de la batería; revisar estado de bornes y conexiones; comprobar si la batería necesita recarga o sustitución; observar si el código desaparece tras restablecer la tensión."
+},
+{
+"code": "C42",
+"title": "Tensión de batería demasiado alta",
+"manual_summary": "La tensión de la batería supera el valor permitido y se indica el tipo de error en pantalla.",
+"actions_summary": "Comprobar el equipo de carga utilizado; verificar tensión real de la batería; asegurarse de que no se esté usando un cargador incorrecto; revisar si la tensión vuelve a rango normal y el código desaparece."
+},
+{
+"code": "C43",
+"title": "Temperatura elevada en panel de transistores",
+"manual_summary": "El panel de transistores se encuentra a una temperatura alta y el sistema reduce la capacidad de conducción.",
+"actions_summary": "Revisar condiciones de ventilación y suciedad en el área de electrónica de potencia; dejar enfriar la carretilla; evitar sobrecargas prolongadas; comprobar si la capacidad de conducción vuelve a la normalidad al bajar la temperatura."
+},
+{
+"code": "C50",
+"title": "Fallo en sensor de plataforma",
+"manual_summary": "Se detecta un error en el sensor de plataforma y la conducción queda bloqueada.",
+"actions_summary": "Verificar posición de la plataforma; revisar físicamente el sensor y su fijación; comprobar cableado del sensor de plataforma; restablecer alimentación y confirmar si la conducción vuelve a ser posible."
+},
+{
+"code": "C51",
+"title": "Señal incorrecta en detección de altura de horquilla",
+"manual_summary": "Alguna de las señales de los sensores de altura de horquilla es incorrecta, deteniendo el sistema hidráulico y reduciendo la capacidad de conducción.",
+"actions_summary": "Revisar sensores de altura de horquilla; inspeccionar conectores y cables de esos sensores; comprobar si hay daños mecánicos en mástil o soportes de sensores; confirmar el restablecimiento del movimiento hidráulico tras la corrección."
+},
+{
+"code": "C52",
+"title": "Parámetro hidráulico ajustado incorrectamente",
+"manual_summary": "Se ha configurado un parámetro de forma incorrecta, lo que impide el funcionamiento hidráulico y reduce la capacidad de conducción.",
+"actions_summary": "Identificar el parámetro modificado recientemente; comparar con los valores recomendados; corregir la configuración errónea; comprobar que el sistema hidráulico vuelva a funcionar con normalidad."
+},
+{
+"code": "C80",
+"title": "Servodirección, sensor de referencia defectuoso",
+"manual_summary": "La servodirección detecta un fallo en el sensor de referencia que provoca reducción de la capacidad de conducción.",
+"actions_summary": "Inspeccionar el sensor de referencia de servodirección; revisar cableado y conectores; evaluar si la dirección responde de forma estable; verificar si la reducción de capacidad persiste tras las comprobaciones."
+},
+{
+"code": "C81",
+"title": "Segundo fallo en sensor de referencia de servodirección",
+"manual_summary": "Se indica nuevamente un defecto en el sensor de referencia de la servodirección, con reducción de la capacidad de conducción.",
+"actions_summary": "Comprobar integridad del sensor de referencia; revisar que no haya juego mecánico en el sistema de dirección; verificar continuidad del cableado; registrar si el fallo aparece de forma intermitente o permanente."
+},
+{
+"code": "C82",
+"title": "Advertencia actual en servodirección",
+"manual_summary": "La servodirección genera una advertencia de funcionamiento y se reduce la capacidad de conducción.",
+"actions_summary": "Observar comportamiento de la dirección en maniobras; verificar alimentación de la unidad de servodirección; revisar indicadores adicionales en pantalla; planificar revisión detallada si la advertencia se mantiene."
+},
+{
+"code": "C90",
+"title": "Problemas de comunicación con unidad SEU 1",
+"manual_summary": "La carretilla detecta fallos de comunicación con la unidad SEU 1, reduciendo la capacidad de conducción.",
+"actions_summary": "Revisar conexiones de comunicación hacia SEU 1; comprobar alimentación de dicha unidad; observar si se presentan otros códigos relacionados; evaluar comportamiento de la carretilla bajo esta condición."
+},
+{
+"code": "C91",
+"title": "Problemas de comunicación con unidad SEU 2",
+"manual_summary": "Se registran problemas de comunicación con la unidad SEU 2, provocando reducción de la capacidad de conducción.",
+"actions_summary": "Verificar cableado de comunicación hacia SEU 2; comprobar alimentación de la unidad; revisar si el fallo es intermitente o constante; anotar condiciones de trabajo cuando aparece el error."
+},
+{
+"code": "C92",
+"title": "Error de programación 1",
+"manual_summary": "El sistema informa un error de programación y reduce la capacidad de conducción.",
+"actions_summary": "Registrar el código de error; comprobar si hubo cambios de software o parámetros recientes; desconectar y reconectar la alimentación; solicitar revisión de la programación si el error se repite."
+},
+{
+"code": "C93",
+"title": "Error de programación 2",
+"manual_summary": "Se detecta otro tipo de error de programación, con reducción de la capacidad de conducción.",
+"actions_summary": "Anotar el código y contexto donde aparece; revisar historial de ajustes; reiniciar la carretilla; programar verificación de software y parámetros del equipo."
+},
+{
+"code": "E50",
+"title": "Interruptor de plataforma activo demasiado tiempo",
+"manual_summary": "El interruptor de plataforma permanece activo más de 5 minutos con la carretilla inactiva, limitando la velocidad a 2,5 km/h.",
+"actions_summary": "Verificar que el interruptor de plataforma se libere cuando no se use; comprobar si el operador mantiene pisado el dispositivo; revisar funcionamiento mecánico del interruptor; observar si al desactivarlo se recupera la velocidad normal."
+},
+{
+"code": "E80",
+"title": "Error general de servodirección",
+"manual_summary": "Se produce un fallo en la servodirección y la carretilla limita su movimiento a 2,5 km/h.",
+"actions_summary": "Revisar funcionamiento básico de la dirección; comprobar conexiones eléctricas de la servodirección; observar si hay otros códigos relacionados (C80, C81, C82); evaluar si la velocidad vuelve a la normalidad tras apagar y encender."
+},
+{
+"code": "E81",
+"title": "Error de servodirección por tensión muy baja",
+"manual_summary": "La servodirección reporta un fallo debido a tensión muy baja, limitando la velocidad a 2,5 km/h.",
+"actions_summary": "Comprobar estado de la batería y su tensión; revisar bornes y cables de alimentación; verificar si el fallo desaparece tras carga adecuada; observar si el código se asocia a esfuerzos altos de dirección."
+},
+{
+"code": "E101",
+"title": "Error de hardware que impide arranque",
+"manual_summary": "El sistema detecta un fallo de hardware que impide arrancar la carretilla.",
+"actions_summary": "Verificar alimentación y conexiones principales; intentar ciclo de apagado y encendido; comprobar que no existan otros códigos activos; registrar el error y condiciones en las que aparece para diagnóstico posterior."
+},
+{
+"code": "E104",
+"title": "Error de hardware con parada de carretilla",
+"manual_summary": "Se produce un error de hardware que provoca la detención de la carretilla.",
+"actions_summary": "Anotar el momento y la maniobra en la que se detuvo; revisar conexiones y módulos electrónicos visibles; realizar un reinicio del sistema; comprobar si la carretilla vuelve a moverse sin reproducir el fallo."
+},
+{
+"code": "E106",
+"title": "Corriente muy alta en salida digital o campo",
+"manual_summary": "La unidad detecta corriente excesiva en una salida digital o en el devanado de campo y detiene la carretilla.",
+"actions_summary": "Revisar consumidores conectados a la salida digital; inspeccionar devanado de campo por posibles cortocircuitos; comprobar cableado asociado a la salida afectada; no volver a poner en servicio sin eliminar la causa de la sobrecorriente."
+},
+{
+"code": "E107",
+"title": "Contactor principal no activado",
+"manual_summary": "El sistema espera activación del contactor principal y al no producirse detiene la carretilla.",
+"actions_summary": "Verificar alimentación de la bobina del contactor principal; revisar estado mecánico del contactor (bloqueo o desgaste); comprobar conexiones de mando; observar si el contactor intenta activar al dar la orden de marcha."
+},
+{
+"code": "E108",
+"title": "Contactor principal soldado",
+"manual_summary": "Se detecta que el contactor principal está soldado o no abre correctamente, provocando parada de la carretilla.",
+"actions_summary": "Inspeccionar visualmente el contactor principal; comprobar si los contactos se quedan pegados; revisar señales de mando y realimentación; retirar de servicio el contactor si se confirma que está soldado."
+},
+{
+"code": "E110",
+"title": "Error de sistema",
+"manual_summary": "La electrónica informa un error general de sistema que ocasiona la detención de la carretilla.",
+"actions_summary": "Registrar el código y cualquier otro código asociado; apagar y encender la carretilla; verificar funcionamiento básico tras el reinicio; programar diagnóstico más profundo si el error reaparece."
+},
+{
+"code": "E113",
+"title": "Error indeterminado de servodirección",
+"manual_summary": "La servodirección presenta un fallo sin causa detallada, provocando la detención de la carretilla.",
+"actions_summary": "Comprobar comportamiento de la dirección antes de la parada; revisar conexiones y alimentación de la servodirección; observar si se acompaña de otros códigos de dirección; documentar el contexto del fallo para análisis posterior."
+},
+{
+"code": "E114-E134",
+"title": "Grupo de errores de servodirección",
+"manual_summary": "Conjunto de códigos dentro del rango E114 a E134 asociados a fallos en la servodirección que hacen que la carretilla se detenga.",
+"actions_summary": "Identificar el código concreto dentro del rango; revisar componentes y cableado de servodirección; comprobar alimentación y comunicación de la unidad; no continuar el uso hasta que se aclare y corrija el fallo de dirección."
+},
+{
+"code": "E135",
+"title": "Requiere calibración de potenciómetro (parámetro 36)",
+"manual_summary": "El sistema indica que es necesario calibrar el potenciómetro mediante el parámetro 36, y detiene la carretilla.",
+"actions_summary": "Acceder al ajuste del parámetro 36 según procedimiento; realizar la calibración del potenciómetro; guardar los nuevos valores; comprobar que tras la calibración la carretilla funcione sin el código E135."
+},
+{
+"code": "E136",
+"title": "Error de potenciómetro",
+"manual_summary": "Se detecta un fallo en el potenciómetro, por lo que la carretilla se detiene.",
+"actions_summary": "Revisar físicamente el potenciómetro (daños, juego excesivo); comprobar cableado y conectores asociados; evaluar si la señal del potenciómetro es estable; sustituir el componente si el fallo persiste."
+},
+{
+"code": "E137",
+"title": "Error de servodirección por suma incorrecta",
+"manual_summary": "La servodirección registra un error en la suma de control interna y provoca la detención de la carretilla.",
+"actions_summary": "Registrar el código para diagnóstico; revisar integridad de la unidad de servodirección; comprobar alimentación y puesta a tierra; reiniciar la carretilla y observar si el error vuelve a aparecer."
+},
+{
+"code": "E138",
+"title": "Error de servodirección por falta de comunicación",
+"manual_summary": "Se pierde la comunicación con la servodirección, lo que ocasiona la detención de la carretilla.",
+"actions_summary": "Verificar conexiones de comunicación entre control principal y servodirección; revisar latiguillos y conectores de datos; comprobar que la unidad de servodirección esté alimentada; observar si la comunicación se restablece tras reiniciar."
+},
+{
+"code": "E139",
+"title": "Error de comunicación general",
+"manual_summary": "El sistema detecta un fallo de comunicación y detiene la carretilla.",
+"actions_summary": "Comprobar cables y conectores del bus de comunicación; revisar que todas las unidades electrónicas estén alimentadas; apagar y encender la carretilla; vigilar si el error se reproduce bajo ciertas condiciones."
+},
+{
+"code": "E140",
+"title": "Error de suma de control",
+"manual_summary": "Se detecta un error en la suma de control (checksum) interna y la carretilla se detiene por seguridad.",
+"actions_summary": "Registrar el código y el momento del fallo; realizar un ciclo completo de apagado y encendido; comprobar si reaparece el código con frecuencia; derivar el equipo a revisión de electrónica si el fallo es recurrente."
+},
+{
+"code": "E141",
+"title": "Error de software",
+"manual_summary": "La unidad de control informa un error de software que genera la detención de la carretilla.",
+"actions_summary": "Anotar la situación en la que se produce el error; reiniciar la carretilla para ver si el fallo se borra; evitar modificaciones de parámetros hasta aclarar la causa; solicitar verificación o actualización de software si se repite."
+},
+{
+"code": "E150",
+"title": "Error de comunicación 1",
+"manual_summary": "Se produce un fallo de comunicación interno que detiene la carretilla.",
+"actions_summary": "Revisar el bus de datos y conexiones; comprobar que todas las unidades implicadas estén firmemente conectadas; realizar un reinicio de sistema; observar si se combina con otros códigos de comunicación."
+},
+{
+"code": "E151",
+"title": "Error de comunicación 2",
+"manual_summary": "Otro tipo de error de comunicación es detectado, provocando la detención de la carretilla.",
+"actions_summary": "Inspeccionar conectores y cables de comunicación; verificar que no haya daños mecánicos en los mazos de cables; apagar y encender para comprobar si el error persiste; registrar la frecuencia del fallo."
+},
+{
+"code": "E157",
+"title": "Error en bus CAN 1",
+"manual_summary": "Se detecta un fallo en el bus CAN que hace que la carretilla se detenga.",
+"actions_summary": "Revisar continuidad del bus CAN; comprobar terminadores y polaridad del cableado; inspeccionar conectores en todos los nodos CAN; evaluar si el fallo se presenta con vibraciones o movimiento."
+},
+{
+"code": "E159",
+"title": "Error en bus CAN 2",
+"manual_summary": "Se informa otro error de bus CAN que provoca la detención de la carretilla.",
+"actions_summary": "Comprobar integridad del cableado del bus; revisar puntos de conexión intermedios; asegurar que no haya derivaciones o empalmes defectuosos; reiniciar la carretilla y observar la estabilidad de la comunicación CAN."
+},
+{
+"code": "E160",
+"title": "Error en función de inversión de seguridad",
+"manual_summary": "La función de inversión de seguridad presenta un fallo, provocando la detención inmediata de la carretilla.",
+"actions_summary": "Verificar el dispositivo de inversión de seguridad; revisar cableado y sensores asociados; comprobar que el accionamiento de seguridad funcione mecánicamente; no usar la carretilla hasta asegurar que la función opere correctamente."
+},
+{
+"code": "E200",
+"title": "Devanado de campo en derivación abierto",
+"manual_summary": "El devanado de campo en derivación aparece abierto y el sistema detiene la carretilla.",
+"actions_summary": "Revisar continuidad del devanado de campo con las conexiones visibles; inspeccionar terminales y mazo de cables del motor; comprobar que no haya cortes o desconexiones evidentes; no poner en servicio hasta restaurar la continuidad del circuito de campo."
+},
+{
+"code": "E201",
+"title": "Error en M menos de unidad de transistores",
+"manual_summary": "Se detecta un fallo relacionado con la conexión M− en la unidad de transistores y la carretilla se detiene.",
+"actions_summary": "Inspeccionar la conexión M− en la unidad de potencia; revisar apriete y estado de los terminales; observar posibles marcas de calentamiento o daños; asegurar que la conexión sea firme antes de reintentar el funcionamiento."
+},
+{
+"code": "E202",
+"title": "Derivación de corriente errónea en unidad de transistores",
+"manual_summary": "La unidad de transistores detecta una derivación de corriente incorrecta, provocando la detención de la carretilla.",
+"actions_summary": "Revisar cableado de potencia y posibles derivaciones a chasis; comprobar la integridad de la unidad de transistores visualmente; verificar que no haya cables pellizcados o aislación dañada; mantener la carretilla parada hasta eliminar la derivación."
+},
+{
+"code": "E214",
+"title": "Fin de tiempo CAN en unidad de transistores",
+"manual_summary": "Se produce un fin de tiempo (timeout) en la comunicación CAN con la unidad de transistores, y la carretilla se detiene.",
+"actions_summary": "Comprobar conexión CAN en la unidad de transistores; revisar continuidad del bus entre el controlador y dicha unidad; reiniciar el sistema para ver si la comunicación se restablece; registrar condiciones de carga cuando aparece el timeout."
+}
+]
+}
