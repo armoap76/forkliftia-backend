@@ -3,6 +3,7 @@ from datetime import datetime
 
 from app.storage_json import JsonCaseStore
 from app.models import CaseCreate
+from app.manuals_store import search_manual_error
 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,6 +19,7 @@ app.add_middleware(
         "http://localhost:5173",
         "https://forkliftia-frontend.pages.dev",
     ],
+    allow_origin_regex=r"^https:\/\/.*\.forkliftia-frontend\.pages\.dev$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,6 +41,10 @@ YOUR ROLE:
 - Provide practical, specific diagnostic guidance
 - Reference technical manuals and real-world troubleshooting patterns
 - Never guess - if information is insufficient, ask for clarification
+- If information comes from a service manual, EXPLAIN it, do not speculate.
+- Do NOT introduce causes not supported by manuals or documented cases.
+- If the manual is incomplete, explicitly say so.
+- Prefer explanation over hypothesis.
 
 RESPONSE FORMAT (always use this structure):
 
@@ -114,13 +120,41 @@ def diagnosis(
     if not token:
         raise HTTPException(status_code=401, detail="Missing token")
 
-    # Armado del prompt con tus campos actuales del frontend
+    # Datos del frontend
     brand = payload.get("brand", "")
     model = payload.get("model", "")
     series = payload.get("series", "")
     error_code = payload.get("error_code") or "None provided"
     symptom = payload.get("symptom", "")
     checks_done = payload.get("checks_done") or "Nothing specified yet"
+
+    # Idioma (nuevo)
+    language = payload.get("language", "en")
+
+    if language == "es":
+        output_language_instruction = "Explain the diagnosis in professional LATAM Spanish."
+    else:
+        output_language_instruction = "Explain the diagnosis in professional technical English."
+
+    # Buscar en manuales
+    manual_hit = search_manual_error(
+        base_path="app/manuals",
+        brand=brand,
+        model=model,
+        series=series,
+        error_code=None if error_code == "None provided" else error_code,
+    )
+
+    manual_context = ""
+    if manual_hit:
+        e = manual_hit["error"]
+        manual_context = f"""
+MANUAL CONTEXT (private, paraphrase only):
+System: {e.get('system')}
+Summary: {e.get('manual_summary')}
+Actions: {e.get('actions_summary')}
+"""
+
 
     # 1) Buscar caso resuelto similar
     match = store.find_resolved_by_key(
@@ -137,7 +171,15 @@ def diagnosis(
             "source": "cases",
         }
 
-    user_prompt = f"""NEW DIAGNOSTIC CASE:
+    user_prompt = f"""
+IMPORTANT:
+{output_language_instruction}
+Do NOT speculate.
+Explain based on manuals and documented cases only.
+
+{manual_context}
+
+NEW DIAGNOSTIC CASE:
 
 Brand: {brand}
 Model: {model}
@@ -153,6 +195,7 @@ ALREADY CHECKED BY TECHNICIAN:
 ---
 Provide your diagnostic analysis following the standard format.
 """
+
 
     try:
         # Responses API (recomendada para proyectos nuevos) :contentReference[oaicite:2]{index=2}
