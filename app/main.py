@@ -5,11 +5,16 @@ from app.storage_json import JsonCaseStore
 from app.models import CaseCreate
 from app.manuals_store import search_manual_error
 
+from pydantic import BaseModel
+
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from openai import OpenAI
+
+class ResolveCaseIn(BaseModel):
+    resolution_note: str
 
 app = FastAPI(title="ForkliftIA Backend")
 
@@ -108,6 +113,22 @@ def set_case_status(
     updated = store.update_status(case_id, status)
     if not updated:
         raise HTTPException(status_code=404, detail="Case not found")
+
+    return updated
+
+@app.patch("/cases/{case_id}/resolve")
+def resolve_case(
+    case_id: int,
+    payload: ResolveCaseIn,
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+):
+    token = credentials.credentials
+    if not token:
+        raise HTTPException(status_code=401, detail="Missing token")
+
+    updated = store.resolve_case(case_id, payload.resolution_note)
+    if not updated:
+        raise HTTPException(status_code=400, detail="case not found")
 
     return updated
 

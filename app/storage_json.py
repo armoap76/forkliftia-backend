@@ -52,9 +52,30 @@ class JsonCaseStore(CaseStore):
                 c["updated_at"] = now
                 self._write(db)
                 return self._to_case(c)
-
         return None
 
+    def resolve_case(self, case_id: int, resolution_note: str) -> Optional[Case]:
+        db = self._read()
+        now = datetime.utcnow().isoformat()
+
+        note = (resolution_note or "").strip()
+        if not note:
+        # preferí None para que el endpoint devuelva 400, pero acá lo dejo simple
+            return None
+
+        for c in db["cases"]:
+            if int(c.get("id")) == int(case_id):
+                c["status"] = "resolved"
+                c["resolution_note"] = note
+                c["resolved_at"] = now
+                c["updated_at"] = now
+                self._write(db)
+                return self._to_case(c)
+
+        return None
+    
+
+        
     def create_case(self, data: CaseCreate) -> Case:
         db = self._read()
         now = datetime.utcnow()
@@ -74,8 +95,12 @@ class JsonCaseStore(CaseStore):
             "status": data.status,
             "source": data.source,
             "tags": data.tags,
+            "resolution_note": None,
+            "resolved_at": None,
             "created_at": now.isoformat(),
             "updated_at": now.isoformat(),
+            
+
         }
 
         db["cases"].append(record)
