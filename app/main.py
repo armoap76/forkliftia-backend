@@ -22,6 +22,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "https://forkliftia.com",
         "https://forkliftia-frontend.pages.dev",
     ],
     allow_origin_regex=r"^https:\/\/.*\.forkliftia-frontend\.pages\.dev$",
