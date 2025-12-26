@@ -1,9 +1,10 @@
 import os
 from datetime import datetime
 
-from app.storage_json import JsonCaseStore
-from app.models import CaseCreate
 from app.manuals_store import search_manual_error
+from app.models import CaseCreate
+from app.storage_db import DatabaseCaseStore
+from app.database import get_session
 
 from pydantic import BaseModel
 
@@ -37,7 +38,7 @@ security = HTTPBearer()
 from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI()
-store = JsonCaseStore("app/data/cases.json")
+store = DatabaseCaseStore(get_session)
 
 
 SYSTEM_PROMPT = """You are ForkliftIA, an expert diagnostic assistant specialized in industrial forklifts, reach trucks, pallet jacks, and material handling equipment.
@@ -237,6 +238,8 @@ Provide your diagnostic analysis following the standard format.
 
         case = store.create_case(
             CaseCreate(
+                title=f"{brand} {model} ({error_code})" if error_code else f"{brand} {model}",
+                description=symptom or "",
                 brand=brand,
                 model=model,
                 series=series or None,
@@ -246,6 +249,7 @@ Provide your diagnostic analysis following the standard format.
                 diagnosis=diagnosis_text,
                 status="open",      # por ahora lo dejamos abierto
                 source="ai",
+                created_by_uid=token,
             )
         )
 
