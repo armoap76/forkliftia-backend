@@ -8,6 +8,9 @@ CaseStatus = Literal["open", "resolved"]
 CaseSource = Literal["cases", "ai", "manuals", "mixed"]
 
 class CaseCreate(BaseModel):
+    title: str = Field(..., min_length=1)
+    description: str = Field(..., min_length=1)
+
     brand: str = Field(..., min_length=1)
     model: str = Field(..., min_length=1)
     series: Optional[str] = None
@@ -20,9 +23,14 @@ class CaseCreate(BaseModel):
     status: CaseStatus = "open"
     source: CaseSource = "ai"
 
+    created_by_uid: str = Field(..., min_length=1)
+
     tags: List[str] = Field(default_factory=list)
 
 class Case(CaseCreate):
     id: int
     created_at: datetime
     updated_at: datetime
+    resolution_note: Optional[str] = None
+    resolved_at: Optional[datetime] = None
+    closed_at: Optional[datetime] = None

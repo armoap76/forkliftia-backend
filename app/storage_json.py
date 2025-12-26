@@ -40,6 +40,24 @@ class JsonCaseStore(CaseStore):
         raw = dict(raw)
         raw["created_at"] = datetime.fromisoformat(raw["created_at"])
         raw["updated_at"] = datetime.fromisoformat(raw["updated_at"])
+        if raw.get("resolved_at"):
+            raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
+        else:
+            raw["resolved_at"] = None
+        if raw.get("closed_at"):
+            raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
+        else:
+            raw["closed_at"] = None
+
+        raw.setdefault("title", f"Case #{raw.get('id')}")
+        raw.setdefault("description", raw.get("symptom", ""))
+        raw.setdefault("brand", "unknown")
+        raw.setdefault("model", "unknown")
+        raw.setdefault("symptom", raw.get("description") or "N/A")
+        raw.setdefault("created_by_uid", "legacy")
+        raw.setdefault("tags", [])
+        raw.setdefault("status", "open")
+        raw.setdefault("source", "ai")
         return Case(**raw)
 
     def update_status(self, case_id: int, status: str) -> Optional[Case]:
@@ -50,6 +68,13 @@ class JsonCaseStore(CaseStore):
             if int(c.get("id")) == int(case_id):
                 c["status"] = status
                 c["updated_at"] = now
+                if status == "resolved":
+                    c["closed_at"] = c.get("closed_at") or now
+                    c["resolved_at"] = c.get("resolved_at") or now
+                else:
+                    c["closed_at"] = None
+                    c["resolved_at"] = None
+                    c["resolution_note"] = None
                 self._write(db)
                 return self._to_case(c)
         return None
@@ -68,6 +93,7 @@ class JsonCaseStore(CaseStore):
                 c["status"] = "resolved"
                 c["resolution_note"] = note
                 c["resolved_at"] = now
+                c["closed_at"] = c.get("closed_at") or now
                 c["updated_at"] = now
                 self._write(db)
                 return self._to_case(c)
@@ -85,6 +111,8 @@ class JsonCaseStore(CaseStore):
 
         record = {
             "id": case_id,
+            "title": data.title,
+            "description": data.description,
             "brand": data.brand,
             "model": data.model,
             "series": data.series,
@@ -97,6 +125,8 @@ class JsonCaseStore(CaseStore):
             "tags": data.tags,
             "resolution_note": None,
             "resolved_at": None,
+            "closed_at": None,
+            "created_by_uid": data.created_by_uid,
             "created_at": now.isoformat(),
             "updated_at": now.isoformat(),
             
