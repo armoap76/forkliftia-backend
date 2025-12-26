@@ -21,8 +21,11 @@ class CaseCreate(BaseModel):
     source: CaseSource = "ai"
 
     tags: List[str] = Field(default_factory=list)
+    created_by_uid: Optional[str] = None
 
 class Case(CaseCreate):
     id: int
     created_at: datetime
     updated_at: datetime
+    resolution_note: Optional[str] = None
+    resolved_at: Optional[datetime] = None

@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 from app.storage_json import JsonCaseStore
-from app.models import CaseCreate
+from app.models import Case, CaseCreate
 from app.manuals_store import search_manual_error
 
 from pydantic import BaseModel
@@ -13,8 +13,10 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from openai import OpenAI
 
+
 class ResolveCaseIn(BaseModel):
     resolution_note: str
+
 
 app = FastAPI(title="ForkliftIA Backend")
 
@@ -31,12 +33,40 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-security = HTTPBearer()
+bearer_scheme = HTTPBearer(auto_error=False)
 
 # OpenAI client (lee OPENAI_API_KEY del environment)
 from dotenv import load_dotenv
+
 load_dotenv()
-client = OpenAI()
+
+ADMIN_UIDS = {uid.strip() for uid in os.getenv("ADMIN_UIDS", "").split(",") if uid.strip()}
+
+
+def get_requester_uid(
+    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
+) -> str:
+    if credentials is None or not credentials.credentials.strip():
+        raise HTTPException(status_code=401, detail="Missing Authorization: Bearer <uid>")
+
+    return credentials.credentials.strip()
+
+
+def is_admin(uid: str) -> bool:
+    return uid in ADMIN_UIDS
+
+
+def ensure_case_owner_or_admin(case: Case, uid: str) -> None:
+    if case.created_by_uid == uid or is_admin(uid):
+        return
+
+    raise HTTPException(status_code=403, detail="Not authorized to modify this case")
+
+
+def get_openai_client() -> OpenAI:
+    return OpenAI()
+
+
 store = JsonCaseStore("app/data/cases.json")
 
 
@@ -87,29 +117,26 @@ def ping():
 
 @app.get("/cases")
 def list_cases(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
     status: str | None = None,
     limit: int = 50,
 ):
-    token = credentials.credentials
-    if not token:
-        raise HTTPException(status_code=401, detail="Missing token")
-
     return store.list_cases(status=status, limit=limit)
 
 @app.patch("/cases/{case_id}")
 def set_case_status(
     case_id: int,
     payload: dict,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    uid: str = Depends(get_requester_uid),
 ):
-    token = credentials.credentials
-    if not token:
-        raise HTTPException(status_code=401, detail="Missing token")
-
     status = payload.get("status")
     if status not in ("open", "resolved"):
         raise HTTPException(status_code=400, detail="status must be 'open' or 'resolved'")
+
+    case = store.get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case not found")
+
+    ensure_case_owner_or_admin(case, uid)
 
     updated = store.update_status(case_id, status)
     if not updated:
@@ -121,26 +148,30 @@ def set_case_status(
 def resolve_case(
     case_id: int,
     payload: ResolveCaseIn,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    uid: str = Depends(get_requester_uid),
 ):
-    token = credentials.credentials
-    if not token:
-        raise HTTPException(status_code=401, detail="Missing token")
+    case = store.get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="case not found")
 
-    updated = store.resolve_case(case_id, payload.resolution_note)
+    ensure_case_owner_or_admin(case, uid)
+
+    resolution_note = (payload.resolution_note or "").strip()
+    if not resolution_note:
+        raise HTTPException(status_code=400, detail="resolution_note is required")
+
+    updated = store.resolve_case(case_id, resolution_note)
     if not updated:
-        raise HTTPException(status_code=400, detail="case not found")
+        raise HTTPException(status_code=404, detail="case not found")
 
     return updated
 
 @app.post("/diagnosis")
 def diagnosis(
     payload: dict,
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    uid: str = Depends(get_requester_uid),
 ):
-    token = credentials.credentials
-    if not token:
-        raise HTTPException(status_code=401, detail="Missing token")
+    client = get_openai_client()
 
     # Datos del frontend
     brand = payload.get("brand", "")
@@ -246,6 +277,7 @@ Provide your diagnostic analysis following the standard format.
                 diagnosis=diagnosis_text,
                 status="open",      # por ahora lo dejamos abierto
                 source="ai",
+                created_by_uid=uid,
             )
         )
 
