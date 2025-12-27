@@ -275,7 +275,7 @@ Provide your diagnostic analysis following the standard format.
                 status="open",      # por ahora lo dejamos abierto
                 source="ai",
                 created_by_uid=uid,
-                created_by_uid=token,
+            
             )
         )
 
