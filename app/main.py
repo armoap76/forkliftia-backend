@@ -1,9 +1,11 @@
 import os
 from datetime import datetime
 
-from app.storage_json import JsonCaseStore
-from app.models import Case, CaseCreate
+
 from app.manuals_store import search_manual_error
+from app.models import CaseCreate
+from app.storage_db import DatabaseCaseStore
+from app.database import get_session
 
 from pydantic import BaseModel
 
@@ -39,35 +41,28 @@ bearer_scheme = HTTPBearer(auto_error=False)
 from dotenv import load_dotenv
 
 load_dotenv()
-
 ADMIN_UIDS = {uid.strip() for uid in os.getenv("ADMIN_UIDS", "").split(",") if uid.strip()}
-
 
 def get_requester_uid(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
 ) -> str:
     if credentials is None or not credentials.credentials.strip():
         raise HTTPException(status_code=401, detail="Missing Authorization: Bearer <uid>")
-
     return credentials.credentials.strip()
-
 
 def is_admin(uid: str) -> bool:
     return uid in ADMIN_UIDS
 
-
-def ensure_case_owner_or_admin(case: Case, uid: str) -> None:
-    if case.created_by_uid == uid or is_admin(uid):
+def ensure_case_owner_or_admin(case, uid: str) -> None:
+    # case debe tener created_by_uid
+    if getattr(case, "created_by_uid", None) == uid or is_admin(uid):
         return
-
     raise HTTPException(status_code=403, detail="Not authorized to modify this case")
-
 
 def get_openai_client() -> OpenAI:
     return OpenAI()
 
-
-store = JsonCaseStore("app/data/cases.json")
+store = DatabaseCaseStore(get_session)
 
 
 SYSTEM_PROMPT = """You are ForkliftIA, an expert diagnostic assistant specialized in industrial forklifts, reach trucks, pallet jacks, and material handling equipment.
@@ -268,6 +263,8 @@ Provide your diagnostic analysis following the standard format.
 
         case = store.create_case(
             CaseCreate(
+                title=f"{brand} {model} ({error_code})" if error_code else f"{brand} {model}",
+                description=symptom or "",
                 brand=brand,
                 model=model,
                 series=series or None,
@@ -278,6 +275,7 @@ Provide your diagnostic analysis following the standard format.
                 status="open",      # por ahora lo dejamos abierto
                 source="ai",
                 created_by_uid=uid,
+                created_by_uid=token,
             )
         )
 
