@@ -26,6 +26,7 @@ class CaseCreate(BaseModel):
     created_by_uid: str = Field(..., min_length=1)
 
     tags: List[str] = Field(default_factory=list)
+    created_by_uid: Optional[str] = None
 
 class Case(CaseCreate):
     id: int
@@ -33,4 +34,5 @@ class Case(CaseCreate):
     updated_at: datetime
     resolution_note: Optional[str] = None
     resolved_at: Optional[datetime] = None
-    closed_at: Optional[datetime] = None
+closed_at: Optional[datetime] = None
+
