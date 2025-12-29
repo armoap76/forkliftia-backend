@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from datetime import datetime
 from typing import Literal, Optional, List
-from pydantic import BaseModel, Field
+import re
+
+from pydantic import BaseModel, Field, validator
 
 CaseStatus = Literal["open", "resolved"]
 CaseSource = Literal["cases", "ai", "manuals", "mixed"]
@@ -35,4 +37,24 @@ class Case(CaseCreate):
     resolution_note: Optional[str] = None
     resolved_at: Optional[datetime] = None
 closed_at: Optional[datetime] = None
+
+
+class MeResponse(BaseModel):
+    uid: str
+    public_name: Optional[str] = None
+
+
+class UpdatePublicName(BaseModel):
+    public_name: str
+
+    @validator("public_name")
+    def validate_public_name(cls, value: str) -> str:
+        name = (value or "").strip()
+        if len(name) < 3 or len(name) > 32:
+            raise ValueError("public_name must be between 3 and 32 characters long")
+        if not re.fullmatch(r"[A-Za-z0-9_-]+", name):
+            raise ValueError(
+                "public_name can only contain letters, numbers, dashes and underscores"
+            )
+        return name
 
