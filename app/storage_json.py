@@ -46,28 +46,26 @@ class JsonCaseStore(CaseStore):
         raw["updated_at"] = datetime.fromisoformat(raw["updated_at"])
 
         if raw.get("resolved_at"):
-    raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
-else:
-    raw["resolved_at"] = None
+            raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
+        else:
+            raw["resolved_at"] = None
 
-if raw.get("closed_at"):
-    raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
-else:
-    raw["closed_at"] = None
+        if raw.get("closed_at"):
+            raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
+        else:
+            raw["closed_at"] = None
 
-raw.setdefault("title", f"Case #{raw.get('id')}")
-raw.setdefault("description", raw.get("symptom", ""))
-raw.setdefault("brand", "unknown")
-raw.setdefault("model", "unknown")
-raw.setdefault("symptom", raw.get("description") or "N/A")
-raw.setdefault("created_by_uid", "legacy")
-raw.setdefault("tags", [])
-raw.setdefault("status", "open")
-raw.setdefault("source", "ai")
+        raw.setdefault("title", f"Case #{raw.get('id')}")
+        raw.setdefault("description", raw.get("symptom", ""))
+        raw.setdefault("brand", "unknown")
+        raw.setdefault("model", "unknown")
+        raw.setdefault("symptom", raw.get("description") or "N/A")
+        raw.setdefault("created_by_uid", "legacy")
+        raw.setdefault("tags", [])
+        raw.setdefault("status", "open")
+        raw.setdefault("source", "ai")
 
-return Case(**raw)
-
-       
+        return Case(**raw)
 
     def update_status(self, case_id: int, status: str) -> Optional[Case]:
         db = self._read()
@@ -103,9 +101,7 @@ return Case(**raw)
                 return self._to_case(c)
 
         return None
-    
 
-        
     def create_case(self, data: CaseCreate) -> Case:
         db = self._read()
         now = datetime.utcnow()
@@ -131,11 +127,8 @@ return Case(**raw)
             "resolution_note": None,
             "resolved_at": None,
             "closed_at": None,
-            "created_by_uid": data.created_by_uid,
             "created_at": now.isoformat(),
             "updated_at": now.isoformat(),
-            
-
         }
 
         db["cases"].append(record)
