@@ -23,6 +23,18 @@ class User(Base):
     cases = relationship("Case", back_populates="creator", cascade="all, delete-orphan")
 
 
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    uid = Column(String, unique=True, nullable=False, index=True)
+    public_name = Column(String, unique=True, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False
+    )
+
+
 class Case(Base):
     __tablename__ = "cases"
 

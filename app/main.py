@@ -3,9 +3,10 @@ from datetime import datetime
 
 
 from app.manuals_store import search_manual_error
-from app.models import CaseCreate
+from app.models import CaseCreate, MeResponse, UpdatePublicName
 from app.storage_db import DatabaseCaseStore
 from app.database import get_session
+from app.db_models import User as UserModel, UserProfile as UserProfileModel
 
 from pydantic import BaseModel
 
@@ -59,6 +60,14 @@ def ensure_case_owner_or_admin(case, uid: str) -> None:
         return
     raise HTTPException(status_code=403, detail="Not authorized to modify this case")
 
+def ensure_user_record(session, uid: str) -> None:
+    user = session.query(UserModel).filter(UserModel.uid == uid).one_or_none()
+    if user:
+        return
+
+    user = UserModel(uid=uid, created_at=datetime.utcnow())
+    session.add(user)
+
 def get_openai_client() -> OpenAI:
     return OpenAI()
 
@@ -106,9 +115,58 @@ RULES:
 8. If you don't know something, say so clearly
 """
 
+
 @app.get("/ping")
 def ping():
     return {"message": "forkliftia ok"}
+
+@app.get("/me", response_model=MeResponse)
+def get_me(uid: str = Depends(get_requester_uid)):
+    with get_session() as session:
+        ensure_user_record(session, uid)
+        profile = (
+            session.query(UserProfileModel).filter(UserProfileModel.uid == uid).one_or_none()
+        )
+        if session.new:
+            session.commit()
+        return MeResponse(uid=uid, public_name=profile.public_name if profile else None)
+
+
+@app.put("/me/public-name", response_model=MeResponse)
+def set_public_name(payload: UpdatePublicName, uid: str = Depends(get_requester_uid)):
+    desired_name = payload.public_name
+
+    with get_session() as session:
+        ensure_user_record(session, uid)
+        profile = (
+            session.query(UserProfileModel).filter(UserProfileModel.uid == uid).one_or_none()
+        )
+
+        if profile and profile.public_name:
+            raise HTTPException(status_code=409, detail="Public name already set")
+
+        existing = (
+            session.query(UserProfileModel)
+            .filter(UserProfileModel.public_name == desired_name)
+            .one_or_none()
+        )
+        if existing:
+            raise HTTPException(status_code=409, detail="Public name already taken")
+
+        now = datetime.utcnow()
+        if profile:
+            profile.public_name = desired_name
+            profile.updated_at = now
+        else:
+            profile = UserProfileModel(
+                uid=uid, public_name=desired_name, created_at=now, updated_at=now
+            )
+            session.add(profile)
+
+        session.commit()
+        session.refresh(profile)
+
+        return MeResponse(uid=uid, public_name=profile.public_name)
 
 @app.get("/cases")
 def list_cases(
