@@ -46,26 +46,26 @@ class JsonCaseStore(CaseStore):
         raw["updated_at"] = datetime.fromisoformat(raw["updated_at"])
 
         if raw.get("resolved_at"):
-    raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
-else:
-    raw["resolved_at"] = None
+            raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
+        else:
+            raw["resolved_at"] = None
 
-if raw.get("closed_at"):
-    raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
-else:
-    raw["closed_at"] = None
+        if raw.get("closed_at"):
+            raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
+        else:
+            raw["closed_at"] = None
 
-raw.setdefault("title", f"Case #{raw.get('id')}")
-raw.setdefault("description", raw.get("symptom", ""))
-raw.setdefault("brand", "unknown")
-raw.setdefault("model", "unknown")
-raw.setdefault("symptom", raw.get("description") or "N/A")
-raw.setdefault("created_by_uid", "legacy")
-raw.setdefault("tags", [])
-raw.setdefault("status", "open")
-raw.setdefault("source", "ai")
+        raw.setdefault("title", f"Case #{raw.get('id')}")
+        raw.setdefault("description", raw.get("symptom", ""))
+        raw.setdefault("brand", "unknown")
+        raw.setdefault("model", "unknown")
+        raw.setdefault("symptom", raw.get("description") or "N/A")
+        raw.setdefault("created_by_uid", "legacy")
+        raw.setdefault("tags", [])
+        raw.setdefault("status", "open")
+        raw.setdefault("source", "ai")
 
-return Case(**raw)
+        return Case(**raw)
 
        
 
