@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Literal, Optional, List
+from typing import List, Literal, Optional
+
 from pydantic import BaseModel, Field
 
 CaseStatus = Literal["open", "resolved"]
 CaseSource = Literal["cases", "ai", "manuals", "mixed"]
+
 
 class CaseCreate(BaseModel):
     title: str = Field(..., min_length=1)
@@ -26,7 +28,7 @@ class CaseCreate(BaseModel):
     created_by_uid: str = Field(..., min_length=1)
 
     tags: List[str] = Field(default_factory=list)
-    created_by_uid: Optional[str] = None
+
 
 class Case(CaseCreate):
     id: int
@@ -34,5 +36,13 @@ class Case(CaseCreate):
     updated_at: datetime
     resolution_note: Optional[str] = None
     resolved_at: Optional[datetime] = None
-closed_at: Optional[datetime] = None
+    closed_at: Optional[datetime] = None
 
+
+class UserProfile(BaseModel):
+    uid: str
+    public_name: Optional[str] = None
+
+
+class PublicNameUpdate(BaseModel):
+    public_name: str
