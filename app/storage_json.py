@@ -29,7 +29,6 @@ class JsonCaseStore(CaseStore):
             return json.load(f)
 
     def _write(self, obj: Dict[str, Any]) -> None:
-        # escritura atómica: escribe temp y renombra
         tmp = self.path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=False, indent=2, default=str)
@@ -40,20 +39,16 @@ class JsonCaseStore(CaseStore):
         raw.setdefault("created_by_uid", None)
         raw.setdefault("resolution_note", None)
         raw.setdefault("resolved_at", None)
-        
         raw["created_at"] = datetime.fromisoformat(raw["created_at"])
         raw["updated_at"] = datetime.fromisoformat(raw["updated_at"])
-        
         if raw.get("resolved_at"):
             raw["resolved_at"] = datetime.fromisoformat(raw["resolved_at"])
         else:
             raw["resolved_at"] = None
-        
         if raw.get("closed_at"):
             raw["closed_at"] = datetime.fromisoformat(raw["closed_at"])
         else:
             raw["closed_at"] = None
-        
         raw.setdefault("title", f"Case #{raw.get('id')}")
         raw.setdefault("description", raw.get("symptom", ""))
         raw.setdefault("brand", "unknown")
@@ -63,13 +58,11 @@ class JsonCaseStore(CaseStore):
         raw.setdefault("tags", [])
         raw.setdefault("status", "open")
         raw.setdefault("source", "ai")
-        
         return Case(**raw)
 
     def update_status(self, case_id: int, status: str) -> Optional[Case]:
         db = self._read()
         now = datetime.utcnow().isoformat()
-        
         for c in db["cases"]:
             if int(c.get("id")) == int(case_id):
                 c["status"] = status
@@ -88,7 +81,6 @@ class JsonCaseStore(CaseStore):
     def resolve_case(self, case_id: int, resolution_note: str) -> Optional[Case]:
         db = self._read()
         now = datetime.utcnow().isoformat()
-        
         for c in db["cases"]:
             if int(c.get("id")) == int(case_id):
                 c["status"] = "resolved"
@@ -98,16 +90,13 @@ class JsonCaseStore(CaseStore):
                 c["updated_at"] = now
                 self._write(db)
                 return self._to_case(c)
-        
         return None
 
     def create_case(self, data: CaseCreate) -> Case:
         db = self._read()
         now = datetime.utcnow()
-        
         case_id = int(db["next_id"])
         db["next_id"] = case_id + 1
-        
         record = {
             "id": case_id,
             "title": data.title,
@@ -129,7 +118,6 @@ class JsonCaseStore(CaseStore):
             "created_at": now.isoformat(),
             "updated_at": now.isoformat(),
         }
-        
         db["cases"].append(record)
         self._write(db)
         return self._to_case(record)
@@ -137,10 +125,8 @@ class JsonCaseStore(CaseStore):
     def list_cases(self, status: Optional[str] = None, limit: int = 200) -> List[Case]:
         db = self._read()
         items = db["cases"]
-        
         if status:
             items = [c for c in items if c.get("status") == status]
-        
         items = sorted(items, key=lambda c: c.get("id", 0), reverse=True)[: max(1, limit)]
         return [self._to_case(c) for c in items]
 
@@ -162,25 +148,19 @@ class JsonCaseStore(CaseStore):
         nm = _norm(model)
         ns = _norm(series)
         ne = _norm(error_code)
-        
         if not nb or not nm:
             return None
-        
         db = self._read()
         for c in sorted(db["cases"], key=lambda x: x.get("id", 0), reverse=True):
             if c.get("status") != "resolved":
                 continue
-            
             if _norm(c.get("brand")) != nb:
                 continue
             if _norm(c.get("model")) != nm:
                 continue
-            
             if ns and _norm(c.get("series")) != ns:
                 continue
             if ne and _norm(c.get("error_code")) != ne:
                 continue
-            
             return self._to_case(c)
-        
         return None
