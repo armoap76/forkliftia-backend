@@ -71,3 +71,13 @@ class Case(Base):
             self.resolved_at = None
             self.resolution_note = None
         self.touch_updated_at()
+
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    uid = Column(String, unique=True, nullable=False, index=True)
+    public_name = Column(String, unique=True, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)

@@ -1,17 +1,20 @@
 import os
+import re
 from datetime import datetime
 
+from sqlalchemy.exc import IntegrityError
 
+from app.db_models import UserProfile as UserProfileModel
 from app.manuals_store import search_manual_error
-from app.models import CaseCreate
+from app.models import CaseCreate, PublicNameUpdate, UserProfile
 from app.storage_db import DatabaseCaseStore
 from app.database import get_session
 
 from pydantic import BaseModel
 
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from openai import OpenAI
 
@@ -42,6 +45,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 ADMIN_UIDS = {uid.strip() for uid in os.getenv("ADMIN_UIDS", "").split(",") if uid.strip()}
+PUBLIC_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_-]{3,32}$")
 
 def get_requester_uid(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
@@ -61,6 +65,19 @@ def ensure_case_owner_or_admin(case, uid: str) -> None:
 
 def get_openai_client() -> OpenAI:
     return OpenAI()
+
+
+def validate_public_name(value: str) -> str:
+    public_name = (value or "").strip()
+    if not PUBLIC_NAME_PATTERN.fullmatch(public_name):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "public_name must be 3-32 characters using letters, numbers, dashes, or underscores"
+            ),
+        )
+    return public_name
+
 
 store = DatabaseCaseStore(get_session)
 
@@ -109,6 +126,55 @@ RULES:
 @app.get("/ping")
 def ping():
     return {"message": "forkliftia ok"}
+
+
+@app.get("/me")
+def get_me(uid: str = Depends(get_requester_uid)):
+    with get_session() as session:
+        profile = (
+            session.query(UserProfileModel)
+            .filter(UserProfileModel.uid == uid)
+            .one_or_none()
+        )
+        return UserProfile(uid=uid, public_name=profile.public_name if profile else None)
+
+
+@app.put("/me/public-name")
+def set_public_name(payload: PublicNameUpdate, uid: str = Depends(get_requester_uid)):
+    desired_name = validate_public_name(payload.public_name)
+
+    with get_session() as session:
+        profile = (
+            session.query(UserProfileModel)
+            .filter(UserProfileModel.uid == uid)
+            .one_or_none()
+        )
+
+        if profile and profile.public_name:
+            raise HTTPException(status_code=409, detail="Public name already set")
+
+        now = datetime.utcnow()
+        if profile is None:
+            profile = UserProfileModel(
+                uid=uid,
+                public_name=desired_name,
+                created_at=now,
+                updated_at=now,
+            )
+            session.add(profile)
+        else:
+            profile.public_name = desired_name
+            profile.updated_at = now
+
+        try:
+            session.commit()
+        except IntegrityError:
+            session.rollback()
+            raise HTTPException(status_code=409, detail="Public name already taken")
+
+        session.refresh(profile)
+        return UserProfile(uid=profile.uid, public_name=profile.public_name)
+
 
 @app.get("/cases")
 def list_cases(
