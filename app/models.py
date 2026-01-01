@@ -37,6 +37,7 @@ class Case(CaseCreate):
     resolution_note: Optional[str] = None
     resolved_at: Optional[datetime] = None
     closed_at: Optional[datetime] = None
+    creator_public_name: Optional[str] = None
 
 
 class UserProfile(BaseModel):
