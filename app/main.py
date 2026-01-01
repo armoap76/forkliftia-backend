@@ -253,6 +253,12 @@ def update_case(
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
 
+    if case.status == "resolved":
+        raise HTTPException(
+            status_code=403,
+            detail="Case is resolved. Create a new case to continue.",
+        )
+
     ensure_case_owner_or_admin(case, uid)
 
     updates = payload.model_dump(exclude_none=True)
@@ -274,6 +280,9 @@ def resolve_case(
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="case not found")
+
+    if case.status == "resolved":
+        raise HTTPException(status_code=409, detail="Case is already resolved.")
 
     ensure_case_owner_or_admin(case, uid)
 
@@ -297,6 +306,12 @@ def create_case_comment(
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
+
+    if case.status == "resolved":
+        raise HTTPException(
+            status_code=403,
+            detail="Case is resolved. Create a new case to continue.",
+        )
 
     comment = store.create_comment(case_id, uid, payload.body)
     if not comment:
