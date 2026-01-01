@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional, List
 
-from .models import Case, CaseCreate
+from .models import Case, CaseComment, CaseCreate
 
 class CaseStore(ABC):
     @abstractmethod
@@ -27,3 +27,14 @@ class CaseStore(ABC):
 
     @abstractmethod
     def resolve_case(self, case_id: int, resolution_note: str) -> Optional[Case]: ...
+
+    @abstractmethod
+    def update_case(self, case_id: int, updates: dict) -> Optional[Case]: ...
+
+    @abstractmethod
+    def create_comment(
+        self, case_id: int, author_uid: str, body: str
+    ) -> Optional[CaseComment]: ...
+
+    @abstractmethod
+    def list_comments(self, case_id: int) -> Optional[list[CaseComment]]: ...

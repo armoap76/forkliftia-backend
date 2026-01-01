@@ -5,14 +5,22 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
-from .db_models import Case as CaseModel, User as UserModel, UserProfile
-from .models import Case, CaseCreate
+from .db_models import Case as CaseModel, CaseComment as CaseCommentModel
+from .db_models import User as UserModel, UserProfile
+from .models import Case, CaseComment, CaseCreate
 from .storage import CaseStore
 
 
 class DatabaseCaseStore(CaseStore):
     def __init__(self, session_factory):
         self.session_factory = session_factory
+
+    def _get_creator_public_name(self, session: Session, uid: str) -> Optional[str]:
+        return (
+            session.query(UserProfile.public_name)
+            .filter(UserProfile.uid == uid)
+            .scalar()
+        )
 
     def _to_case(self, db_case: CaseModel, creator_public_name: Optional[str] = None) -> Case:
         return Case(
@@ -72,7 +80,8 @@ class DatabaseCaseStore(CaseStore):
             session.add(db_case)
             session.commit()
             session.refresh(db_case)
-            return self._to_case(db_case)
+            creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
+            return self._to_case(db_case, creator_public_name)
 
     def list_cases(self, status: Optional[str] = None, limit: int = 200) -> List[Case]:
         with self.session_factory() as session:
@@ -143,7 +152,8 @@ class DatabaseCaseStore(CaseStore):
             db_case.set_status(status)
             session.commit()
             session.refresh(db_case)
-            return self._to_case(db_case)
+            creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
+            return self._to_case(db_case, creator_public_name)
 
     def resolve_case(self, case_id: int, resolution_note: str) -> Optional[Case]:
         note = (resolution_note or "").strip()
@@ -158,4 +168,87 @@ class DatabaseCaseStore(CaseStore):
             db_case.mark_resolved(note)
             session.commit()
             session.refresh(db_case)
-            return self._to_case(db_case)
+            creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
+            return self._to_case(db_case, creator_public_name)
+
+    def update_case(self, case_id: int, updates: dict) -> Optional[Case]:
+        allowed_fields = {
+            "title",
+            "description",
+            "brand",
+            "model",
+            "series",
+            "error_code",
+            "symptom",
+            "checks_done",
+        }
+
+        with self.session_factory() as session:
+            db_case = session.get(CaseModel, case_id)
+            if not db_case:
+                return None
+
+            changed = False
+            for field, value in updates.items():
+                if field in allowed_fields:
+                    setattr(db_case, field, value)
+                    changed = True
+
+            if not changed:
+                return self._to_case(db_case)
+
+            db_case.touch_updated_at()
+            session.commit()
+            session.refresh(db_case)
+
+            creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
+
+            return self._to_case(db_case, creator_public_name)
+
+    def _to_comment(self, db_comment: CaseCommentModel) -> CaseComment:
+        return CaseComment(
+            id=db_comment.id,
+            case_id=db_comment.case_id,
+            author_uid=db_comment.author_uid,
+            author_public_name=db_comment.author_public_name,
+            body=db_comment.body,
+            created_at=db_comment.created_at,
+        )
+
+    def create_comment(
+        self, case_id: int, author_uid: str, body: str
+    ) -> Optional[CaseComment]:
+        with self.session_factory() as session:
+            db_case = session.get(CaseModel, case_id)
+            if not db_case:
+                return None
+
+            profile = (
+                session.query(UserProfile)
+                .filter(UserProfile.uid == author_uid)
+                .one_or_none()
+            )
+            comment = CaseCommentModel(
+                case_id=case_id,
+                author_uid=author_uid,
+                author_public_name=profile.public_name if profile else None,
+                body=body,
+            )
+            session.add(comment)
+            session.commit()
+            session.refresh(comment)
+            return self._to_comment(comment)
+
+    def list_comments(self, case_id: int) -> Optional[list[CaseComment]]:
+        with self.session_factory() as session:
+            case_exists = session.query(CaseModel.id).filter(CaseModel.id == case_id).first()
+            if not case_exists:
+                return None
+
+            comments = (
+                session.query(CaseCommentModel)
+                .filter(CaseCommentModel.case_id == case_id)
+                .order_by(CaseCommentModel.created_at.asc(), CaseCommentModel.id.asc())
+                .all()
+            )
+            return [self._to_comment(c) for c in comments]

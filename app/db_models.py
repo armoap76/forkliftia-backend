@@ -48,6 +48,9 @@ class Case(Base):
     resolved_at = Column(DateTime, nullable=True)
 
     creator = relationship("User", back_populates="cases")
+    comments = relationship(
+        "CaseComment", back_populates="case", cascade="all, delete-orphan"
+    )
 
     def touch_updated_at(self):
         self.updated_at = datetime.utcnow()
@@ -81,3 +84,16 @@ class UserProfile(Base):
     public_name = Column(String, unique=True, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+class CaseComment(Base):
+    __tablename__ = "case_comments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    case_id = Column(Integer, ForeignKey("cases.id"), nullable=False, index=True)
+    author_uid = Column(String, nullable=False, index=True)
+    author_public_name = Column(String, nullable=True)
+    body = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    case = relationship("Case", back_populates="comments")
