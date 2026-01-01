@@ -6,7 +6,7 @@ from dataclasses import asdict
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-from .models import Case, CaseCreate
+from .models import Case, CaseComment, CaseCreate
 from .storage import CaseStore
 
 
@@ -195,3 +195,14 @@ class JsonCaseStore(CaseStore):
             return self._to_case(c)
 
         return None
+
+    def update_case(self, case_id: int, updates: dict) -> Optional[Case]:
+        raise NotImplementedError
+
+    def create_comment(
+        self, case_id: int, author_uid: str, body: str
+    ) -> Optional[CaseComment]:
+        raise NotImplementedError
+
+    def list_comments(self, case_id: int) -> Optional[list[CaseComment]]:
+        raise NotImplementedError

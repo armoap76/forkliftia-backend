@@ -8,7 +8,14 @@ from sqlalchemy.exc import IntegrityError
 
 from app.db_models import UserProfile as UserProfileModel
 from app.manuals_store import search_manual_error
-from app.models import CaseCreate, PublicNameUpdate, UserProfile
+from app.models import (
+    CaseComment,
+    CaseCommentCreate,
+    CaseCreate,
+    CaseUpdate,
+    PublicNameUpdate,
+    UserProfile,
+)
 from app.storage_db import DatabaseCaseStore
 from app.database import get_session
 
@@ -237,22 +244,22 @@ def list_cases(
     return store.list_cases(status=status, limit=limit)
 
 @app.patch("/cases/{case_id}")
-def set_case_status(
+def update_case(
     case_id: int,
-    payload: dict,
+    payload: CaseUpdate,
     uid: str = Depends(get_requester_uid),
 ):
-    status = payload.get("status")
-    if status not in ("open", "resolved"):
-        raise HTTPException(status_code=400, detail="status must be 'open' or 'resolved'")
-
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
 
     ensure_case_owner_or_admin(case, uid)
 
-    updated = store.update_status(case_id, status)
+    updates = payload.model_dump(exclude_none=True)
+    if not updates:
+        raise HTTPException(status_code=400, detail="No editable fields provided")
+
+    updated = store.update_case(case_id, updates)
     if not updated:
         raise HTTPException(status_code=404, detail="Case not found")
 
@@ -279,6 +286,31 @@ def resolve_case(
         raise HTTPException(status_code=404, detail="case not found")
 
     return updated
+
+
+@app.post("/cases/{case_id}/comments")
+def create_case_comment(
+    case_id: int,
+    payload: CaseCommentCreate,
+    uid: str = Depends(get_requester_uid),
+):
+    case = store.get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case not found")
+
+    comment = store.create_comment(case_id, uid, payload.body)
+    if not comment:
+        raise HTTPException(status_code=404, detail="Case not found")
+
+    return comment
+
+
+@app.get("/cases/{case_id}/comments")
+def list_case_comments(case_id: int) -> list[CaseComment]:
+    comments = store.list_comments(case_id)
+    if comments is None:
+        raise HTTPException(status_code=404, detail="Case not found")
+    return comments
 
 @app.post("/diagnosis")
 def diagnosis(
