@@ -1,3 +1,5 @@
+import base64
+import json
 import os
 import re
 from datetime import datetime
@@ -17,6 +19,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from openai import OpenAI
+
+try:
+    import firebase_admin
+    from firebase_admin import auth as firebase_auth
+except ImportError:  # pragma: no cover - optional dependency
+    firebase_admin = None
+    firebase_auth = None
 
 
 class ResolveCaseIn(BaseModel):
@@ -52,7 +61,51 @@ def get_requester_uid(
 ) -> str:
     if credentials is None or not credentials.credentials.strip():
         raise HTTPException(status_code=401, detail="Missing Authorization: Bearer <uid>")
-    return credentials.credentials.strip()
+    token = credentials.credentials.strip()
+    return extract_uid_from_token(token)
+
+
+def _decode_unverified_jwt_sub(token: str) -> str:
+    """Decode a JWT without verification to extract the `sub` claim.
+
+    This is only used when Firebase Admin SDK is unavailable. It intentionally
+    skips signature verification, so it must not be relied on for security.
+    TODO: add proper verification when Firebase Admin is configured.
+    """
+
+    try:
+        header, payload, _signature = token.split(".")
+    except ValueError:
+        raise HTTPException(status_code=401, detail="Invalid token structure")
+
+    padding = "=" * (-len(payload) % 4)
+    try:
+        decoded = base64.urlsafe_b64decode(payload + padding)
+        payload_data = json.loads(decoded.decode("utf-8"))
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid token payload")
+
+    uid = payload_data.get("sub")
+    if not uid:
+        raise HTTPException(status_code=401, detail="Token missing subject (sub) claim")
+    return uid
+
+
+def extract_uid_from_token(token: str) -> str:
+    """Extract a stable uid from a Firebase ID token."""
+
+    if firebase_auth is not None and firebase_admin is not None and firebase_admin._apps:
+        try:
+            decoded = firebase_auth.verify_id_token(token)
+            uid = decoded.get("uid") or decoded.get("sub")
+            if not uid:
+                raise HTTPException(status_code=401, detail="Invalid token payload")
+            return uid
+        except Exception:
+            raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+    # Fallback for environments without Firebase Admin configured.
+    return _decode_unverified_jwt_sub(token)
 
 def is_admin(uid: str) -> bool:
     return uid in ADMIN_UIDS
