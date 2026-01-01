@@ -5,7 +5,7 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
-from .db_models import Case as CaseModel, User as UserModel
+from .db_models import Case as CaseModel, User as UserModel, UserProfile
 from .models import Case, CaseCreate
 from .storage import CaseStore
 
@@ -14,7 +14,7 @@ class DatabaseCaseStore(CaseStore):
     def __init__(self, session_factory):
         self.session_factory = session_factory
 
-    def _to_case(self, db_case: CaseModel) -> Case:
+    def _to_case(self, db_case: CaseModel, creator_public_name: Optional[str] = None) -> Case:
         return Case(
             id=db_case.id,
             brand=db_case.brand or "unknown",
@@ -35,6 +35,7 @@ class DatabaseCaseStore(CaseStore):
             closed_at=db_case.closed_at,
             title=db_case.title,
             description=db_case.description,
+            creator_public_name=creator_public_name,
         )
 
     def _ensure_user(self, session: Session, uid: str) -> UserModel:
@@ -75,18 +76,37 @@ class DatabaseCaseStore(CaseStore):
 
     def list_cases(self, status: Optional[str] = None, limit: int = 200) -> List[Case]:
         with self.session_factory() as session:
-            query = session.query(CaseModel)
+            query = (
+                session.query(
+                    CaseModel,
+                    UserProfile.public_name.label("creator_public_name"),
+                )
+                .outerjoin(UserProfile, CaseModel.created_by_uid == UserProfile.uid)
+            )
             if status:
                 query = query.filter(CaseModel.status == status)
-            cases = query.order_by(CaseModel.id.desc()).limit(max(1, limit)).all()
-            return [self._to_case(c) for c in cases]
+            cases = (
+                query.order_by(CaseModel.id.desc())
+                .limit(max(1, limit))
+                .all()
+            )
+            return [self._to_case(c, public_name) for c, public_name in cases]
 
     def get_case(self, case_id: int) -> Optional[Case]:
         with self.session_factory() as session:
-            db_case = session.get(CaseModel, case_id)
+            db_case = (
+                session.query(
+                    CaseModel,
+                    UserProfile.public_name.label("creator_public_name"),
+                )
+                .outerjoin(UserProfile, CaseModel.created_by_uid == UserProfile.uid)
+                .filter(CaseModel.id == case_id)
+                .one_or_none()
+            )
             if not db_case:
                 return None
-            return self._to_case(db_case)
+            case, public_name = db_case
+            return self._to_case(case, public_name)
 
     def find_resolved_by_key(
         self,
