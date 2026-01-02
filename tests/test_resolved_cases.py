@@ -52,10 +52,8 @@ def test_comment_blocked_when_resolved(client):
 
     response = test_client.post("/cases/1/comments", json={"body": "hi"})
 
-    assert response.status_code == 403
-    assert response.json() == {
-        "detail": "Case is resolved. Create a new case to continue."
-    }
+    assert response.status_code == 409
+    assert response.json() == {"detail": "Case is resolved; comments are closed"}
 
 
 def test_update_blocked_when_resolved(client):
@@ -75,8 +73,40 @@ def test_resolve_is_idempotent(client):
     main.store = DummyStore(DummyCase(case_id=3, status="resolved"))
 
     response = test_client.patch(
-        "/cases/3/resolve", json={"resolution_note": "done"}
+        "/cases/3/resolve", json={"resolution_note": "already resolved note"}
     )
 
     assert response.status_code == 409
     assert response.json() == {"detail": "Case is already resolved."}
+
+
+def test_resolve_requires_resolution_note(client):
+    test_client, main = client
+    main.store = DummyStore(DummyCase(case_id=4))
+
+    response = test_client.patch("/cases/4/resolve", json={"resolution_note": " "})
+
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["msg"].startswith(
+        "Value error, resolution_note must be between"
+    )
+
+
+def test_resolve_accepts_valid_resolution_note(client):
+    test_client, main = client
+    main.store = DummyStore(DummyCase(case_id=5))
+
+    response = test_client.patch(
+        "/cases/5/resolve", json={"resolution_note": "Valid note here"}
+    )
+
+    assert response.status_code == 200
+
+
+def test_comment_allowed_when_open(client):
+    test_client, main = client
+    main.store = DummyStore(DummyCase(case_id=6))
+
+    response = test_client.post("/cases/6/comments", json={"body": "New comment"})
+
+    assert response.status_code == 200

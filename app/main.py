@@ -19,7 +19,7 @@ from app.models import (
 from app.storage_db import DatabaseCaseStore
 from app.database import get_session
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,6 +37,13 @@ except ImportError:  # pragma: no cover - optional dependency
 
 class ResolveCaseIn(BaseModel):
     resolution_note: str
+
+    @field_validator("resolution_note")
+    def validate_resolution_note(cls, v: str) -> str:
+        text = (v or "").strip()
+        if len(text) < 10 or len(text) > 2000:
+            raise ValueError("resolution_note must be between 10 and 2000 characters")
+        return text
 
 
 app = FastAPI(title="ForkliftIA Backend")
@@ -286,11 +293,7 @@ def resolve_case(
 
     ensure_case_owner_or_admin(case, uid)
 
-    resolution_note = (payload.resolution_note or "").strip()
-    if not resolution_note:
-        raise HTTPException(status_code=400, detail="resolution_note is required")
-
-    updated = store.resolve_case(case_id, resolution_note)
+    updated = store.resolve_case(case_id, payload.resolution_note)
     if not updated:
         raise HTTPException(status_code=404, detail="case not found")
 
@@ -309,8 +312,8 @@ def create_case_comment(
 
     if case.status == "resolved":
         raise HTTPException(
-            status_code=403,
-            detail="Case is resolved. Create a new case to continue.",
+            status_code=409,
+            detail="Case is resolved; comments are closed",
         )
 
     comment = store.create_comment(case_id, uid, payload.body)
