@@ -1,6 +1,80 @@
 import json
+import logging
 import os
+import re
+import unicodedata
 from typing import Optional, Dict, Any
+
+
+logger = logging.getLogger(__name__)
+
+
+def _strip_accents(value: str) -> str:
+    normalized = unicodedata.normalize("NFD", value)
+    return "".join(char for char in normalized if unicodedata.category(char) != "Mn")
+
+
+def normalize_brand(value: Optional[str]) -> str:
+    if not value:
+        return ""
+
+    cleaned = _strip_accents(value.strip().lower())
+    cleaned = re.sub(r"[\s/]+", "-", cleaned)
+    return cleaned.strip("-")
+
+
+def normalize_model(value: Optional[str]) -> str:
+    if not value:
+        return ""
+
+    cleaned = _strip_accents(value.strip().lower())
+    cleaned = re.sub(r"[\s\-/]+", "", cleaned)
+    return cleaned
+
+
+def normalize_series(value: Optional[str]) -> str:
+    if not value:
+        return ""
+
+    cleaned = _strip_accents(value.strip().lower())
+    digit_groups = re.findall(r"(\d+)", cleaned)
+    if digit_groups:
+        return max(digit_groups, key=len)
+
+    fallback = re.sub(r"[^a-z0-9]+", "", cleaned)
+    return fallback
+
+
+def normalize_error_code(value: Optional[str]) -> str:
+    if not value:
+        return ""
+
+    cleaned = value.strip().upper()
+    cleaned = re.sub(r"[\s-]+", "", cleaned)
+    return cleaned
+
+def _iter_candidate_paths(base_path: str, brand: str, model: str, series: str) -> list:
+    candidates = []
+    if series:
+        candidates.append(os.path.join(base_path, brand, model, series, "errors.json"))
+    candidates.append(os.path.join(base_path, brand, model, "errors.json"))
+    if series:
+        candidates.append(os.path.join(base_path, brand, "common", series, "errors.json"))
+    candidates.append(os.path.join(base_path, brand, "common", "errors.json"))
+    return candidates
+
+
+def _load_first_existing(paths: list) -> Optional[str]:
+    for path in paths:
+        if os.path.exists(path):
+            return path
+
+        if path.endswith("errors.json"):
+            legacy_path = path[:-len("errors.json")] + "base.json"
+            if os.path.exists(legacy_path):
+                return legacy_path
+    return None
+
 
 def search_manual_error(
     base_path: str,
@@ -13,33 +87,38 @@ def search_manual_error(
     if not brand or not model or not error_code:
         return None
 
-    b = brand.lower().strip()
-    m = model.lower().strip()
-    s = (series or "all").lower().strip()
-    ecode = error_code.lower().strip()
+    normalized_brand = normalize_brand(brand)
+    normalized_model = normalize_model(model)
+    normalized_series = normalize_series(series)
+    ecode = normalize_error_code(error_code)
 
-    # orden de búsqueda: serie específica → base
-    paths = [
-        os.path.join(base_path, b, m, f"{s}.json"),
-        os.path.join(base_path, b, m, "base.json"),
-    ]
+    if not normalized_brand or not normalized_model or not ecode:
+        return None
 
-    for p in paths:
-        if not os.path.exists(p):
-            continue
+    paths = _iter_candidate_paths(
+        base_path=base_path,
+        brand=normalized_brand,
+        model=normalized_model,
+        series=normalized_series,
+    )
 
-        with open(p, "r", encoding="utf-8") as f:
-            data = json.load(f)
+    manual_path = _load_first_existing(paths)
+    if not manual_path:
+        return None
 
-        for err in data.get("errors", []):
-            code = err.get("code", "").lower()
-            if code == ecode or ecode in code:
-                return {
-                    "source": "manuals",
-                    "brand": data.get("brand"),
-                    "model": data.get("model"),
-                    "series": data.get("series"),
-                    "error": err,
-                }
+    with open(manual_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for err in data.get("errors", []):
+        code = normalize_error_code(err.get("code", ""))
+        if code == ecode or ecode in code:
+            logger.info("Manual lookup matched file %s for brand=%s model=%s series=%s", manual_path, normalized_brand, normalized_model, normalized_series)
+            return {
+                "source": "manuals",
+                "brand": data.get("brand"),
+                "model": data.get("model"),
+                "series": data.get("series"),
+                "error": err,
+            }
 
     return None
