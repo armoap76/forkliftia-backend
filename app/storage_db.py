@@ -156,16 +156,12 @@ class DatabaseCaseStore(CaseStore):
             return self._to_case(db_case, creator_public_name)
 
     def resolve_case(self, case_id: int, resolution_note: str) -> Optional[Case]:
-        note = (resolution_note or "").strip()
-        if not note:
-            return None
-
         with self.session_factory() as session:
             db_case = session.get(CaseModel, case_id)
             if not db_case:
                 return None
 
-            db_case.mark_resolved(note)
+            db_case.mark_resolved((resolution_note or "").strip())
             session.commit()
             session.refresh(db_case)
             creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
