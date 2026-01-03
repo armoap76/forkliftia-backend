@@ -1,6 +1,6 @@
 {
   "brand": "Linde",
-  "model": "T16/T18/T20",
+  "model": "common",
   "series": "1151",
   "errors": {
     "101": {
