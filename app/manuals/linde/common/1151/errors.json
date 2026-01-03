@@ -1,0 +1,307 @@
+{
+  "brand": "Linde",
+  "model": "T16/T18/T20",
+  "series": "1151",
+  "errors": {
+    "101": {
+      "system": "Mast load sensing",
+      "manual_summary": "The first optical load sensor on the mast reports a signal that does not match expected conditions when manual lifting mode is selected. This indicates implausible load detection.",
+      "actions_summary": [
+        "Inspect optical load sensor 1 alignment",
+        "Check wiring and connector condition",
+        "Verify correct manual mode selection"
+      ],
+      "severity": "medium"
+    },
+    "102": {
+      "system": "Mast load sensing",
+      "manual_summary": "The second optical load sensor on the mast provides a signal that is inconsistent during manual lifting mode. Load detection cannot be validated.",
+      "actions_summary": [
+        "Inspect optical load sensor 2",
+        "Check sensor wiring and mounting",
+        "Verify correct operating mode"
+      ],
+      "severity": "medium"
+    },
+    "103": {
+      "system": "Control input",
+      "manual_summary": "The start button remains active for an excessive duration while automatic lifting is selected. This is interpreted as an abnormal control input.",
+      "actions_summary": [
+        "Check start button for sticking or damage",
+        "Inspect wiring for short circuits",
+        "Verify automatic lifting logic"
+      ],
+      "severity": "medium"
+    },
+    "110": {
+      "system": "Braking system",
+      "manual_summary": "A malfunction has been detected in brake control or brake adjustment. Braking performance may be compromised.",
+      "actions_summary": [
+        "Inspect brake control signals",
+        "Check brake adjustment and mechanical components",
+        "Verify brake control unit operation"
+      ],
+      "severity": "high"
+    },
+    "111": {
+      "system": "Braking system",
+      "manual_summary": "The electrical resistance of the brake coil is below the expected range, indicating a possible short circuit or internal fault.",
+      "actions_summary": [
+        "Measure brake coil resistance",
+        "Inspect wiring for short circuits",
+        "Replace brake coil if defective"
+      ],
+      "severity": "high"
+    },
+    "112": {
+      "system": "Braking system",
+      "manual_summary": "The brake coil resistance is above the permissible range, suggesting an open circuit or degraded coil.",
+      "actions_summary": [
+        "Measure brake coil resistance",
+        "Inspect connectors and wiring",
+        "Replace brake coil if necessary"
+      ],
+      "severity": "high"
+    },
+    "113": {
+      "system": "Braking system",
+      "manual_summary": "The current flowing through the brake coil is too low to ensure proper brake operation.",
+      "actions_summary": [
+        "Check brake coil power supply",
+        "Inspect wiring and connectors",
+        "Verify brake control output"
+      ],
+      "severity": "high"
+    },
+    "115": {
+      "system": "Service mode",
+      "manual_summary": "The truck is currently detected in wheel change mode. Normal driving and lifting functions may be restricted.",
+      "actions_summary": [
+        "Exit wheel change mode if not required",
+        "Check wheel change mode switch",
+        "Verify service mode configuration"
+      ],
+      "severity": "low"
+    },
+    "116": {
+      "system": "Mast sensing",
+      "manual_summary": "The mast position potentiometer is active while optical load sensor signals are inconsistent. Mast position and load data cannot be correlated.",
+      "actions_summary": [
+        "Inspect mast potentiometer",
+        "Check optical load sensor signals",
+        "Verify wiring and signal plausibility"
+      ],
+      "severity": "medium"
+    },
+    "117": {
+      "system": "Battery management",
+      "manual_summary": "The truck has entered a reduced battery mode because the current demand exceeds what the battery can deliver.",
+      "actions_summary": [
+        "Check battery condition and capacity",
+        "Inspect power demand and load conditions",
+        "Recharge or replace battery if required"
+      ],
+      "severity": "medium"
+    },
+    "118": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached the first low threshold. Performance limitations may begin.",
+      "actions_summary": [
+        "Recharge the battery",
+        "Check battery health",
+        "Monitor state-of-charge indication"
+      ],
+      "severity": "low"
+    },
+    "119": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached the second low threshold. Further functional restrictions may apply.",
+      "actions_summary": [
+        "Recharge the battery promptly",
+        "Inspect battery condition",
+        "Verify battery monitoring system"
+      ],
+      "severity": "medium"
+    },
+    "120": {
+      "system": "Power electronics",
+      "manual_summary": "The pre-charging process of the power electronics via the controller was not completed successfully.",
+      "actions_summary": [
+        "Inspect pre-charge circuit components",
+        "Check contactors and wiring",
+        "Verify controller startup sequence"
+      ],
+      "severity": "high"
+    },
+    "121": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached a critical low level. Operation may be heavily restricted.",
+      "actions_summary": [
+        "Recharge the battery immediately",
+        "Inspect battery for degradation",
+        "Verify state-of-charge measurement"
+      ],
+      "severity": "high"
+    },
+    "131": {
+      "system": "Control electronics",
+      "manual_summary": "An internal control error has been detected. Additional fault codes are required to identify the root cause.",
+      "actions_summary": [
+        "Check for accompanying error codes",
+        "Cycle system power",
+        "Inspect control unit diagnostics"
+      ],
+      "severity": "high"
+    },
+    "140": {
+      "system": "Accelerator",
+      "manual_summary": "The combined voltage of the accelerator signals exceeds the allowed tolerance. Input plausibility is violated.",
+      "actions_summary": [
+        "Measure accelerator signal voltages",
+        "Inspect accelerator wiring",
+        "Check accelerator sensor calibration"
+      ],
+      "severity": "high"
+    },
+    "167": {
+      "system": "Battery management",
+      "manual_summary": "A general battery warning has been issued, indicating abnormal battery-related conditions.",
+      "actions_summary": [
+        "Check battery status and alarms",
+        "Inspect battery connections",
+        "Review battery diagnostics"
+      ],
+      "severity": "medium"
+    },
+    "201": {
+      "system": "Sensor supply",
+      "manual_summary": "The sensor supply voltage is above the permissible range. Sensor readings may be unreliable.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect voltage regulation circuitry",
+        "Check for wiring faults"
+      ],
+      "severity": "medium"
+    },
+    "202": {
+      "system": "Sensor supply",
+      "manual_summary": "The sensor supply voltage is below the permissible range, leading to unreliable sensor signals.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect wiring and connectors",
+        "Check controller power output"
+      ],
+      "severity": "medium"
+    },
+    "203": {
+      "system": "Tiller control",
+      "manual_summary": "The tiller switch signals are incompatible or an incorrect tiller type is configured.",
+      "actions_summary": [
+        "Verify tiller type configuration",
+        "Inspect tiller switch wiring",
+        "Check switch signal plausibility"
+      ],
+      "severity": "medium"
+    },
+    "204": {
+      "system": "Creep control",
+      "manual_summary": "The creep switch signals do not match expected combinations, indicating implausible input states.",
+      "actions_summary": [
+        "Inspect creep switch wiring",
+        "Check switch operation",
+        "Verify input signal logic"
+      ],
+      "severity": "medium"
+    },
+    "206": {
+      "system": "Power supply",
+      "manual_summary": "The battery voltage is below the minimum required level or the supply connection is interrupted.",
+      "actions_summary": [
+        "Measure battery voltage",
+        "Inspect battery connections",
+        "Recharge or replace battery"
+      ],
+      "severity": "high"
+    },
+    "207": {
+      "system": "Drive control",
+      "manual_summary": "The vehicle speed exceeds the allowable limit for the current operating condition.",
+      "actions_summary": [
+        "Reduce driving speed",
+        "Check speed sensor signals",
+        "Verify control logic"
+      ],
+      "severity": "medium"
+    },
+    "245": {
+      "system": "Traction motor",
+      "manual_summary": "The traction motor temperature has exceeded the permissible limit. Thermal protection may be active.",
+      "actions_summary": [
+        "Allow motor to cool down",
+        "Check cooling and ventilation",
+        "Inspect load conditions"
+      ],
+      "severity": "high"
+    },
+    "330": {
+      "system": "Power electronics",
+      "manual_summary": "A permanent fault has been detected in the driver circuits of the power transistors.",
+      "actions_summary": [
+        "Inspect power transistor driver circuits",
+        "Check control unit outputs",
+        "Replace power electronics if required"
+      ],
+      "severity": "high"
+    },
+    "351": {
+      "system": "Power electronics",
+      "manual_summary": "One phase of the motor power supply is interrupted, preventing proper motor operation.",
+      "actions_summary": [
+        "Inspect phase wiring and connectors",
+        "Check power module outputs",
+        "Verify motor connection integrity"
+      ],
+      "severity": "high"
+    },
+    "400": {
+      "system": "Safety system",
+      "manual_summary": "The safety self-test failed because the safety relay remained energized when a shutdown was requested.",
+      "actions_summary": [
+        "Inspect safety relay operation",
+        "Check safety controller outputs",
+        "Replace relay if malfunctioning"
+      ],
+      "severity": "high"
+    },
+    "401": {
+      "system": "Safety system",
+      "manual_summary": "The safety self-test failed because a contactor remained closed when an opening command was issued.",
+      "actions_summary": [
+        "Inspect main contactor for welding",
+        "Check safety controller commands",
+        "Replace contactor if necessary"
+      ],
+      "severity": "high"
+    },
+    "407": {
+      "system": "Sensor supply",
+      "manual_summary": "The sensor supply voltage is outside the allowable operating range, causing invalid sensor readings.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect power regulation",
+        "Check for wiring faults"
+      ],
+      "severity": "high"
+    },
+    "443": {
+      "system": "Operator safety",
+      "manual_summary": "The tiller is in the working position and the belly switch is activated, but the truck does not move as expected.",
+      "actions_summary": [
+        "Inspect belly switch operation",
+        "Check safety logic inputs",
+        "Verify drive enable conditions"
+      ],
+      "severity": "medium"
+    }
+  }
+}
