@@ -1,0 +1,287 @@
+{
+  "brand": "Linde",
+  "model": "E16/E20",
+  "series": "1279",
+  "errors": {
+    "T120": {
+      "system": "Drive unit",
+      "manual_summary": "The left drive unit temperature has reached the first overheating threshold. Operation is still possible but thermal stress is detected.",
+      "actions_summary": [
+        "Check cooling airflow and fan operation",
+        "Inspect for continuous high-load driving",
+        "Monitor temperature trend after cooldown"
+      ],
+      "severity": "medium"
+    },
+    "T121": {
+      "system": "Drive unit",
+      "manual_summary": "The right drive unit temperature has reached the first overheating threshold. This indicates elevated thermal load.",
+      "actions_summary": [
+        "Inspect cooling and ventilation on the right drive unit",
+        "Check for excessive load conditions",
+        "Verify temperature sensor plausibility"
+      ],
+      "severity": "medium"
+    },
+    "T122": {
+      "system": "Drive unit",
+      "manual_summary": "The left drive unit temperature has exceeded the second overheating threshold. Protective power limitation may occur.",
+      "actions_summary": [
+        "Stop operation and allow unit to cool",
+        "Inspect cooling system effectiveness",
+        "Check for mechanical overload"
+      ],
+      "severity": "high"
+    },
+    "T123": {
+      "system": "Drive unit",
+      "manual_summary": "The right drive unit temperature has exceeded the second overheating threshold. Continued operation may be restricted.",
+      "actions_summary": [
+        "Allow the unit to cool down",
+        "Check cooling components and airflow",
+        "Inspect load conditions"
+      ],
+      "severity": "high"
+    },
+    "T130": {
+      "system": "Operator safety",
+      "manual_summary": "A drive command is detected while the seat switch is not active. Traction is blocked to ensure operator presence.",
+      "actions_summary": [
+        "Check seat switch function",
+        "Inspect wiring and connectors",
+        "Verify correct seat switch adjustment"
+      ],
+      "severity": "high"
+    },
+    "T132": {
+      "system": "Safety interlock",
+      "manual_summary": "The rear cover is open while a drive command is present. Vehicle movement is prevented for safety reasons.",
+      "actions_summary": [
+        "Close and secure the rear cover",
+        "Check cover position switch",
+        "Inspect interlock wiring"
+      ],
+      "severity": "high"
+    },
+    "T135": {
+      "system": "Drive direction control",
+      "manual_summary": "The detected drive direction signals are not permitted for single-pedal operation. Input plausibility has failed.",
+      "actions_summary": [
+        "Inspect drive direction switch signals",
+        "Check for wiring faults",
+        "Verify correct pedal configuration"
+      ],
+      "severity": "medium"
+    },
+    "T150": {
+      "system": "Battery management",
+      "manual_summary": "The indicated remaining battery capacity has fallen to a low threshold level. Performance may be reduced.",
+      "actions_summary": [
+        "Recharge the battery",
+        "Check battery condition",
+        "Verify state-of-charge measurement"
+      ],
+      "severity": "low"
+    },
+    "T151": {
+      "system": "Battery management",
+      "manual_summary": "The indicated remaining battery capacity has reached a critical level. Vehicle functions may be limited.",
+      "actions_summary": [
+        "Recharge the battery immediately",
+        "Inspect battery health",
+        "Check battery monitoring system"
+      ],
+      "severity": "medium"
+    },
+    "T190": {
+      "system": "Hydraulic system",
+      "manual_summary": "The service cover of the hydraulic tank is detected as open. Safety interlock prevents normal operation.",
+      "actions_summary": [
+        "Close the hydraulic service cover",
+        "Check cover switch operation",
+        "Inspect mechanical latch"
+      ],
+      "severity": "medium"
+    },
+    "T200": {
+      "system": "Control unit",
+      "manual_summary": "The control unit did not successfully complete or has not undergone the factory test procedure.",
+      "actions_summary": [
+        "Verify control unit configuration",
+        "Repeat initialization or commissioning process",
+        "Check software parameters"
+      ],
+      "severity": "high"
+    },
+    "T201": {
+      "system": "Control unit",
+      "manual_summary": "An internal fault has been detected within the control unit software or processing logic.",
+      "actions_summary": [
+        "Cycle vehicle power",
+        "Check software version and integrity",
+        "Inspect supply voltage stability"
+      ],
+      "severity": "high"
+    },
+    "T210": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The supply voltage for traction-related sensors is above the allowable range. Sensor signals may be unreliable.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect voltage regulation circuits",
+        "Check wiring for short circuits"
+      ],
+      "severity": "medium"
+    },
+    "T211": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The supply voltage for traction-related sensors is below the allowable range. Signal validity cannot be ensured.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect connectors and wiring",
+        "Check control unit power output"
+      ],
+      "severity": "medium"
+    },
+    "T212": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The traction sensor supply voltage is outside valid limits. Sensor data is considered invalid.",
+      "actions_summary": [
+        "Inspect sensor power circuit",
+        "Check for intermittent voltage drops",
+        "Verify control unit output stability"
+      ],
+      "severity": "medium"
+    },
+    "T231": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator guidance signal is detected outside the permissible operating range.",
+      "actions_summary": [
+        "Check accelerator sensor output",
+        "Inspect wiring and connectors",
+        "Verify sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "T232": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator reference signal is outside the valid range. Input plausibility is compromised.",
+      "actions_summary": [
+        "Measure reference signal voltage",
+        "Inspect accelerator sensor alignment",
+        "Check control unit input evaluation"
+      ],
+      "severity": "medium"
+    },
+    "T233": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator guidance and reference signals do not correlate correctly. Dual-channel monitoring has failed.",
+      "actions_summary": [
+        "Inspect both accelerator signal channels",
+        "Check wiring integrity",
+        "Replace accelerator sensor if necessary"
+      ],
+      "severity": "high"
+    },
+    "T241": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The signal from channel 1 of the steering angle sensor is outside the permitted range.",
+      "actions_summary": [
+        "Inspect steering angle sensor channel 1",
+        "Check wiring and connectors",
+        "Verify sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "T242": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The signal from channel 2 of the steering angle sensor is outside the permitted range.",
+      "actions_summary": [
+        "Inspect steering angle sensor channel 2",
+        "Check wiring and connectors",
+        "Verify sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "T243": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The signals from both steering angle sensor channels are not consistent with each other.",
+      "actions_summary": [
+        "Compare both channel outputs",
+        "Inspect sensor mounting and wiring",
+        "Replace sensor if inconsistency persists"
+      ],
+      "severity": "high"
+    },
+    "T351": {
+      "system": "Drive axle",
+      "manual_summary": "The detected drive axle temperature is outside the valid operating range.",
+      "actions_summary": [
+        "Check axle cooling and lubrication",
+        "Inspect temperature sensor",
+        "Reduce load and monitor temperature"
+      ],
+      "severity": "medium"
+    },
+    "T353": {
+      "system": "Drive unit",
+      "manual_summary": "The left drive unit temperature has exceeded the allowable limit, indicating overheating.",
+      "actions_summary": [
+        "Stop operation and allow cooling",
+        "Inspect cooling components",
+        "Check for mechanical overload"
+      ],
+      "severity": "high"
+    },
+    "T355": {
+      "system": "Drive unit",
+      "manual_summary": "The right drive unit temperature has exceeded the allowable limit. Protective measures may be active.",
+      "actions_summary": [
+        "Allow unit to cool",
+        "Inspect cooling system",
+        "Check operating conditions"
+      ],
+      "severity": "high"
+    },
+    "T391": {
+      "system": "Hydraulic system",
+      "manual_summary": "The hydraulic oil temperature signal is implausible or faulty. Temperature monitoring cannot be relied upon.",
+      "actions_summary": [
+        "Inspect oil temperature sensor",
+        "Check wiring and connectors",
+        "Compare sensor reading with actual temperature"
+      ],
+      "severity": "medium"
+    },
+    "T443": {
+      "system": "Safety interlock",
+      "manual_summary": "Traction is not fully disabled despite the seat switch being inactive. A safety-related inconsistency is detected.",
+      "actions_summary": [
+        "Inspect seat switch signals",
+        "Check safety logic inputs",
+        "Verify control unit safety processing"
+      ],
+      "severity": "high"
+    },
+    "T491": {
+      "system": "Safety monitoring",
+      "manual_summary": "The safety verification of the power electronics has failed. A safety-related fault is present.",
+      "actions_summary": [
+        "Check power module safety diagnostics",
+        "Inspect related wiring",
+        "Reset system and re-evaluate safety status"
+      ],
+      "severity": "high"
+    },
+    "T750": {
+      "system": "Safety processor",
+      "manual_summary": "The traction function has been disabled by the safety processor due to detected unsafe conditions.",
+      "actions_summary": [
+        "Review safety processor fault memory",
+        "Inspect all safety-relevant inputs",
+        "Clear fault after corrective actions"
+      ],
+      "severity": "high"
+    }
+  }
+}
