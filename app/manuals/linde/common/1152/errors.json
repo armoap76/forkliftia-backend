@@ -1,0 +1,327 @@
+{
+  "brand": "Linde",
+  "model": "T16/T18/T20",
+  "series": "1152",
+  "errors": {
+    "101": {
+      "system": "Mast load sensing",
+      "manual_summary": "The first optical load sensor on the mast reports an implausible signal when manual lifting mode is active. Load detection cannot be reliably validated.",
+      "actions_summary": [
+        "Inspect optical load sensor 1 alignment and cleanliness",
+        "Check wiring and connectors for damage",
+        "Verify correct manual lifting mode selection"
+      ],
+      "severity": "medium"
+    },
+    "102": {
+      "system": "Mast load sensing",
+      "manual_summary": "The second optical load sensor provides inconsistent feedback during manual lifting mode, preventing reliable load evaluation.",
+      "actions_summary": [
+        "Inspect optical load sensor 2 mounting and condition",
+        "Check wiring integrity",
+        "Verify operating mode logic"
+      ],
+      "severity": "medium"
+    },
+    "103": {
+      "system": "Control input",
+      "manual_summary": "The start command remains active for an extended time while automatic lifting is selected, indicating an abnormal input condition.",
+      "actions_summary": [
+        "Check start button for sticking",
+        "Inspect input wiring for short circuits",
+        "Verify automatic lifting control logic"
+      ],
+      "severity": "medium"
+    },
+    "110": {
+      "system": "Braking system",
+      "manual_summary": "A malfunction has been detected in brake control or brake adjustment. Safe braking performance may be affected.",
+      "actions_summary": [
+        "Inspect brake control signals",
+        "Check brake mechanical adjustment",
+        "Verify brake controller operation"
+      ],
+      "severity": "high"
+    },
+    "111": {
+      "system": "Braking system",
+      "manual_summary": "The measured resistance of the brake coil is below the acceptable range, suggesting a short circuit or internal fault.",
+      "actions_summary": [
+        "Measure brake coil resistance",
+        "Inspect wiring for shorts",
+        "Replace brake coil if defective"
+      ],
+      "severity": "high"
+    },
+    "112": {
+      "system": "Braking system",
+      "manual_summary": "The brake coil resistance exceeds the permissible range, indicating a possible open circuit or coil degradation.",
+      "actions_summary": [
+        "Measure brake coil resistance",
+        "Inspect connectors and wiring",
+        "Replace brake coil if necessary"
+      ],
+      "severity": "high"
+    },
+    "113": {
+      "system": "Braking system",
+      "manual_summary": "Brake coil current is insufficient to ensure proper brake release or holding function.",
+      "actions_summary": [
+        "Check brake coil power supply",
+        "Inspect wiring and connectors",
+        "Verify brake controller output"
+      ],
+      "severity": "high"
+    },
+    "115": {
+      "system": "Service mode",
+      "manual_summary": "The truck is detected in wheel change mode, which restricts normal driving and lifting functions.",
+      "actions_summary": [
+        "Exit wheel change mode if not required",
+        "Check service mode switch or configuration",
+        "Verify correct system status"
+      ],
+      "severity": "low"
+    },
+    "116": {
+      "system": "Mast sensing",
+      "manual_summary": "The mast position potentiometer is active while optical load sensor signals are inconsistent. Mast position and load data cannot be correlated.",
+      "actions_summary": [
+        "Inspect mast potentiometer operation",
+        "Check optical load sensor signals",
+        "Verify wiring and signal plausibility"
+      ],
+      "severity": "medium"
+    },
+    "117": {
+      "system": "Battery management",
+      "manual_summary": "The system has entered reduced battery mode because the current demand exceeds the battery’s supply capability.",
+      "actions_summary": [
+        "Check battery condition and capacity",
+        "Inspect load conditions and power demand",
+        "Recharge or replace battery if required"
+      ],
+      "severity": "medium"
+    },
+    "118": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached the first low threshold. Initial performance limitations may occur.",
+      "actions_summary": [
+        "Recharge the battery",
+        "Check battery health",
+        "Monitor state-of-charge indication"
+      ],
+      "severity": "low"
+    },
+    "119": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached the second low threshold, leading to further functional restrictions.",
+      "actions_summary": [
+        "Recharge the battery promptly",
+        "Inspect battery condition",
+        "Verify battery monitoring accuracy"
+      ],
+      "severity": "medium"
+    },
+    "120": {
+      "system": "Power electronics",
+      "manual_summary": "The pre-charging process of the power electronics did not complete successfully during startup.",
+      "actions_summary": [
+        "Inspect pre-charge circuit components",
+        "Check contactors and wiring",
+        "Verify controller startup sequence"
+      ],
+      "severity": "high"
+    },
+    "121": {
+      "system": "Battery management",
+      "manual_summary": "The battery state of charge has reached a critical low level. Operation may be heavily restricted.",
+      "actions_summary": [
+        "Recharge the battery immediately",
+        "Inspect battery for degradation",
+        "Verify state-of-charge measurement"
+      ],
+      "severity": "high"
+    },
+    "122": {
+      "system": "Battery management",
+      "manual_summary": "The Li-ion battery reports an abnormal internal state that affects availability or performance.",
+      "actions_summary": [
+        "Check Li-ion battery diagnostics",
+        "Inspect BMS communication",
+        "Verify battery readiness status"
+      ],
+      "severity": "medium"
+    },
+    "127": {
+      "system": "Tiller control",
+      "manual_summary": "The butterfly control was rotated for an extended time while the tiller was in the rest position, indicating an implausible operator input.",
+      "actions_summary": [
+        "Return butterfly control to neutral position",
+        "Inspect tiller input sensors",
+        "Check control logic for plausibility"
+      ],
+      "severity": "low"
+    },
+    "131": {
+      "system": "Control electronics",
+      "manual_summary": "An internal control error has been detected. Additional active error codes are required for root cause analysis.",
+      "actions_summary": [
+        "Check for accompanying error codes",
+        "Cycle system power",
+        "Inspect control unit diagnostics"
+      ],
+      "severity": "high"
+    },
+    "137": {
+      "system": "Battery management",
+      "manual_summary": "Traction and lift performance are limited to reduce current consumption due to Li-ion battery constraints. Lifting may be disabled under high load.",
+      "actions_summary": [
+        "Reduce load demand",
+        "Check Li-ion battery status",
+        "Allow battery recovery or recharge"
+      ],
+      "severity": "medium"
+    },
+    "140": {
+      "system": "Accelerator",
+      "manual_summary": "The combined voltage of accelerator signals exceeds the permitted tolerance, indicating an implausible input.",
+      "actions_summary": [
+        "Measure accelerator signal voltages",
+        "Inspect accelerator wiring",
+        "Check sensor calibration"
+      ],
+      "severity": "high"
+    },
+    "152": {
+      "system": "Safety communication",
+      "manual_summary": "The CRC data value received by the safety system is invalid, indicating corrupted or incorrect safety data.",
+      "actions_summary": [
+        "Inspect safety CAN communication",
+        "Check control unit software integrity",
+        "Verify wiring and connectors"
+      ],
+      "severity": "high"
+    },
+    "155": {
+      "system": "Safety communication",
+      "manual_summary": "Safety CAN messages are not being received within the expected time frame.",
+      "actions_summary": [
+        "Check CAN bus wiring",
+        "Inspect safety controller communication",
+        "Verify power supply to safety modules"
+      ],
+      "severity": "high"
+    },
+    "156": {
+      "system": "Safety communication",
+      "manual_summary": "Received safety CAN messages contain invalid values that cannot be interpreted correctly.",
+      "actions_summary": [
+        "Inspect CAN communication integrity",
+        "Check software compatibility",
+        "Verify safety controller configuration"
+      ],
+      "severity": "high"
+    },
+    "157": {
+      "system": "Safety communication",
+      "manual_summary": "The CRC of received safety CAN messages is invalid, indicating data corruption.",
+      "actions_summary": [
+        "Inspect CAN bus wiring and shielding",
+        "Check control unit software",
+        "Verify connector integrity"
+      ],
+      "severity": "high"
+    },
+    "158": {
+      "system": "Safety communication",
+      "manual_summary": "The counter value of safety CAN messages is invalid, indicating synchronization issues.",
+      "actions_summary": [
+        "Check CAN bus synchronization",
+        "Inspect safety controller communication",
+        "Verify software compatibility"
+      ],
+      "severity": "high"
+    },
+    "167": {
+      "system": "Battery management",
+      "manual_summary": "A general battery warning indicates abnormal battery-related conditions.",
+      "actions_summary": [
+        "Check battery diagnostics",
+        "Inspect battery connections",
+        "Review battery management system data"
+      ],
+      "severity": "medium"
+    },
+    "200": {
+      "system": "Safety communication",
+      "manual_summary": "Safety CAN communication with the MMI unit is missing or disturbed.",
+      "actions_summary": [
+        "Inspect CAN bus wiring",
+        "Check MMI and controller power supply",
+        "Verify CAN configuration"
+      ],
+      "severity": "high"
+    },
+    "245": {
+      "system": "Traction motor",
+      "manual_summary": "The traction motor temperature exceeds the permissible limit, activating thermal protection.",
+      "actions_summary": [
+        "Allow motor to cool down",
+        "Inspect cooling and ventilation",
+        "Check load conditions"
+      ],
+      "severity": "high"
+    },
+    "330": {
+      "system": "Power electronics",
+      "manual_summary": "A permanent fault is detected in the driver circuits of the power transistors.",
+      "actions_summary": [
+        "Inspect power transistor driver circuits",
+        "Check control unit outputs",
+        "Replace power electronics if required"
+      ],
+      "severity": "high"
+    },
+    "400": {
+      "system": "Safety system",
+      "manual_summary": "The safety self-test failed because the safety relay remained energized when a shutdown was requested.",
+      "actions_summary": [
+        "Inspect safety relay operation",
+        "Check safety controller outputs",
+        "Replace relay if faulty"
+      ],
+      "severity": "high"
+    },
+    "401": {
+      "system": "Safety system",
+      "manual_summary": "The safety self-test failed because a contactor remained closed when it should have opened.",
+      "actions_summary": [
+        "Inspect main contactor for welding",
+        "Check safety controller commands",
+        "Replace contactor if necessary"
+      ],
+      "severity": "high"
+    },
+    "407": {
+      "system": "Sensor supply",
+      "manual_summary": "The sensor supply voltage is outside the permissible operating range, resulting in invalid sensor readings.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect power regulation",
+        "Check wiring for faults"
+      ],
+      "severity": "high"
+    },
+    "443": {
+      "system": "Operator safety",
+      "manual_summary": "The tiller is in working position and the belly switch is activated, but the truck does not move as expected.",
+      "actions_summary": [
+        "Inspect belly switch operation",
+        "Check safety logic conditions",
+        "Verify drive enable inputs"
+      ],
+      "severity": "medium"
+    }
+  }
+}
