@@ -1,0 +1,287 @@
+{
+  "brand": "Linde",
+  "model": "E16/E20",
+  "series": "1275",
+  "errors": {
+    "120": {
+      "system": "Drive unit",
+      "manual_summary": "The traction drive unit temperature has exceeded the normal operating range. This condition indicates insufficient cooling or excessive load during operation.",
+      "actions_summary": [
+        "Check cooling system operation and airflow",
+        "Inspect for overload or prolonged high-demand operation",
+        "Allow the unit to cool and verify temperature sensors"
+      ],
+      "severity": "medium"
+    },
+    "130": {
+      "system": "Operator safety",
+      "manual_summary": "The accelerator input is detected while the seat safety switch is not active. The system prevents traction to ensure operator presence.",
+      "actions_summary": [
+        "Check seat switch function and wiring",
+        "Verify correct seating and switch actuation",
+        "Inspect for damaged or misadjusted microswitch"
+      ],
+      "severity": "high"
+    },
+    "131": {
+      "system": "Charging system",
+      "manual_summary": "The onboard charger is connected to mains power while a drive command is present. Traction is inhibited for safety reasons.",
+      "actions_summary": [
+        "Disconnect the charger from the power supply",
+        "Check charging interlock signals",
+        "Verify accelerator input is inactive during charging"
+      ],
+      "severity": "high"
+    },
+    "132": {
+      "system": "Charging system",
+      "manual_summary": "A drive command is detected while the onboard charger connector is not seated in the vehicle. This indicates an invalid charging or traction state.",
+      "actions_summary": [
+        "Verify charger connector position",
+        "Inspect charging detection sensors",
+        "Check accelerator signal plausibility"
+      ],
+      "severity": "high"
+    },
+    "150": {
+      "system": "Battery management",
+      "manual_summary": "The remaining battery capacity has dropped to a low threshold level. Performance may be limited to protect the battery.",
+      "actions_summary": [
+        "Recharge the battery",
+        "Check battery condition and capacity",
+        "Inspect battery monitoring signals"
+      ],
+      "severity": "low"
+    },
+    "151": {
+      "system": "Battery management",
+      "manual_summary": "The remaining battery capacity has reached a critical low level. Vehicle functions may be significantly restricted.",
+      "actions_summary": [
+        "Recharge the battery immediately",
+        "Inspect battery health",
+        "Verify battery state-of-charge measurement"
+      ],
+      "severity": "medium"
+    },
+    "188": {
+      "system": "Traction power module",
+      "manual_summary": "The left traction power module has detected an internal fault condition. Traction performance may be limited or disabled.",
+      "actions_summary": [
+        "Check power module status and fault memory",
+        "Inspect wiring and connectors",
+        "Perform diagnostic test on the module"
+      ],
+      "severity": "high"
+    },
+    "189": {
+      "system": "Traction power module",
+      "manual_summary": "The right traction power module has detected an internal fault condition. This may result in reduced or disabled traction.",
+      "actions_summary": [
+        "Check power module diagnostics",
+        "Inspect electrical connections",
+        "Test the module for internal faults"
+      ],
+      "severity": "high"
+    },
+    "190": {
+      "system": "Steering system",
+      "manual_summary": "The steering axle is mechanically locked by the battery hydraulic compartment. Steering movement is restricted.",
+      "actions_summary": [
+        "Inspect battery compartment positioning",
+        "Check hydraulic components related to steering lock",
+        "Ensure no mechanical obstruction is present"
+      ],
+      "severity": "high"
+    },
+    "200": {
+      "system": "Control module",
+      "manual_summary": "The control module manufacturing or initialization test was not completed successfully. The module may not be correctly configured.",
+      "actions_summary": [
+        "Verify control module configuration",
+        "Repeat initialization or factory test procedure",
+        "Check for software or parameter issues"
+      ],
+      "severity": "high"
+    },
+    "201": {
+      "system": "Control module",
+      "manual_summary": "The internal software monitoring function of the control module has triggered a response, indicating abnormal operation.",
+      "actions_summary": [
+        "Cycle power and observe fault recurrence",
+        "Check software version and integrity",
+        "Inspect for electromagnetic interference or voltage issues"
+      ],
+      "severity": "high"
+    },
+    "210": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The supply voltage for traction-related sensors is above the permissible range. Sensor readings may be unreliable.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Inspect voltage regulator and wiring",
+        "Check for short circuits or incorrect supply sources"
+      ],
+      "severity": "medium"
+    },
+    "211": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The supply voltage for traction-related sensors is below the permissible range. This can cause invalid sensor signals.",
+      "actions_summary": [
+        "Measure sensor supply voltage",
+        "Check wiring and connectors",
+        "Inspect control module power supply"
+      ],
+      "severity": "medium"
+    },
+    "212": {
+      "system": "Sensor supply – traction",
+      "manual_summary": "The traction sensor supply voltage is outside valid operating limits. Sensor data cannot be trusted.",
+      "actions_summary": [
+        "Inspect sensor power circuits",
+        "Check for intermittent voltage drops",
+        "Verify control module outputs"
+      ],
+      "severity": "medium"
+    },
+    "231": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator guidance signal is outside the expected operating range. The control system detects an implausible input.",
+      "actions_summary": [
+        "Check accelerator sensor output",
+        "Inspect wiring for damage or loose connections",
+        "Verify correct sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "232": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator reference signal is outside the permitted range. This prevents reliable traction control.",
+      "actions_summary": [
+        "Measure accelerator reference voltage",
+        "Inspect sensor alignment and wiring",
+        "Check control module input evaluation"
+      ],
+      "severity": "medium"
+    },
+    "233": {
+      "system": "Accelerator",
+      "manual_summary": "The accelerator guidance and reference signals do not correlate correctly. The system detects implausible pedal input.",
+      "actions_summary": [
+        "Inspect accelerator dual-channel signals",
+        "Check sensor synchronization",
+        "Replace accelerator sensor if necessary"
+      ],
+      "severity": "high"
+    },
+    "241": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The signal from channel 1 of the steering angle sensor is outside the valid range. Steering feedback may be unreliable.",
+      "actions_summary": [
+        "Check steering angle sensor output",
+        "Inspect wiring and connectors",
+        "Verify sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "242": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The signal from channel 2 of the steering angle sensor is outside the valid range. Redundant signal monitoring has failed.",
+      "actions_summary": [
+        "Inspect steering angle sensor channel 2",
+        "Check for wiring faults",
+        "Verify sensor alignment"
+      ],
+      "severity": "medium"
+    },
+    "243": {
+      "system": "Steering angle sensor",
+      "manual_summary": "The two steering angle sensor channels provide incompatible signals. Steering position cannot be validated.",
+      "actions_summary": [
+        "Compare both sensor channel outputs",
+        "Inspect sensor and wiring integrity",
+        "Replace sensor if signals remain inconsistent"
+      ],
+      "severity": "high"
+    },
+    "351": {
+      "system": "Traction motor",
+      "manual_summary": "The detected traction motor temperature is outside the permissible range. This indicates abnormal thermal conditions.",
+      "actions_summary": [
+        "Check motor cooling and ventilation",
+        "Inspect temperature sensor operation",
+        "Reduce load and monitor temperature"
+      ],
+      "severity": "medium"
+    },
+    "353": {
+      "system": "Traction motor",
+      "manual_summary": "The traction motor temperature has exceeded the allowable limit. Protective measures may limit performance.",
+      "actions_summary": [
+        "Allow motor to cool down",
+        "Check cooling system effectiveness",
+        "Inspect for mechanical overload"
+      ],
+      "severity": "high"
+    },
+    "391": {
+      "system": "Oil temperature sensing",
+      "manual_summary": "The oil temperature sensor signal is invalid or incorrect. Temperature-dependent functions may be affected.",
+      "actions_summary": [
+        "Inspect oil temperature sensor",
+        "Check wiring and connectors",
+        "Verify sensor readings against actual temperature"
+      ],
+      "severity": "medium"
+    },
+    "440": {
+      "system": "Steering system",
+      "manual_summary": "The steering angle signal is outside the valid operating range. Steering control accuracy cannot be ensured.",
+      "actions_summary": [
+        "Inspect steering angle sensor",
+        "Check mechanical steering components",
+        "Verify sensor calibration"
+      ],
+      "severity": "medium"
+    },
+    "491": {
+      "system": "Safety monitoring",
+      "manual_summary": "The safety check of the traction power module has failed. The system detects a potential safety-related fault.",
+      "actions_summary": [
+        "Review power module safety diagnostics",
+        "Inspect related wiring and signals",
+        "Reset system and recheck safety status"
+      ],
+      "severity": "high"
+    },
+    "502": {
+      "system": "Braking system",
+      "manual_summary": "The brake pressure signal is outside the permitted range. Correct braking performance cannot be guaranteed.",
+      "actions_summary": [
+        "Check brake pressure sensor",
+        "Inspect hydraulic braking components",
+        "Verify pressure values during operation"
+      ],
+      "severity": "high"
+    },
+    "614": {
+      "system": "Operator safety",
+      "manual_summary": "The seat switch signals are implausible, indicating both contacts are open or closed simultaneously. Operator presence cannot be confirmed.",
+      "actions_summary": [
+        "Inspect seat switch contacts",
+        "Check wiring for shorts or open circuits",
+        "Replace seat switch if faulty"
+      ],
+      "severity": "high"
+    },
+    "750": {
+      "system": "Safety processor",
+      "manual_summary": "Traction has been disabled by the safety processor due to detected unsafe conditions. Vehicle movement is prevented.",
+      "actions_summary": [
+        "Check safety processor fault memory",
+        "Inspect related safety inputs and signals",
+        "Clear fault and perform safety check"
+      ],
+      "severity": "high"
+    }
+  }
+}
