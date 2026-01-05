@@ -109,16 +109,52 @@ def search_manual_error(
     with open(manual_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    for err in data.get("errors", []):
-        code = normalize_error_code(err.get("code", ""))
-        if code == ecode or ecode in code:
-            logger.info("Manual lookup matched file %s for brand=%s model=%s series=%s", manual_path, normalized_brand, normalized_model, normalized_series)
-            return {
-                "source": "manuals",
-                "brand": data.get("brand"),
-                "model": data.get("model"),
-                "series": data.get("series"),
-                "error": err,
-            }
+    errors = data.get("errors")
+
+    if isinstance(errors, dict):
+        for code_key, err in errors.items():
+            if not isinstance(err, dict):
+                continue
+
+            code = normalize_error_code(code_key)
+            if code == ecode or ecode in code:
+                error_data = dict(err)
+                error_data.setdefault("code", code_key)
+                logger.info(
+                    "Manual lookup matched file %s for brand=%s model=%s series=%s",
+                    manual_path,
+                    normalized_brand,
+                    normalized_model,
+                    normalized_series,
+                )
+                return {
+                    "source": "manuals",
+                    "brand": data.get("brand"),
+                    "model": data.get("model"),
+                    "series": data.get("series"),
+                    "error": error_data,
+                }
+
+    elif isinstance(errors, list):
+        for err in errors:
+            if not isinstance(err, dict):
+                continue
+
+            code = normalize_error_code(err.get("code", ""))
+            if code == ecode or ecode in code:
+                logger.info(
+                    "Manual lookup matched file %s for brand=%s model=%s series=%s",
+                    manual_path,
+                    normalized_brand,
+                    normalized_model,
+                    normalized_series,
+                )
+                return {
+                    "source": "manuals",
+                    "brand": data.get("brand"),
+                    "model": data.get("model"),
+                    "series": data.get("series"),
+                    "error": err,
+                }
 
     return None
