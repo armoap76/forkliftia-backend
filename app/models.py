@@ -24,6 +24,9 @@ class CaseCreate(BaseModel):
     diagnosis: Optional[str] = None  # en open puede estar vacío
     status: CaseStatus = "open"
     source: CaseSource = "ai"
+    matched_case_id: Optional[int] = None
+    manual_path: Optional[str] = None
+    manual_meta: Optional[dict] = None
 
     created_by_uid: str = Field(..., min_length=1)
 
