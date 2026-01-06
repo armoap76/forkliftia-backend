@@ -106,8 +106,12 @@ def search_manual_error(
     if not manual_path:
         return None
 
-    with open(manual_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        with open(manual_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        logger.exception("Failed to read manual JSON from %s", manual_path)
+        return None
 
     errors = data.get("errors")
 
@@ -133,6 +137,7 @@ def search_manual_error(
                     "model": data.get("model"),
                     "series": data.get("series"),
                     "error": error_data,
+                    "manual_path": manual_path,
                 }
 
     elif isinstance(errors, list):
@@ -155,6 +160,7 @@ def search_manual_error(
                     "model": data.get("model"),
                     "series": data.get("series"),
                     "error": err,
+                    "manual_path": manual_path,
                 }
 
     return None

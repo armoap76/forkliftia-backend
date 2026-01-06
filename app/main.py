@@ -367,7 +367,24 @@ def diagnosis(
     else:
         output_language_instruction = "Explain the diagnosis in professional technical English."
 
-    # Buscar en manuales
+    # 1) Crear el caso abierto ANTES de cualquier lookup
+    base_case = store.create_case(
+        CaseCreate(
+            title=f"{brand} {model} ({error_code})" if error_code else f"{brand} {model}",
+            description=symptom or "",
+            brand=brand,
+            model=model,
+            series=series or None,
+            error_code=None if error_code == "None provided" else error_code,
+            symptom=symptom,
+            checks_done=checks_done,
+            diagnosis="",
+            status="open",
+            source="ai",
+            created_by_uid=uid,
+        )
+    )
+
     manual_hit = search_manual_error(
         base_path="app/manuals",
         brand=brand,
@@ -386,8 +403,6 @@ Summary: {e.get('manual_summary')}
 Actions: {e.get('actions_summary')}
 """
 
-
-    # 1) Buscar caso resuelto similar
     match = store.find_resolved_by_key(
         brand=brand,
         model=model,
@@ -395,11 +410,81 @@ Actions: {e.get('actions_summary')}
         error_code=None if error_code == "None provided" else error_code,
     )
 
-    if match:
+    origin = "ai"
+    diagnosis_text = ""
+    matched_case_payload = None
+
+    if manual_hit:
+        origin = "manuals"
+        manual_error = manual_hit.get("error", {})
+        probable_cause = manual_error.get("manual_summary") or "Consultar detalle del manual disponible."
+        actions_summary = manual_error.get("actions_summary") or "Aplicar las acciones indicadas en el manual para este código."
+        reference = manual_hit.get("manual_path") or "Manual disponible"
+
+        diagnosis_text = (
+            f"🔍 PROBABLE CAUSE:\n- {probable_cause}\n\n"
+            f"📋 DIAGNOSTIC STEPS:\n{actions_summary}\n\n"
+            f"📚 REFERENCIA:\n- {reference}"
+        )
+
+        if match:
+            matched_case_payload = {
+                "id": match.id,
+                "public_name": match.creator_public_name,
+                "resolution_final": match.resolution_note,
+                "closed_at": match.closed_at,
+            }
+            resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
+            diagnosis_text += (
+                "\n\nSOLUCIÓN DE CASO SIMILAR (complemento):\n"
+                f"- Caso #{match.id}: {resolution_text}"
+            )
+
+        updated_case = store.update_case_diagnosis_data(
+            base_case.id,
+            diagnosis=diagnosis_text,
+            source=origin,
+            matched_case_id=match.id if match else None,
+            manual_path=manual_hit.get("manual_path"),
+            manual_meta=manual_hit,
+        )
+
         return {
-            "case_id": match.id,
-            "diagnosis": match.diagnosis or "",
-            "source": "cases",
+            "case_id": updated_case.id if updated_case else base_case.id,
+            "origin": origin,
+            "manual_hit": manual_hit,
+            "matched_case": matched_case_payload,
+            "diagnosis_text": diagnosis_text,
+        }
+
+    if match:
+        origin = "cases"
+        resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
+        diagnosis_text = (
+            f"Diagnóstico basado en caso resuelto #{match.id}.\n\n"
+            f"RESUMEN DEL CASO SIMILAR:\n{match.diagnosis or 'Sin diagnóstico previo.'}\n\n"
+            f"SOLUCIÓN FINAL:\n{resolution_text}"
+        )
+        matched_case_payload = {
+            "id": match.id,
+            "public_name": match.creator_public_name,
+            "resolution_final": match.resolution_note,
+            "closed_at": match.closed_at,
+        }
+
+        updated_case = store.update_case_diagnosis_data(
+            base_case.id,
+            diagnosis=diagnosis_text,
+            source=origin,
+            matched_case_id=match.id,
+        )
+
+        return {
+            "case_id": updated_case.id if updated_case else base_case.id,
+            "origin": origin,
+            "manual_hit": manual_hit,
+            "matched_case": matched_case_payload,
+            "diagnosis_text": diagnosis_text,
         }
 
     user_prompt = f"""
@@ -427,7 +512,6 @@ ALREADY CHECKED BY TECHNICIAN:
 Provide your diagnostic analysis following the standard format.
 """
 
-
     try:
         # Responses API (recomendada para proyectos nuevos) :contentReference[oaicite:2]{index=2}
         resp = client.responses.create(
@@ -441,33 +525,21 @@ Provide your diagnostic analysis following the standard format.
             max_output_tokens=900,
         )
 
-        # Texto final
         diagnosis_text = resp.output_text
 
-        case = store.create_case(
-            CaseCreate(
-                title=f"{brand} {model} ({error_code})" if error_code else f"{brand} {model}",
-                description=symptom or "",
-                brand=brand,
-                model=model,
-                series=series or None,
-                error_code=None if error_code == "None provided" else error_code,
-                symptom=symptom,
-                checks_done=checks_done,
-                diagnosis=diagnosis_text,
-                status="open",      # por ahora lo dejamos abierto
-                source="ai",
-                created_by_uid=uid,
-            
-            )
+        updated_case = store.update_case_diagnosis_data(
+            base_case.id,
+            diagnosis=diagnosis_text,
+            source=origin,
         )
 
         return {
-            "case_id": case.id,
-            "diagnosis": diagnosis_text,
-            "source": "ai",
+            "case_id": updated_case.id if updated_case else base_case.id,
+            "origin": origin,
+            "manual_hit": manual_hit,
+            "matched_case": matched_case_payload,
+            "diagnosis_text": diagnosis_text,
         }
-
 
     except Exception as e:
         # no tires el error completo al cliente en producción, pero por ahora sirve

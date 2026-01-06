@@ -34,6 +34,9 @@ class DatabaseCaseStore(CaseStore):
             diagnosis=db_case.diagnosis,
             status=db_case.status,
             source=db_case.source or "ai",
+            matched_case_id=db_case.matched_case_id,
+            manual_path=db_case.manual_path,
+            manual_meta=db_case.manual_meta,
             tags=db_case.tags or [],
             created_at=db_case.created_at,
             updated_at=db_case.updated_at,
@@ -75,6 +78,9 @@ class DatabaseCaseStore(CaseStore):
                 checks_done=data.checks_done,
                 diagnosis=data.diagnosis,
                 source=data.source,
+                matched_case_id=data.matched_case_id,
+                manual_path=data.manual_path,
+                manual_meta=data.manual_meta,
                 tags=data.tags or [],
             )
             session.add(db_case)
@@ -128,10 +134,17 @@ class DatabaseCaseStore(CaseStore):
             return None
 
         with self.session_factory() as session:
-            query = session.query(CaseModel).filter(
-                CaseModel.status == "resolved",
-                CaseModel.brand.ilike(brand),
-                CaseModel.model.ilike(model),
+            query = (
+                session.query(
+                    CaseModel,
+                    UserProfile.public_name.label("creator_public_name"),
+                )
+                .outerjoin(UserProfile, CaseModel.created_by_uid == UserProfile.uid)
+                .filter(
+                    CaseModel.status == "resolved",
+                    CaseModel.brand.ilike(brand),
+                    CaseModel.model.ilike(model),
+                )
             )
             if series:
                 query = query.filter(CaseModel.series.ilike(series))
@@ -140,8 +153,35 @@ class DatabaseCaseStore(CaseStore):
 
             db_case = query.order_by(CaseModel.id.desc()).first()
             if db_case:
-                return self._to_case(db_case)
+                case_row, creator_public_name = db_case
+                return self._to_case(case_row, creator_public_name)
             return None
+
+    def update_case_diagnosis_data(
+        self,
+        case_id: int,
+        *,
+        diagnosis: Optional[str],
+        source: str,
+        matched_case_id: Optional[int] = None,
+        manual_path: Optional[str] = None,
+        manual_meta: Optional[dict] = None,
+    ) -> Optional[Case]:
+        with self.session_factory() as session:
+            db_case = session.get(CaseModel, case_id)
+            if not db_case:
+                return None
+
+            db_case.diagnosis = diagnosis
+            db_case.source = source
+            db_case.matched_case_id = matched_case_id
+            db_case.manual_path = manual_path
+            db_case.manual_meta = manual_meta
+            db_case.touch_updated_at()
+            session.commit()
+            session.refresh(db_case)
+            creator_public_name = self._get_creator_public_name(session, db_case.created_by_uid)
+            return self._to_case(db_case, creator_public_name)
 
     def update_status(self, case_id: int, status: str) -> Optional[Case]:
         with self.session_factory() as session:
