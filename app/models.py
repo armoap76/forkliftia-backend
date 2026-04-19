@@ -101,3 +101,14 @@ class CaseComment(BaseModel):
     author_public_name: Optional[str] = None
     body: str
     created_at: datetime
+
+
+class DiagnosisRequest(BaseModel):
+    brand: str = ""
+    model: str = ""
+    series: Optional[str] = None
+    controller: Optional[str] = None
+    error_code: Optional[str] = None
+    symptom: str = ""
+    checks_done: Optional[str] = None
+    language: str = "en"

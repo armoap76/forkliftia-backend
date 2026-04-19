@@ -45,6 +45,15 @@ def normalize_series(value: Optional[str]) -> str:
     return fallback
 
 
+def normalize_controller(value: Optional[str]) -> str:
+    if not value:
+        return ""
+
+    cleaned = _strip_accents(value.strip().lower())
+    cleaned = re.sub(r"[\s/]+", "-", cleaned)
+    return cleaned.strip("-")
+
+
 def normalize_error_code(value: Optional[str]) -> str:
     if not value:
         return ""
@@ -53,8 +62,17 @@ def normalize_error_code(value: Optional[str]) -> str:
     cleaned = re.sub(r"[\s-]+", "", cleaned)
     return cleaned
 
-def _iter_candidate_paths(base_path: str, brand: str, model: str, series: str) -> list:
+def _iter_candidate_paths(
+    base_path: str,
+    brand: str,
+    model: str,
+    series: str,
+    controller: str,
+) -> list:
     candidates = []
+    if series and controller:
+        candidates.append(os.path.join(base_path, brand, model, series, controller, "errors.json"))
+        candidates.append(os.path.join(base_path, brand, "common", series, controller, "errors.json"))
     if series:
         candidates.append(os.path.join(base_path, brand, model, series, "errors.json"))
     candidates.append(os.path.join(base_path, brand, model, "errors.json"))
@@ -81,6 +99,7 @@ def search_manual_error(
     brand: str,
     model: str,
     series: Optional[str],
+    controller: Optional[str],
     error_code: Optional[str],
 ) -> Optional[Dict[str, Any]]:
 
@@ -90,6 +109,7 @@ def search_manual_error(
     normalized_brand = normalize_brand(brand)
     normalized_model = normalize_model(model)
     normalized_series = normalize_series(series)
+    normalized_controller = normalize_controller(controller)
     ecode = normalize_error_code(error_code)
 
     if not normalized_brand or not normalized_model or not ecode:
@@ -100,11 +120,14 @@ def search_manual_error(
         brand=normalized_brand,
         model=normalized_model,
         series=normalized_series,
+        controller=normalized_controller,
     )
+    logger.info("Manual lookup candidate paths: %s", paths)
 
     manual_path = _load_first_existing(paths)
     if not manual_path:
         return None
+    logger.info("Manual lookup selected path: %s", manual_path)
 
     try:
         with open(manual_path, "r", encoding="utf-8") as f:
@@ -125,11 +148,12 @@ def search_manual_error(
                 error_data = dict(err)
                 error_data.setdefault("code", code_key)
                 logger.info(
-                    "Manual lookup matched file %s for brand=%s model=%s series=%s",
+                    "Manual lookup matched file %s for brand=%s model=%s series=%s controller=%s",
                     manual_path,
                     normalized_brand,
                     normalized_model,
                     normalized_series,
+                    normalized_controller,
                 )
                 return {
                     "source": "manuals",
@@ -148,11 +172,12 @@ def search_manual_error(
             code = normalize_error_code(err.get("code", ""))
             if code == ecode or ecode in code:
                 logger.info(
-                    "Manual lookup matched file %s for brand=%s model=%s series=%s",
+                    "Manual lookup matched file %s for brand=%s model=%s series=%s controller=%s",
                     manual_path,
                     normalized_brand,
                     normalized_model,
                     normalized_series,
+                    normalized_controller,
                 )
                 return {
                     "source": "manuals",

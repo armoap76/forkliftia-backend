@@ -2,6 +2,7 @@ import json
 
 from app.manuals_store import (
     normalize_brand,
+    normalize_controller,
     normalize_error_code,
     normalize_model,
     normalize_series,
@@ -15,6 +16,7 @@ def test_normalization_helpers():
     assert normalize_model("E-16") == "e16"
     assert normalize_series("R14-1275") == "1275"
     assert normalize_series("Serie X") == "seriex"
+    assert normalize_controller(" ZAPI / Gen 4 ") == "zapi-gen-4"
     assert normalize_error_code("e 223") == "E223"
 
 
@@ -42,8 +44,44 @@ def test_search_manual_error_with_common_series(tmp_path):
         brand="LÍNDE",
         model="E20",
         series="R14-1275",
+        controller=None,
         error_code="e-223",
     )
 
     assert hit is not None
     assert hit["error"]["manual_summary"] == "Hydraulic pressure sensor fault"
+
+
+def test_search_manual_error_prefers_controller_specific_path(tmp_path):
+    base = tmp_path
+    generic_dir = base / "linde" / "e20" / "1275"
+    generic_dir.mkdir(parents=True)
+    controller_dir = base / "linde" / "e20" / "1275" / "zapi"
+    controller_dir.mkdir(parents=True)
+
+    generic_manual = {
+        "brand": "Linde",
+        "model": "E20",
+        "series": "1275",
+        "errors": [{"code": "E223", "manual_summary": "Generic summary", "actions_summary": "Generic actions"}],
+    }
+    controller_manual = {
+        "brand": "Linde",
+        "model": "E20",
+        "series": "1275",
+        "errors": [{"code": "E223", "manual_summary": "ZAPI summary", "actions_summary": "ZAPI actions"}],
+    }
+    (generic_dir / "errors.json").write_text(json.dumps(generic_manual), encoding="utf-8")
+    (controller_dir / "errors.json").write_text(json.dumps(controller_manual), encoding="utf-8")
+
+    hit = search_manual_error(
+        base_path=str(base),
+        brand="Linde",
+        model="E20",
+        series="1275",
+        controller=" ZAPI ",
+        error_code="E223",
+    )
+
+    assert hit is not None
+    assert hit["error"]["manual_summary"] == "ZAPI summary"
