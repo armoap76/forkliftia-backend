@@ -12,6 +12,7 @@ from app.models import (
     CaseComment,
     CaseCommentCreate,
     CaseCreate,
+    DiagnosisRequest,
     CaseUpdate,
     PublicNameUpdate,
     UserProfile,
@@ -346,21 +347,22 @@ def list_case_comments(case_id: int) -> list[CaseComment]:
 
 @app.post("/diagnosis")
 def diagnosis(
-    payload: dict,
+    payload: DiagnosisRequest,
     uid: str = Depends(get_requester_uid),
 ):
     client = get_openai_client()
 
     # Datos del frontend
-    brand = payload.get("brand", "")
-    model = payload.get("model", "")
-    series = payload.get("series", "")
-    error_code = payload.get("error_code") or "None provided"
-    symptom = payload.get("symptom", "")
-    checks_done = payload.get("checks_done") or "Nothing specified yet"
+    brand = payload.brand
+    model = payload.model
+    series = payload.series or ""
+    controller = payload.controller
+    error_code = payload.error_code or "None provided"
+    symptom = payload.symptom
+    checks_done = payload.checks_done or "Nothing specified yet"
 
     # Idioma (nuevo)
-    language = payload.get("language", "en")
+    language = payload.language
 
     if language == "es":
         output_language_instruction = "Explain the diagnosis in professional LATAM Spanish."
@@ -390,6 +392,7 @@ def diagnosis(
         brand=brand,
         model=model,
         series=series,
+        controller=controller,
         error_code=None if error_code == "None provided" else error_code,
     )
 
