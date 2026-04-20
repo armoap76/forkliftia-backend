@@ -3,285 +3,2336 @@
   "model": "common",
   "series": "1275",
   "errors": {
-    "120": {
-      "system": "Drive unit",
-      "manual_summary": "The traction drive unit temperature has exceeded the normal operating range. This condition indicates insufficient cooling or excessive load during operation.",
-      "actions_summary": [
-        "Check cooling system operation and airflow",
-        "Inspect for overload or prolonged high-demand operation",
-        "Allow the unit to cool and verify temperature sensors"
+    "21": {
+      "canonical_code": "21",
+      "pages_found": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ],
-      "severity": "medium"
+      "lang_src": "unknown",
+      "fault_name": "/12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963...",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "21",
+        "/12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963..."
+      ]
+    },
+    "120": {
+      "canonical_code": "120",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Unidad de accionamiento demasiado caliente",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "120",
+        "Unidad de accionamiento demasiado caliente"
+      ]
     },
     "130": {
-      "system": "Operator safety",
-      "manual_summary": "The accelerator input is detected while the seat safety switch is not active. The system prevents traction to ensure operator presence.",
-      "actions_summary": [
-        "Check seat switch function and wiring",
-        "Verify correct seating and switch actuation",
-        "Inspect for damaged or misadjusted microswitch"
+      "canonical_code": "130",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Acelerador activado y micro interruptor del asiento no activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "130",
+        "Acelerador actuado con micro de asiento no actuado"
+      ]
     },
     "131": {
-      "system": "Charging system",
-      "manual_summary": "The onboard charger is connected to mains power while a drive command is present. Traction is inhibited for safety reasons.",
-      "actions_summary": [
-        "Disconnect the charger from the power supply",
-        "Check charging interlock signals",
-        "Verify accelerator input is inactive during charging"
+      "canonical_code": "131",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "El cargador integrado está conectado a la red y el pedal de avance está activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "131",
+        "El cargador incorporado está conectado a la red y el pedal de marcha está activado"
+      ]
     },
     "132": {
-      "system": "Charging system",
-      "manual_summary": "A drive command is detected while the onboard charger connector is not seated in the vehicle. This indicates an invalid charging or traction state.",
-      "actions_summary": [
-        "Verify charger connector position",
-        "Inspect charging detection sensors",
-        "Check accelerator signal plausibility"
+      "canonical_code": "132",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "El conector del cargador integrado no está presente en el vehículo y el pedal de marcha está activo",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "132",
+        "El conector del cargador incorporado no se encuentra en el vehículo y el pedal de marcha está activado"
+      ]
+    },
+    "135": {
+      "canonical_code": "135",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Señales del inversor de marcha (máquinas monopedal) no permitidas",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "135",
+        "Señales del inversor de marcha (máquinas monopedal) no permitidas"
+      ]
     },
     "150": {
-      "system": "Battery management",
-      "manual_summary": "The remaining battery capacity has dropped to a low threshold level. Performance may be limited to protect the battery.",
-      "actions_summary": [
-        "Recharge the battery",
-        "Check battery condition and capacity",
-        "Inspect battery monitoring signals"
+      "canonical_code": "150",
+      "pages_found": [
+        1
       ],
-      "severity": "low"
+      "lang_src": "es",
+      "fault_name": "Capacidad restante de batería indicada es menor o igual al 18%",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "150",
+        "Indicada capacidad restante de batería inferior o igual a 18%"
+      ]
     },
     "151": {
-      "system": "Battery management",
-      "manual_summary": "The remaining battery capacity has reached a critical low level. Vehicle functions may be significantly restricted.",
-      "actions_summary": [
-        "Recharge the battery immediately",
-        "Inspect battery health",
-        "Verify battery state-of-charge measurement"
+      "canonical_code": "151",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Indicada capacidad restante de batería inferior o igual a 15%",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "151",
+        "Indicada capacidad restante de batería inferior o igual a 15%"
+      ]
     },
     "188": {
-      "system": "Traction power module",
-      "manual_summary": "The left traction power module has detected an internal fault condition. Traction performance may be limited or disabled.",
-      "actions_summary": [
-        "Check power module status and fault memory",
-        "Inspect wiring and connectors",
-        "Perform diagnostic test on the module"
+      "canonical_code": "188",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "El módulo de potencia de tracción izquierda detecta una falla",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "188",
+        "Módulo de potencia de tracción izqu. detecta avería"
+      ]
     },
     "189": {
-      "system": "Traction power module",
-      "manual_summary": "The right traction power module has detected an internal fault condition. This may result in reduced or disabled traction.",
-      "actions_summary": [
-        "Check power module diagnostics",
-        "Inspect electrical connections",
-        "Test the module for internal faults"
+      "canonical_code": "189",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "El módulo de potencia de tracción derecho detecta una falla",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "189",
+        "Módulo de potencia de tracción drch. detecta avería"
+      ]
     },
     "190": {
-      "system": "Steering system",
-      "manual_summary": "The steering axle is mechanically locked by the battery hydraulic compartment. Steering movement is restricted.",
-      "actions_summary": [
-        "Inspect battery compartment positioning",
-        "Check hydraulic components related to steering lock",
-        "Ensure no mechanical obstruction is present"
+      "canonical_code": "190",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Eje de dirección bloqueado por cajón hidráulico de batería",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "190",
+        "Eje de dirección bloqueado por cajón hidráulico de batería"
+      ]
     },
     "200": {
-      "system": "Control module",
-      "manual_summary": "The control module manufacturing or initialization test was not completed successfully. The module may not be correctly configured.",
-      "actions_summary": [
-        "Verify control module configuration",
-        "Repeat initialization or factory test procedure",
-        "Check for software or parameter issues"
+      "canonical_code": "200",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "La prueba de fabricación del módulo de control no fue exitosa o no se realizó",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "200",
+        "Prueba de fabricación del módulo de control no Ok o no se ha ejecutado la prueba"
+      ]
     },
     "201": {
-      "system": "Control module",
-      "manual_summary": "The internal software monitoring function of the control module has triggered a response, indicating abnormal operation.",
-      "actions_summary": [
-        "Cycle power and observe fault recurrence",
-        "Check software version and integrity",
-        "Inspect for electromagnetic interference or voltage issues"
+      "canonical_code": "201",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "La función de vigilancia del software del módulo de control ha respondido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "201",
+        "La función de vigilancia del software del módulo de control ha respondido"
+      ]
     },
     "210": {
-      "system": "Sensor supply – traction",
-      "manual_summary": "The supply voltage for traction-related sensors is above the permissible range. Sensor readings may be unreliable.",
-      "actions_summary": [
-        "Measure sensor supply voltage",
-        "Inspect voltage regulator and wiring",
-        "Check for short circuits or incorrect supply sources"
+      "canonical_code": "210",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de los sensores (:K67) (tracción) superior a 5,3V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "210",
+        "Tensión de alimentación de los sensores (:K67) (tracción) demasiado alta (>5,3V)"
+      ]
     },
     "211": {
-      "system": "Sensor supply – traction",
-      "manual_summary": "The supply voltage for traction-related sensors is below the permissible range. This can cause invalid sensor signals.",
-      "actions_summary": [
-        "Measure sensor supply voltage",
-        "Check wiring and connectors",
-        "Inspect control module power supply"
+      "canonical_code": "211",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de los sensores (:K67) (tracción) demasiado baja (<4,6V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "211",
+        "Tensión de alimentación de los sensores (:K67) (tracción) demasiado baja (<4,6V)"
+      ]
     },
     "212": {
-      "system": "Sensor supply – traction",
-      "manual_summary": "The traction sensor supply voltage is outside valid operating limits. Sensor data cannot be trusted.",
-      "actions_summary": [
-        "Inspect sensor power circuits",
-        "Check for intermittent voltage drops",
-        "Verify control module outputs"
+      "canonical_code": "212",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de los sensores (tracción) no válida",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "212",
+        "Tensión de alimentación de los sensores (tracción) no válida"
+      ]
+    },
+    "213": {
+      "canonical_code": "213",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de los sensores (:K66) (elevación) demasiado alta (>5,3V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "213",
+        "Tensión de alimentación de los sensores (:K66) (elevación) demasiado alta (>5,3V)"
+      ]
+    },
+    "214": {
+      "canonical_code": "214",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Alimentación de tensión de los sensores (:K66) (elevación) por debajo de 4,6V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "214",
+        "Tensión de alimentación de los sensores (:K66) (elevación) demasiado baja (<4,6V)"
+      ]
+    },
+    "215": {
+      "canonical_code": "215",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Alimentación de tensión de los sensores (elevación) fuera de rango",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "215",
+        "Tensión de alimentación de los sensores (elevación) no válida"
+      ]
+    },
+    "216": {
+      "canonical_code": "216",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de los sensores (:K28) superior a 15,4V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "216",
+        "Tensión de alimentación de los sensores (:K28) demasiado alta (>15,4V)"
+      ]
+    },
+    "217": {
+      "canonical_code": "217",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Alimentación de los sensores (:K28) con tensión demasiado baja (<11,6V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "217",
+        "Tensión de alimentación de los sensores (:K28) demasiado baja (<11,6V)"
+      ]
+    },
+    "218": {
+      "canonical_code": "218",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de alimentación de sensores no válida",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "218",
+        "Tensión de alimentación de los sensores no válida"
+      ]
+    },
+    "220": {
+      "canonical_code": "220",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Variante de máquina inválida",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "220",
+        "Variante de máquina inválida"
+      ]
+    },
+    "221": {
+      "canonical_code": "221",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "Variante de máquina inválida",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "221",
+        "Variante de máquina inválida"
+      ]
+    },
+    "222": {
+      "canonical_code": "222",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "es",
+      "fault_name": "El cargador tiene tensión de alimentación a pesar de que la cubierta trasera está cerrada",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "222",
+        "Cargador en alimentación de tensión a pesar de que la cubierta trasera está cerrada"
+      ]
     },
     "231": {
-      "system": "Accelerator",
-      "manual_summary": "The accelerator guidance signal is outside the expected operating range. The control system detects an implausible input.",
-      "actions_summary": [
-        "Check accelerator sensor output",
-        "Inspect wiring for damage or loose connections",
-        "Verify correct sensor calibration"
+      "canonical_code": "231",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Señal de guía del acelerador fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "231",
+        "Señal de guía del acelerador fuera del rango permitido"
+      ]
     },
     "232": {
-      "system": "Accelerator",
-      "manual_summary": "The accelerator reference signal is outside the permitted range. This prevents reliable traction control.",
-      "actions_summary": [
-        "Measure accelerator reference voltage",
-        "Inspect sensor alignment and wiring",
-        "Check control module input evaluation"
+      "canonical_code": "232",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Señal de referencia del acelerador fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "232",
+        "Señal de referencia del acelerador fuera del rango permitido Page 1 of 7"
+      ]
     },
     "233": {
-      "system": "Accelerator",
-      "manual_summary": "The accelerator guidance and reference signals do not correlate correctly. The system detects implausible pedal input.",
-      "actions_summary": [
-        "Inspect accelerator dual-channel signals",
-        "Check sensor synchronization",
-        "Replace accelerator sensor if necessary"
+      "canonical_code": "233",
+      "pages_found": [
+        2
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Señal guía y señal de referencia del acelerador incompatibles",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "233",
+        "Señal de guía y señal de referencia del acelerador no compatibles"
+      ]
+    },
+    "234": {
+      "canonical_code": "234",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal guía y señal de referencia del acelerador no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "234",
+        "Señal de guía y señal de referencia del acelerador no compatibles"
+      ]
+    },
+    "235": {
+      "canonical_code": "235",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señales del sentido de tracción no permitidas",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "235",
+        "Señales del sentido de tracción no permitidas"
+      ]
+    },
+    "236": {
+      "canonical_code": "236",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Las señales del sentido de marcha son diferentes entre los procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "236",
+        "Las señales del sentido de marcha son diferentes entre los procesadores"
+      ]
+    },
+    "238": {
+      "canonical_code": "238",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de guía y señal de referencia del acelerador no compatibles",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "238",
+        "Señal de guía y señal de referencia del acelerador no compatibles"
+      ]
+    },
+    "239": {
+      "canonical_code": "239",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de guía y señal de referencia del acelerador no compatibles",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "239",
+        "Señal de guía y señal de referencia del acelerador no compatibles"
+      ]
     },
     "241": {
-      "system": "Steering angle sensor",
-      "manual_summary": "The signal from channel 1 of the steering angle sensor is outside the valid range. Steering feedback may be unreliable.",
-      "actions_summary": [
-        "Check steering angle sensor output",
-        "Inspect wiring and connectors",
-        "Verify sensor calibration"
+      "canonical_code": "241",
+      "pages_found": [
+        2
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Señal del canal 1 del sensor de ángulo de dirección está fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "241",
+        "Señal del canal 1 del sensor de ángulo de dirección fuera del rango permitido"
+      ]
     },
     "242": {
-      "system": "Steering angle sensor",
-      "manual_summary": "The signal from channel 2 of the steering angle sensor is outside the valid range. Redundant signal monitoring has failed.",
-      "actions_summary": [
-        "Inspect steering angle sensor channel 2",
-        "Check for wiring faults",
-        "Verify sensor alignment"
+      "canonical_code": "242",
+      "pages_found": [
+        2
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Señal del canal 2 del sensor del ángulo de dirección fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "242",
+        "Señal del canal 2 del sensor de ángulo de dirección fuera del rango permitido"
+      ]
     },
     "243": {
-      "system": "Steering angle sensor",
-      "manual_summary": "The two steering angle sensor channels provide incompatible signals. Steering position cannot be validated.",
-      "actions_summary": [
-        "Compare both sensor channel outputs",
-        "Inspect sensor and wiring integrity",
-        "Replace sensor if signals remain inconsistent"
+      "canonical_code": "243",
+      "pages_found": [
+        2
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Las señales de los canales 1 y 2 del sensor de ángulo de dirección no son compatibles",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "243",
+        "Señales del canal 1 y canal 2 del sensor de ángulo de dirección no compatibles"
+      ]
+    },
+    "244": {
+      "canonical_code": "244",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Frecuencia de la señal PWM del sensor de ángulo de dirección fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "244",
+        "Frecuencia de la señal PWM del sensor de ángulo de dirección fuera del rango permitido"
+      ]
+    },
+    "245": {
+      "canonical_code": "245",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Frecuencia del señal PWM del sensor de ángulo de dirección está fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "245",
+        "Frecuencia de la señal PWM del sensor de ángulo de dirección fuera del rango permitido"
+      ]
+    },
+    "246": {
+      "canonical_code": "246",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal del canal 1 del sensor del ángulo de dirección inválida entre ambos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "246",
+        "Señal del canal 1 del sensor del ángulo de dirección inválida entre los dos procesadores"
+      ]
+    },
+    "247": {
+      "canonical_code": "247",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal del canal 2 del sensor del ángulo de dirección inválida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "247",
+        "Señal del canal 2 del sensor del ángulo de dirección inválida entre los dos procesadores"
+      ]
+    },
+    "248": {
+      "canonical_code": "248",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal del sensor de ángulo de dirección no válida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "248",
+        "Señal del sensor del ángulo de dirección inválida entre los dos procesadores"
+      ]
+    },
+    "254": {
+      "canonical_code": "254",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de revoluciones del motor de tracción izquierdo no válida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "254",
+        "Señal de revoluciones del motor de tracción izquierdo inválida entre los dos procesadores"
+      ]
+    },
+    "255": {
+      "canonical_code": "255",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de revoluciones del motor de tracción izquierdo no válida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "255",
+        "Señal de revoluciones del motor de tracción izquierdo inválida entre los dos procesadores"
+      ]
+    },
+    "258": {
+      "canonical_code": "258",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal incorrecta de revoluciones del motor de tracción izquierda",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "258",
+        "Señal de revoluciones del motor de tracción izqu. errónea"
+      ]
+    },
+    "259": {
+      "canonical_code": "259",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal incorrecta de revoluciones del motor de tracción izquierda",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "259",
+        "Señal de revoluciones del motor de tracción izqu. errónea"
+      ]
+    },
+    "264": {
+      "canonical_code": "264",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de revoluciones del motor de tracción derecho inválida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "264",
+        "Señal de revoluciones del motor de tracción derecho inválida entre los dos procesadores"
+      ]
+    },
+    "265": {
+      "canonical_code": "265",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de velocidad del motor de tracción derecho no válida entre los dos procesadores",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "265",
+        "Señal de revoluciones del motor de tracción derecho inválida entre los dos procesadores"
+      ]
+    },
+    "268": {
+      "canonical_code": "268",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal incorrecta de revoluciones del motor de tracción derecho",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "268",
+        "Señal de revoluciones del motor de tracción drch. errónea"
+      ]
+    },
+    "269": {
+      "canonical_code": "269",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal errónea de revoluciones del motor de tracción derecho",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "269",
+        "Señal de revoluciones del motor de tracción drch. errónea"
+      ]
+    },
+    "270": {
+      "canonical_code": "270",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal cíclica del módulo de potencia para tracción izqu. en CANbus errónea",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "270",
+        "Señal cíclica del módulo de potencia para tracción izqu. en CANbus errónea"
+      ]
+    },
+    "271": {
+      "canonical_code": "271",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Fallo en el módulo de potencia izquierdo",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "271",
+        "Avería en módulo de potencia izquierdo"
+      ]
+    },
+    "275": {
+      "canonical_code": "275",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de liberación y señal de retorno del Módulo de potencia de tracción izqu. no se corresponden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "275",
+        "Señal de liberación y señal de retorno del Módulo de potencia de tracción izqu. no se corresponden"
+      ]
+    },
+    "276": {
+      "canonical_code": "276",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "La señal de liberación y la señal de retorno del módulo de potencia de tracción izquierdo no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "276",
+        "Señal de liberación y señal de retorno del Módulo de potencia de tracción izqu. no se corresponden"
+      ]
+    },
+    "277": {
+      "canonical_code": "277",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "es",
+      "fault_name": "Sin magnetización en motor de tracción izquierdo",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "277",
+        "Sin magnetiz. en motor de tracción izquierdo Page 2 of 7"
+      ]
+    },
+    "278": {
+      "canonical_code": "278",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Módulo de potencia de tracción izquierdo funciona sin recibir la activación correcta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "278",
+        "Módulo de potencia de tracción izqu. trabaja sin activación correspondiente"
+      ]
+    },
+    "280": {
+      "canonical_code": "280",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal cíclica del módulo de potencia para tracción derecha en CANbus errónea",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "280",
+        "Señal cíclica del módulo de potencia para tracción drch. en CANbus errónea"
+      ]
+    },
+    "281": {
+      "canonical_code": "281",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Avería en módulo de potencia derecho",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "281",
+        "Avería en módulo de potencia derecho"
+      ]
+    },
+    "285": {
+      "canonical_code": "285",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "La señal de liberación y la señal de retorno del módulo de potencia de tracción derecho no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "285",
+        "Señal de liberación y señal de retorno del Módulo de potencia de tracción drch. no se corresponden"
+      ]
+    },
+    "286": {
+      "canonical_code": "286",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "La señal de liberación y la señal de retorno del Módulo de potencia de tracción derecho no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "286",
+        "Señal de liberación y señal de retorno del Módulo de potencia de tracción drch. no se corresponden"
+      ]
+    },
+    "287": {
+      "canonical_code": "287",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Sin magnetización en motor de tracción derecho",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "287",
+        "Sin magnetización en motor de tracción derecho"
+      ]
+    },
+    "288": {
+      "canonical_code": "288",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "El módulo de potencia de tracción derecho funciona sin la activación adecuada",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "288",
+        "Módulo de potencia de tracción drch. trabaja sin activación correspondiente"
+      ]
+    },
+    "291": {
+      "canonical_code": "291",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Parámetros de fábrica ajustados inválidos",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "291",
+        "Parámetros de fábrica ajustados inválidos"
+      ]
+    },
+    "292": {
+      "canonical_code": "292",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Parámetros de produccuón ajustados inválidos",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "292",
+        "Parámetros de produccuón ajustados inválidos"
+      ]
+    },
+    "295": {
+      "canonical_code": "295",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Falla identificada en el módulo de potencia (2A1) del motor de bomba",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "295",
+        "Avería detectada en módulo de potencia (2A1) motor de bomba"
+      ]
+    },
+    "296": {
+      "canonical_code": "296",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Error interno en módulo de control",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "296",
+        "Error interno en módulo de control"
+      ]
+    },
+    "297": {
+      "canonical_code": "297",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Error interno en módulo de control",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "297",
+        "Error interno en módulo de control"
+      ]
+    },
+    "310": {
+      "canonical_code": "310",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de batería demasiado alta al conectar.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "310",
+        "Tensión de batería demasiado alta al conectar."
+      ]
+    },
+    "311": {
+      "canonical_code": "311",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de batería demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "311",
+        "Tensión de batería demasiado alta"
+      ]
+    },
+    "312": {
+      "canonical_code": "312",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de batería demasiado baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "312",
+        "Tensión de batería demasiado baja"
+      ]
+    },
+    "321": {
+      "canonical_code": "321",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "El transistor para activar el relé de seguridad no se conecta aunque es activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "321",
+        "Transistor para activación del relé de seguridad no conecta a pesar de ser activado"
+      ]
+    },
+    "322": {
+      "canonical_code": "322",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "El transistor para activar el relé de seguridad no permite el paso de corriente aunque no está activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "322",
+        "Transistor para activación del relé de seguridad no cierra el paso de corriente a pesar de no ser activado"
+      ]
+    },
+    "324": {
+      "canonical_code": "324",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "No se activa el relé de seguridad, pero la tensión en la salida indica que el contacto no cierra",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "324",
+        "No se activa el relé de seguridad, pero la tensión en la salida indica que el contacto no cierra"
+      ]
+    },
+    "325": {
+      "canonical_code": "325",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Contacto abierto del relé de seguridad con relé activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "325",
+        "Contacto del relé de seguridad abierto con relé activado"
+      ]
+    },
+    "326": {
+      "canonical_code": "326",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "El contacto del relé de seguridad está cerrado sin que el relé esté activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "326",
+        "Contacto del relé de seguridad cerrado con relé no activado"
+      ]
+    },
+    "331": {
+      "canonical_code": "331",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en bobina con contactor principal activado demasiado baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "331",
+        "Tensión en bobina con contactor principal activado demasiado baja"
+      ]
+    },
+    "332": {
+      "canonical_code": "332",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en bobina con contactor principal no activado demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "332",
+        "Tensión en bobina con contactor principal no activado demasiado alta"
+      ]
+    },
+    "333": {
+      "canonical_code": "333",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Diferencia entre la tensión prevista y la tensión real en el contactor principal es demasiado grande",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "333",
+        "Diferencia entre tensión esperada y tensión medida en contactor principal demasiado alta"
+      ]
+    },
+    "334": {
+      "canonical_code": "334",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Con el contactor principal activado, la tensión del capacitor en el módulo de potencia es muy baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "334",
+        "Con el contactor principal activado, la tensión de capacitor en el módulo de potencia es demasiado baja"
+      ]
+    },
+    "335": {
+      "canonical_code": "335",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Con el contactor principal activado, la tensión del capacitor en el módulo de potencia es demasiado baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "335",
+        "Con el contactor principal activado, la tensión del capacitor en el módulo de potencia es demasiado baja"
+      ]
+    },
+    "336": {
+      "canonical_code": "336",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Contactos del contactor principal permanecen cerrados aunque el contactor no esté activado.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "336",
+        "Contactos del contactor principal cerrados a pesar de que no se activa el contactor."
+      ]
+    },
+    "337": {
+      "canonical_code": "337",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "No es posible cargar los capacitores en el módulo de potencia",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "337",
+        "No se pueden cargar los capacitores en el módulo de potencia"
+      ]
+    },
+    "338": {
+      "canonical_code": "338",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en contactor principal demasiado baja o demasiado alta a pesar de que no está",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "338",
+        "Tensión en contactor principal demasiado baja Tensión en contactor principal demasiado alta a pesar de que no está Page 3 de 7"
+      ]
+    },
+    "339": {
+      "canonical_code": "339",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "339",
+        "activado"
+      ]
+    },
+    "340": {
+      "canonical_code": "340",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Se detectó un salto durante la carga del capacitor en el módulo de potencia",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "340",
+        "Se ha detectado un salto al cargar el capacitor en el módulo de potencia"
+      ]
+    },
+    "341": {
+      "canonical_code": "341",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Se ha detectado un salto al cargar el capacitor en el módulo de potencia",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "341",
+        "Se ha detectado un salto al cargar el capacitor en el módulo de potencia"
+      ]
     },
     "351": {
-      "system": "Traction motor",
-      "manual_summary": "The detected traction motor temperature is outside the permissible range. This indicates abnormal thermal conditions.",
-      "actions_summary": [
-        "Check motor cooling and ventilation",
-        "Inspect temperature sensor operation",
-        "Reduce load and monitor temperature"
+      "canonical_code": "351",
+      "pages_found": [
+        4
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Temperatura del motor detectada fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "351",
+        "Temperatura de motor detectada fuera del rango permitido"
+      ]
     },
     "353": {
-      "system": "Traction motor",
-      "manual_summary": "The traction motor temperature has exceeded the allowable limit. Protective measures may limit performance.",
-      "actions_summary": [
-        "Allow motor to cool down",
-        "Check cooling system effectiveness",
-        "Inspect for mechanical overload"
+      "canonical_code": "353",
+      "pages_found": [
+        4
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Sobretemperatura motor de tracción",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "353",
+        "Sobretemperatura motor de tracción"
+      ]
+    },
+    "371": {
+      "canonical_code": "371",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Temperatura medida del módulo de potencia de tracción izqu. fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "371",
+        "Temperatura detectada del módulo de potencia de tracción izqu. fuera del rango permitido"
+      ]
+    },
+    "372": {
+      "canonical_code": "372",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sobretemperatura módulo de potencia de tracción izqu. (nivel 1)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "372",
+        "Sobretemperatura módulo de potencia de tracción izqu. (nivel 1)"
+      ]
+    },
+    "373": {
+      "canonical_code": "373",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sobretemperatura módulo de potencia de tracción izqu. (nivel 2)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "373",
+        "Sobretemperatura módulo de potencia de tracción izqu. (nivel 2)"
+      ]
+    },
+    "381": {
+      "canonical_code": "381",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Temperatura detectada del módulo de potencia de tracción drch. fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "381",
+        "Temperatura detectada del módulo de potencia de tracción drch. fuera del rango permitido"
+      ]
+    },
+    "382": {
+      "canonical_code": "382",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sobretemperatura módulo de potencia de tracción drch. (nivel 1)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "382",
+        "Sobretemperatura módulo de potencia de tracción drch. (nivel 1)"
+      ]
+    },
+    "383": {
+      "canonical_code": "383",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sobretemperatura módulo de potencia de tracción drch. (nivel 2)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "383",
+        "Sobretemperatura módulo de potencia de tracción drch. (nivel 2)"
+      ]
     },
     "391": {
-      "system": "Oil temperature sensing",
-      "manual_summary": "The oil temperature sensor signal is invalid or incorrect. Temperature-dependent functions may be affected.",
-      "actions_summary": [
-        "Inspect oil temperature sensor",
-        "Check wiring and connectors",
-        "Verify sensor readings against actual temperature"
+      "canonical_code": "391",
+      "pages_found": [
+        4
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "La señal del sensor de temperatura de aceite es incorrecta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "391",
+        "La señal del sensor de temperatura de aceite es incorrecta."
+      ]
     },
     "440": {
-      "system": "Steering system",
-      "manual_summary": "The steering angle signal is outside the valid operating range. Steering control accuracy cannot be ensured.",
-      "actions_summary": [
-        "Inspect steering angle sensor",
-        "Check mechanical steering components",
-        "Verify sensor calibration"
+      "canonical_code": "440",
+      "pages_found": [
+        4
       ],
-      "severity": "medium"
+      "lang_src": "es",
+      "fault_name": "Señal del ángulo de dirección fuera del rango válido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "440",
+        "Señal del ángulo de dirección fuera del rango válido."
+      ]
+    },
+    "451": {
+      "canonical_code": "451",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Traktionskraft vorwärts Bedarf zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "451",
+        "Traktionskraft forwärts Bedarf zu hoch"
+      ]
+    },
+    "452": {
+      "canonical_code": "452",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Rückwärts Traktionskraftbedarf zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "452",
+        "Traktionskraft rückwärts Bedarf zu hoch"
+      ]
+    },
+    "453": {
+      "canonical_code": "453",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Drehmoment-Sollwert für Vorwärtsfahrt am linken Motor ist zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "453",
+        "Drehmoment Sollwert vorwärts am Motor links zu hoch"
+      ]
+    },
+    "454": {
+      "canonical_code": "454",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Drehmoment-Sollwert rückwärts am linken Motor zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "454",
+        "Drehmoment Sollwert rückwärts am Motor links zu hoch"
+      ]
+    },
+    "455": {
+      "canonical_code": "455",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Drehmoment-Sollwert vorwärts am rechten Motor zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "455",
+        "Drehmoment Sollwert vorwärts am Motor rechts zu hoch"
+      ]
+    },
+    "456": {
+      "canonical_code": "456",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "de",
+      "fault_name": "Rückwärts-Drehmomentsollwert am rechten Motor ist zu hoch",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "456",
+        "Drehmoment Sollwert rückwärts am Motor rechts zu hoch"
+      ]
     },
     "491": {
-      "system": "Safety monitoring",
-      "manual_summary": "The safety check of the traction power module has failed. The system detects a potential safety-related fault.",
-      "actions_summary": [
-        "Review power module safety diagnostics",
-        "Inspect related wiring and signals",
-        "Reset system and recheck safety status"
+      "canonical_code": "491",
+      "pages_found": [
+        4
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "La comprobación de seguridad del módulo de potencia presenta una falla.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "491",
+        "La comprobación de seguridad del módulo de potencia da un fallo."
+      ]
+    },
+    "492": {
+      "canonical_code": "492",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "La verificación de seguridad del contactor principal presenta un fallo.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "492",
+        "La comprobación de seguridad del contactor principal da un fallo."
+      ]
+    },
+    "493": {
+      "canonical_code": "493",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "La comprobación de seguridad del cilindro de freno indica un fallo.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "493",
+        "La comprobación de seguridad del cilindro de freno da un fallo."
+      ]
+    },
+    "494": {
+      "canonical_code": "494",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "La comprobación de seguridad del módulo de potencia indica un fallo.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "494",
+        "La comprobación de seguridad del módulo de potencia da un fallo."
+      ]
     },
     "502": {
-      "system": "Braking system",
-      "manual_summary": "The brake pressure signal is outside the permitted range. Correct braking performance cannot be guaranteed.",
-      "actions_summary": [
-        "Check brake pressure sensor",
-        "Inspect hydraulic braking components",
-        "Verify pressure values during operation"
+      "canonical_code": "502",
+      "pages_found": [
+        4
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Señal de presión de frenado fuera del rango permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "502",
+        "Señal de presión de frenado fuera del rango permitido"
+      ]
+    },
+    "550": {
+      "canonical_code": "550",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sensor de corriente detectado pero no activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "550",
+        "Sensor de corriente detectado pero no activado"
+      ]
+    },
+    "551": {
+      "canonical_code": "551",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Sensor de corriente activado pero no detectado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "551",
+        "Sensor de corriente activado pero no detectado"
+      ]
+    },
+    "552": {
+      "canonical_code": "552",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Cargador integrado detectado pero no activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "552",
+        "Cargador integrado detectado pero no activado"
+      ]
+    },
+    "553": {
+      "canonical_code": "553",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Cargador integrado activado pero no detectado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "553",
+        "Cargador integrado activado pero no detectado"
+      ]
+    },
+    "554": {
+      "canonical_code": "554",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "La tensión de entrada (:K56) del sensor de corriente es demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "554",
+        "Tensión de entrada (:K56) del sensor de corriente demasiado baja."
+      ]
+    },
+    "560": {
+      "canonical_code": "560",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "El sensor de corriente señaliza una avería",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "560",
+        "El sensor de corriente señaliza una avería"
+      ]
+    },
+    "561": {
+      "canonical_code": "561",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "El sensor de corriente detecta un valor demasiado alto (>1000 A)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "561",
+        "El sensor de corriente detecta un valor demasiado alto (>1000 A)"
+      ]
+    },
+    "581": {
+      "canonical_code": "581",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "El registrado módulo FDE (data logger) recibe un mensaje defectuoso.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "581",
+        "El registrado módulo FDE (data logger) recibe un mensaje defectuoso."
+      ]
+    },
+    "582": {
+      "canonical_code": "582",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "es",
+      "fault_name": "Deteccción de una unidad FDE no activada",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "582",
+        "Deteccción de una unidad FDE no activada Page 4 of 7"
+      ]
+    },
+    "591": {
+      "canonical_code": "591",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de batería para indicador de descarga muy baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "591",
+        "Tensión de batería para indicador de descarga demasiado baja"
+      ]
+    },
+    "601": {
+      "canonical_code": "601",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de presión de frenado demasiado alta (:K41)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "601",
+        "Señal de presión de frenado demasiado alta (:K41)"
+      ]
+    },
+    "602": {
+      "canonical_code": "602",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Presión de frenado no en valor máximo cuando el freno no está actuado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "602",
+        "Presión de frenado no en valor máximo cuando el freno no está actuado"
+      ]
+    },
+    "603": {
+      "canonical_code": "603",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Baja presión de frenado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "603",
+        "Baja presión de frenado"
+      ]
+    },
+    "604": {
+      "canonical_code": "604",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Alta presión de frenado cuando el freno no está completamente abierto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "604",
+        "Alta presión de frenado cuando el freno no está completamente abierto"
+      ]
+    },
+    "605": {
+      "canonical_code": "605",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Alta presión de frenado cuando el freno no está completamente abierto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "605",
+        "Alta presión de frenado cuando el freno no está completamente abierto"
+      ]
+    },
+    "606": {
+      "canonical_code": "606",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "La presión de frenado no es cero cuando el freno está activado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "606",
+        "Presión de frenado no corresponde a cero cuando el freno está actuado"
+      ]
+    },
+    "607": {
+      "canonical_code": "607",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Presión de frenado no es cero después de haber accionado el freno",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "607",
+        "Presión de frenado no corresponde a cero cuando se habia actuado el freno antes"
+      ]
+    },
+    "608": {
+      "canonical_code": "608",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Baja presión de frenado",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "608",
+        "Baja presión de frenado"
+      ]
     },
     "614": {
-      "system": "Operator safety",
-      "manual_summary": "The seat switch signals are implausible, indicating both contacts are open or closed simultaneously. Operator presence cannot be confirmed.",
-      "actions_summary": [
-        "Inspect seat switch contacts",
-        "Check wiring for shorts or open circuits",
-        "Replace seat switch if faulty"
+      "canonical_code": "614",
+      "pages_found": [
+        5
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Error del interruptor del asiento: Ambos contactos están abiertos o cerrados",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "614",
+        "Error del interruptor de asiento: Ambos contactos abiertos o cerrados"
+      ]
+    },
+    "616": {
+      "canonical_code": "616",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Señales inválidas del interruptor del freno de mano",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "616",
+        "Señales del interruptor del freno de mano inválidas"
+      ]
+    },
+    "617": {
+      "canonical_code": "617",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Voltaje de entrada del interruptor del cinturón de seguridad demasiado bajo",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "617",
+        "Tensión en entrada del interruptor del cinturón de seguridad demasiado baja"
+      ]
+    },
+    "618": {
+      "canonical_code": "618",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de entrada del interruptor del cinturón de seguridad fuera de rango",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "618",
+        "Tensión en entrada del interruptor del cinturón de seguridad no admisible"
+      ]
+    },
+    "619": {
+      "canonical_code": "619",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la entrada del interruptor del cinturón de seguridad muy alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "619",
+        "Tensión en entrada del interruptor del cinturón de seguridad demasiado alta"
+      ]
+    },
+    "620": {
+      "canonical_code": "620",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "620",
+        "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "621": {
+      "canonical_code": "621",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y1 de la válvula de frenado excesivamente baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "621",
+        "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "625": {
+      "canonical_code": "625",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "625",
+        "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "626": {
+      "canonical_code": "626",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "626",
+        "Tensión en electroválvula 1Y1 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "630": {
+      "canonical_code": "630",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y2 de la válvula de frenado demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "630",
+        "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "631": {
+      "canonical_code": "631",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y2 de la válvula de frenado demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "631",
+        "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "635": {
+      "canonical_code": "635",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en electroválvula 1Y2 de la válvula de frenado excesivamente alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "635",
+        "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "636": {
+      "canonical_code": "636",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "636",
+        "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "638": {
+      "canonical_code": "638",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Voltaje en la electroválvula 1Y2 de la válvula de freno excesivamente alto y presión de freno demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "638",
+        "Tensión en electroválvula 1Y2 de la válvula de frenado demasiado alta y presión de frenado demasiado baja."
+      ]
+    },
+    "640": {
+      "canonical_code": "640",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y3 de la válvula de frenado está demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "640",
+        "Tensión en electroválvula 1Y3 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "641": {
+      "canonical_code": "641",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y3 de la válvula de frenado demasiado baja.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "641",
+        "Tensión en electroválvula 1Y3 de la válvula de frenado demasiado baja."
+      ]
+    },
+    "645": {
+      "canonical_code": "645",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y3 de la válvula de frenado excesivamente alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "645",
+        "Tensión en electroválvula 1Y3 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "646": {
+      "canonical_code": "646",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la electroválvula 1Y3 de la válvula de frenado excesivamente alta.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "646",
+        "Tensión en electroválvula 1Y3 de la válvula de frenado demasiado alta."
+      ]
+    },
+    "648": {
+      "canonical_code": "648",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Voltaje en electroimán 1Y3 de la válvula de freno demasiado alto y presión de frenado excesiva.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "648",
+        "Tensión en electroválvula 1Y3 de la válvula de frenado demasiado alta y presión de frenado demasiado alta."
+      ]
+    },
+    "651": {
+      "canonical_code": "651",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la entrada Namur de la reducción de velocidad 1 por debajo del nivel permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "651",
+        "Tensión de la entrada Namur de la reducción de velocidad 1 demasiado baja"
+      ]
+    },
+    "652": {
+      "canonical_code": "652",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de la entrada Namur de la reducción de velocidad 1 no aceptada",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "652",
+        "Tensión de la entrada Namur de la reducción de velocidad 1 no admitida"
+      ]
+    },
+    "653": {
+      "canonical_code": "653",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la entrada Namur de la reducción de velocidad 1 es demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "653",
+        "Tensión de la entrada Namur de la reducción de velocidad 1 demasiado alta"
+      ]
+    },
+    "656": {
+      "canonical_code": "656",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión de la entrada Namur para la reducción de velocidad 2 demasiado baja",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "656",
+        "Tensión de la entrada Namur de la reducción de velocidad 2 demasiado baja Page 5 of 7"
+      ]
+    },
+    "657": {
+      "canonical_code": "657",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la entrada Namur de la reducción de velocidad 2 no permitida",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "657",
+        "Tensión de la entrada Namur de la reducción de velocidad 2 no admitida"
+      ]
+    },
+    "658": {
+      "canonical_code": "658",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Tensión en la entrada Namur de la reducción de velocidad 2 muy alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "658",
+        "Tensión de la entrada Namur de la reducción de velocidad 2 demasiado alta"
+      ]
+    },
+    "691": {
+      "canonical_code": "691",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Velocidad de inclinación hacia atrás demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "691",
+        "Velocidad de inclinación hacia atrás demasiado alta"
+      ]
+    },
+    "692": {
+      "canonical_code": "692",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Velocidad de inclinación hacia delante demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "692",
+        "Velocidad de inclinación haci! delante demasiado alta"
+      ]
+    },
+    "693": {
+      "canonical_code": "693",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Velocidad de elevación demasiado alta",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "693",
+        "Velocidad de elevación demasiado alta"
+      ]
+    },
+    "696": {
+      "canonical_code": "696",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Ángulo de inclinación hacia atrás excede el límite",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "696",
+        "Ángulo de inclinación hacia atrás por encima del límite"
+      ]
+    },
+    "697": {
+      "canonical_code": "697",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Ángulo de inclinación hacia delante por encima del límite",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "697",
+        "Ángulo de inclinación hacia delante por encima del límite"
+      ]
+    },
+    "698": {
+      "canonical_code": "698",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Altura de elevación excede el límite",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "698",
+        "Altura de elevación por encima del límite"
+      ]
+    },
+    "701": {
+      "canonical_code": "701",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro del motor de tracción izquierdo no permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "701",
+        "Par de giro en motor de tracción izquierdo no permitido"
+      ]
+    },
+    "702": {
+      "canonical_code": "702",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro en motor de tracción izquierdo no permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "702",
+        "Par de giro en motor de tracción izquierdo no permitido"
+      ]
+    },
+    "703": {
+      "canonical_code": "703",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro en motor de tracción derecho no permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "703",
+        "Par de giro en motor de tracción derecho no permitido"
+      ]
+    },
+    "704": {
+      "canonical_code": "704",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro en motor de tracción derecho no permitido",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "704",
+        "Par de giro en motor de tracción derecho no permitido"
+      ]
+    },
+    "711": {
+      "canonical_code": "711",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "715 Fallo de la comunicación entre módulo de control de tracción y módulo de potencia para tracción - izquierda",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "711",
+        "715 Fallo de la comunicación entre módulo de control de tracción y módulo de potencia para tracción - izquierda"
+      ]
+    },
+    "721": {
+      "canonical_code": "721",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "725 Falla de comunicación entre el módulo de control de tracción y el módulo de potencia para tracción - derecha",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "721",
+        "725 Fallo de la comunicación entre módulo de control de tracción y módulo de potencia para tracción - derecha"
+      ]
     },
     "750": {
-      "system": "Safety processor",
-      "manual_summary": "Traction has been disabled by the safety processor due to detected unsafe conditions. Vehicle movement is prevented.",
-      "actions_summary": [
-        "Check safety processor fault memory",
-        "Inspect related safety inputs and signals",
-        "Clear fault and perform safety check"
+      "canonical_code": "750",
+      "pages_found": [
+        6
       ],
-      "severity": "high"
+      "lang_src": "es",
+      "fault_name": "Función de tracción deshabilitada por el procesador de seguridad",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "750",
+        "Función de tracción desactivada debido al procesador de seguridad"
+      ]
+    },
+    "751": {
+      "canonical_code": "751",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de retorno del relé de seguridad y señal de estado no idénticas",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "751",
+        "Señal de retorno del relé de seguridad y señal de estado no idénticas"
+      ]
+    },
+    "752": {
+      "canonical_code": "752",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de retorno del contactor principal y señal de estado no idénticas",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "752",
+        "Señal de retorno del contactor principal y señal de estado no idénticas"
+      ]
+    },
+    "753": {
+      "canonical_code": "753",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "La señal de retorno de la electroválvula 1Y1 de la bobina de freno y la señal de estado no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "753",
+        "Señal de retorno eléctroválvula 1Y1 de la bobina de freno y señal de estado no idénticas"
+      ]
+    },
+    "754": {
+      "canonical_code": "754",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de retorno de la electroválvula 1Y3 del bobinado del freno y señal de estado diferentes",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "754",
+        "Señal de retorno eléctroválvula 1Y3 de la bobina de freno y señal de estado no idénticas"
+      ]
+    },
+    "755": {
+      "canonical_code": "755",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de retorno de la electroválvula 1Y2 de la bobina de freno y señal de estado no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "755",
+        "Señal de retorno eléctroválvula 1Y2 de la bobina de freno y señal de estado no idénticas"
+      ]
+    },
+    "756": {
+      "canonical_code": "756",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de liberación módulo de potencia 1M2 y señal de estado no idénticas",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "756",
+        "Señal de liberación módulo de potencia 1M2 y señal de estado no idénticas"
+      ]
+    },
+    "757": {
+      "canonical_code": "757",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Señal de liberación del módulo de potencia 1M1 y señal de estado que no coinciden",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "757",
+        "Señal de liberación módulo de potencia 1M1 y señal de estado no idénticas"
+      ]
+    },
+    "760": {
+      "canonical_code": "760",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro solicitado (marcha hacia delante) demasiado alto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "760",
+        "Par de giro solicitado (marcha hacia delante) demasiado alto"
+      ]
+    },
+    "761": {
+      "canonical_code": "761",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Par de giro solicitado (marcha hacia atrás) demasiado alto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "761",
+        "Par de giro solicitado (marcha hacia atrás) demasiado alto"
+      ]
+    },
+    "762": {
+      "canonical_code": "762",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Valor nominal del par de giro para el motor de tracción izqu. (hacia delante) demasiado alto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "762",
+        "Valor nominal del par de giro para el motor de tracción izqu. (hacia delante) demasiado alto"
+      ]
+    },
+    "763": {
+      "canonical_code": "763",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Valor nominal del par para el motor de tracción izquierdo (marcha atrás) demasiado alto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "763",
+        "Valor nominal del par de giro para el motor de tracción izqu. (hacia atrás) demasiado alto"
+      ]
+    },
+    "764": {
+      "canonical_code": "764",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Valor nominal del par motor para el motor de tracción derecho (avance) excesivamente alto",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "764",
+        "Valor nominal del par de giro para el motor de tracción drch. (hacia delante) demasiado alto"
+      ]
+    },
+    "765": {
+      "canonical_code": "765",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "es",
+      "fault_name": "Valor nominal del par de giro para el motor de tracción derecho (hacia atrás) excesivamente alto, valor nominal del par de giro diferente en el procesador principal y",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "765",
+        "Valor nominal del par de giro para el motor de tracción drch. (hacia atrás) demasiado alto Valor nominal del par de giro diferente en procesador principal y Page 6 of 7"
+      ]
+    },
+    "766": {
+      "canonical_code": "766",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "es",
+      "fault_name": "769 procesador de seguridad",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "766",
+        "769 procesador de seguridad"
+      ]
+    },
+    "800": {
+      "canonical_code": "800",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "es",
+      "fault_name": "863 Avería detectada en módulo de potencia de tracción izqu.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "800",
+        "863 Avería detectada en módulo de potencia de tracción izqu."
+      ]
+    },
+    "900": {
+      "canonical_code": "900",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "es",
+      "fault_name": "963 Avería detectada en módulo de potencia de tracción drch.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "900",
+        "963 Avería detectada en módulo de potencia de tracción drch. Page 7 of 7"
+      ]
     }
+  },
+  "audit": {
+    "profile": "numeric",
+    "total_detected": 178,
+    "returned_count": 178,
+    "llm_enabled": true,
+    "notes": "Keys in 'errors' are display_code as found. Use canonical_code for search.",
+    "input_tokens": 91163,
+    "output_tokens": 12404,
+    "total_tokens": 103567,
+    "estimated_cost_usd": 0.021117
   }
 }
