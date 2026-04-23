@@ -62,32 +62,6 @@ def normalize_error_code(value: Optional[str]) -> str:
     cleaned = re.sub(r"[\s-]+", "", cleaned)
     return cleaned
 
-
-def _has_meaningful_text(value: Any) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, list):
-        return any(_has_meaningful_text(item) for item in value)
-    return bool(str(value).strip())
-
-
-def manual_entry_is_usable(entry: Optional[Dict[str, Any]]) -> bool:
-    if not isinstance(entry, dict):
-        return False
-
-    return any(
-        _has_meaningful_text(entry.get(field))
-        for field in (
-            "manual_summary",
-            "manual_action_paraphrased_src",
-            "actions_summary",
-            "fault_name",
-        )
-    )
-
-
 def _iter_candidate_paths(
     base_path: str,
     brand: str,
@@ -169,18 +143,8 @@ def search_manual_error(
             if not isinstance(err, dict):
                 continue
 
-            aliases = err.get("search_aliases", [])
-            if not isinstance(aliases, list):
-                aliases = [aliases]
-
-            candidate_codes = {
-                normalize_error_code(code_key),
-                normalize_error_code(err.get("canonical_code", "")),
-            }
-            candidate_codes.update(normalize_error_code(alias) for alias in aliases)
-            candidate_codes.discard("")
-
-            if ecode in candidate_codes:
+            code = normalize_error_code(code_key)
+            if code == ecode or ecode in code:
                 error_data = dict(err)
                 error_data.setdefault("code", code_key)
                 logger.info(
@@ -205,18 +169,8 @@ def search_manual_error(
             if not isinstance(err, dict):
                 continue
 
-            aliases = err.get("search_aliases", [])
-            if not isinstance(aliases, list):
-                aliases = [aliases]
-
-            candidate_codes = {
-                normalize_error_code(err.get("code", "")),
-                normalize_error_code(err.get("canonical_code", "")),
-            }
-            candidate_codes.update(normalize_error_code(alias) for alias in aliases)
-            candidate_codes.discard("")
-
-            if ecode in candidate_codes:
+            code = normalize_error_code(err.get("code", ""))
+            if code == ecode or ecode in code:
                 logger.info(
                     "Manual lookup matched file %s for brand=%s model=%s series=%s controller=%s",
                     manual_path,
