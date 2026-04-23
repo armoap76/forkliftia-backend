@@ -7,7 +7,7 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 
 from app.db_models import UserProfile as UserProfileModel
-from app.manuals_store import manual_entry_is_usable, search_manual_error
+from app.manuals_store import search_manual_error
 from app.models import (
     CaseComment,
     CaseCommentCreate,
@@ -133,51 +133,6 @@ def ensure_case_owner_or_admin(case, uid: str) -> None:
 
 def get_openai_client() -> OpenAI:
     return OpenAI()
-
-
-def _has_meaningful_text(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, list):
-        return any(_has_meaningful_text(item) for item in value)
-    return bool(str(value).strip())
-
-
-def _manual_entry_complete_for_direct_response(entry: dict) -> bool:
-    return any(
-        _has_meaningful_text(entry.get(field))
-        for field in ("manual_summary", "actions_summary", "manual_action_paraphrased_src")
-    )
-
-
-def _format_manual_reference(manual_hit: dict, brand: str, model: str, series: str) -> str:
-    brand_label = manual_hit.get("brand") or brand
-    model_label = manual_hit.get("model") or model
-    series_label = manual_hit.get("series") or series
-    ref = f"Manual técnico {brand_label} {model_label}".strip()
-    if series_label:
-        ref += f" serie {series_label}"
-    return ref
-
-
-def _build_manual_context(manual_hit: dict) -> str:
-    e = manual_hit.get("error", {}) or {}
-    aliases = e.get("search_aliases") or []
-    if not isinstance(aliases, list):
-        aliases = [aliases]
-    aliases_text = ", ".join(str(x) for x in aliases if str(x).strip()) or "N/A"
-
-    return f"""
-MANUAL CONTEXT (private, paraphrase only):
-System: {e.get('system') or 'N/A'}
-Fault name: {e.get('fault_name') or 'N/A'}
-Summary: {e.get('manual_summary') or 'N/A'}
-Actions summary: {e.get('actions_summary') or 'N/A'}
-Manual action source: {e.get('manual_action_paraphrased_src') or 'N/A'}
-Search aliases: {aliases_text}
-"""
 
 
 def validate_public_name(value: str) -> str:
@@ -441,6 +396,16 @@ def diagnosis(
         error_code=None if error_code == "None provided" else error_code,
     )
 
+    manual_context = ""
+    if manual_hit:
+        e = manual_hit["error"]
+        manual_context = f"""
+MANUAL CONTEXT (private, paraphrase only):
+System: {e.get('system')}
+Summary: {e.get('manual_summary')}
+Actions: {e.get('actions_summary')}
+"""
+
     match = store.find_resolved_by_key(
         brand=brand,
         model=model,
@@ -451,27 +416,17 @@ def diagnosis(
     origin = "ai"
     diagnosis_text = ""
     matched_case_payload = None
-    manual_context = _build_manual_context(manual_hit) if manual_hit else ""
-    manual_entry = manual_hit.get("error", {}) if manual_hit else {}
-    manual_usable = manual_entry_is_usable(manual_entry) if manual_hit else False
-    manual_complete = _manual_entry_complete_for_direct_response(manual_entry) if manual_hit else False
 
-    if manual_hit and manual_usable and manual_complete:
+    if manual_hit:
         origin = "manuals"
-        manual_error = manual_entry
-        probable_cause = manual_error.get("manual_summary") or manual_error.get("fault_name")
-        steps = (
-            manual_error.get("actions_summary")
-            or manual_error.get("manual_action_paraphrased_src")
-            or manual_error.get("manual_summary")
-            or manual_error.get("fault_name")
-            or "No hay suficiente detalle técnico en la entrada del manual."
-        )
-        reference = _format_manual_reference(manual_hit, brand, model, series)
+        manual_error = manual_hit.get("error", {})
+        probable_cause = manual_error.get("manual_summary") or "Consultar detalle del manual disponible."
+        actions_summary = manual_error.get("actions_summary") or "Aplicar las acciones indicadas en el manual para este código."
+        reference = manual_hit.get("manual_path") or "Manual disponible"
 
         diagnosis_text = (
             f"🔍 PROBABLE CAUSE:\n- {probable_cause}\n\n"
-            f"📋 DIAGNOSTIC STEPS:\n{steps}\n\n"
+            f"📋 DIAGNOSTIC STEPS:\n{actions_summary}\n\n"
             f"📚 REFERENCIA:\n- {reference}"
         )
 
@@ -505,7 +460,7 @@ def diagnosis(
             "diagnosis_text": diagnosis_text,
         }
 
-    if match and not manual_hit:
+    if match:
         origin = "cases"
         resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
         diagnosis_text = (
@@ -559,10 +514,6 @@ ALREADY CHECKED BY TECHNICIAN:
 ---
 Provide your diagnostic analysis following the standard format.
 """
-    if manual_hit and manual_usable:
-        origin = "manuals+ai"
-    elif manual_hit:
-        origin = "manuals+ai"
 
     try:
         # Responses API (recomendada para proyectos nuevos) :contentReference[oaicite:2]{index=2}
@@ -578,26 +529,11 @@ Provide your diagnostic analysis following the standard format.
         )
 
         diagnosis_text = resp.output_text
-        if match:
-            matched_case_payload = {
-                "id": match.id,
-                "public_name": match.creator_public_name,
-                "resolution_final": match.resolution_note,
-                "closed_at": match.closed_at,
-            }
-            resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
-            diagnosis_text += (
-                "\n\nSOLUCIÓN DE CASO SIMILAR (complemento):\n"
-                f"- Caso #{match.id}: {resolution_text}"
-            )
 
         updated_case = store.update_case_diagnosis_data(
             base_case.id,
             diagnosis=diagnosis_text,
             source=origin,
-            matched_case_id=match.id if match else None,
-            manual_path=manual_hit.get("manual_path") if manual_hit else None,
-            manual_meta=manual_hit if manual_hit else None,
         )
 
         return {
