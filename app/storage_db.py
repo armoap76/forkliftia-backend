@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from .db_models import Case as CaseModel, CaseComment as CaseCommentModel
 from .db_models import User as UserModel, UserProfile
-from .models import Case, CaseComment, CaseCreate
+from .models import Case, CaseComment, CaseCreate, normalize_case_source
 from .storage import CaseStore
 
 
@@ -33,7 +33,7 @@ class DatabaseCaseStore(CaseStore):
             checks_done=db_case.checks_done,
             diagnosis=db_case.diagnosis,
             status=db_case.status,
-            source=db_case.source or "ai",
+            source=normalize_case_source(db_case.source),
             matched_case_id=db_case.matched_case_id,
             manual_path=db_case.manual_path,
             manual_meta=db_case.manual_meta,
@@ -77,7 +77,7 @@ class DatabaseCaseStore(CaseStore):
                 symptom=data.symptom,
                 checks_done=data.checks_done,
                 diagnosis=data.diagnosis,
-                source=data.source,
+                source=normalize_case_source(data.source),
                 matched_case_id=data.matched_case_id,
                 manual_path=data.manual_path,
                 manual_meta=data.manual_meta,
@@ -173,7 +173,7 @@ class DatabaseCaseStore(CaseStore):
                 return None
 
             db_case.diagnosis = diagnosis
-            db_case.source = source
+            db_case.source = normalize_case_source(source)
             db_case.matched_case_id = matched_case_id
             db_case.manual_path = manual_path
             db_case.manual_meta = manual_meta
