@@ -1,12 +1,27 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import List, Literal, Optional, cast
 
 from pydantic import BaseModel, Field, field_validator
 
 CaseStatus = Literal["open", "resolved"]
 CaseSource = Literal["cases", "ai", "manuals", "mixed"]
+VALID_CASE_SOURCES = {"cases", "ai", "manuals", "mixed"}
+
+
+def normalize_case_source(source: Optional[str]) -> CaseSource:
+    if source is None:
+        return "ai"
+
+    normalized = source.strip().lower()
+    if not normalized:
+        return "ai"
+
+    if normalized in VALID_CASE_SOURCES:
+        return cast(CaseSource, normalized)
+
+    return "mixed"
 
 
 class CaseCreate(BaseModel):

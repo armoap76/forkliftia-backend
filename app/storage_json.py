@@ -6,7 +6,7 @@ from dataclasses import asdict
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-from .models import Case, CaseComment, CaseCreate
+from .models import Case, CaseComment, CaseCreate, normalize_case_source
 from .storage import CaseStore
 
 
@@ -63,7 +63,7 @@ class JsonCaseStore(CaseStore):
         raw.setdefault("created_by_uid", "legacy")
         raw.setdefault("tags", [])
         raw.setdefault("status", "open")
-        raw.setdefault("source", "ai")
+        raw["source"] = normalize_case_source(raw.get("source"))
 
         return Case(**raw)
 
@@ -125,7 +125,7 @@ class JsonCaseStore(CaseStore):
             "checks_done": data.checks_done,
             "diagnosis": data.diagnosis,
             "status": data.status,
-            "source": data.source,
+            "source": normalize_case_source(data.source),
             "tags": data.tags,
             "created_by_uid": data.created_by_uid,
             "resolution_note": None,
