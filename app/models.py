@@ -61,6 +61,7 @@ class Case(CaseCreate):
 class UserProfile(BaseModel):
     uid: str
     public_name: Optional[str] = None
+    is_admin: bool = False
 
 
 class PublicNameUpdate(BaseModel):
