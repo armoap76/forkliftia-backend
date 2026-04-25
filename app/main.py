@@ -417,6 +417,24 @@ def _build_manual_context(
     return "\n".join(lines)
 
 
+PUBLIC_REFERENCE_TEXT = (
+    "Manual técnico privado / biblioteca técnica en desarrollo.\n"
+    "Si tiene dudas, consulte el manual de servicio del fabricante."
+)
+
+
+def _normalize_public_reference_section(diagnosis_text: str) -> str:
+    reference_block = f"📚 REFERENCIA:\n{PUBLIC_REFERENCE_TEXT}"
+    pattern = re.compile(
+        r"📚\s*(?:REFERENCE|REFERENCIA)\s*:\s*.*?(?=\n\s*[🔍📋⚠️💡]|$)",
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    normalized_text, replacements = pattern.subn(reference_block, diagnosis_text)
+    if replacements:
+        return normalized_text
+    return f"{diagnosis_text.rstrip()}\n\n{reference_block}"
+
+
 @app.post("/diagnosis")
 def diagnosis(
     payload: DiagnosisRequest,
@@ -561,7 +579,7 @@ Provide your diagnostic analysis following the standard format.
             max_output_tokens=900,
         )
 
-        diagnosis_text = resp.output_text
+        diagnosis_text = _normalize_public_reference_section(resp.output_text)
 
         updated_case = store.update_case_diagnosis_data(
             base_case.id,
