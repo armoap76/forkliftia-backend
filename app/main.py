@@ -507,9 +507,11 @@ Resolution note: {match.resolution_note or "Not available"}
 """
 
     if manual_hit and match:
-        origin = "ai+manuals+cases"
+        origin = "mixed"
     elif manual_hit:
-        origin = "ai+manuals"
+        origin = "manuals"
+    elif match:
+        origin = "cases"
     else:
         origin = "ai"
 
