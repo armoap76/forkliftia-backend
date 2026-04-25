@@ -345,6 +345,78 @@ def list_case_comments(case_id: int) -> list[CaseComment]:
         raise HTTPException(status_code=404, detail="Case not found")
     return comments
 
+
+def _manual_reference_label(
+    manual_hit: dict | None,
+    *,
+    brand: str,
+    model: str,
+    series: str | None,
+) -> str:
+    if not manual_hit:
+        return "Manual técnico del fabricante"
+
+    manual_brand = manual_hit.get("brand") or brand
+    manual_model = manual_hit.get("model") or model
+    manual_series = manual_hit.get("series") or series
+    parts = [str(part).strip() for part in [manual_brand, manual_model, manual_series] if part]
+    if not parts:
+        return "Manual técnico del fabricante"
+    return f"Manual técnico {' '.join(parts)}"
+
+
+def _build_manual_context(
+    manual_hit: dict | None,
+    *,
+    brand: str,
+    model: str,
+    series: str | None,
+    error_code: str,
+) -> str:
+    if not manual_hit:
+        return ""
+
+    manual_error = manual_hit.get("error", {}) if isinstance(manual_hit.get("error"), dict) else {}
+    manual_reference = _manual_reference_label(manual_hit, brand=brand, model=model, series=series)
+    lines = [
+        "MANUAL CONTEXT (private, authoritative if present):",
+        f"Reference: {manual_reference}",
+        f"Input error code: {error_code}",
+    ]
+
+    # New schema
+    if manual_error.get("canonical_code"):
+        lines.append(f"Canonical code: {manual_error.get('canonical_code')}")
+    if manual_error.get("fault_name"):
+        lines.append(f"Manual meaning (main): {manual_error.get('fault_name')}")
+    if manual_error.get("manual_action_rephrased_src"):
+        lines.append(f"Manual repair guidance: {manual_error.get('manual_action_rephrased_src')}")
+    if manual_error.get("search_aliases"):
+        aliases = manual_error.get("search_aliases")
+        if isinstance(aliases, list):
+            alias_text = ", ".join(str(alias).strip() for alias in aliases if str(alias).strip())
+        else:
+            alias_text = str(aliases).strip()
+        if alias_text:
+            lines.append(f"Code aliases: {alias_text}")
+    if manual_error.get("pages_found"):
+        lines.append(f"Manual pages found: {manual_error.get('pages_found')}")
+    if manual_error.get("lang_src"):
+        lines.append(f"Original manual language: {manual_error.get('lang_src')}")
+
+    # Old schema
+    if manual_error.get("system"):
+        lines.append(f"System: {manual_error.get('system')}")
+    if manual_error.get("manual_summary"):
+        lines.append(f"Manual summary: {manual_error.get('manual_summary')}")
+    if manual_error.get("actions_summary"):
+        lines.append(f"Actions summary: {manual_error.get('actions_summary')}")
+    if manual_error.get("severity"):
+        lines.append(f"Severity: {manual_error.get('severity')}")
+
+    return "\n".join(lines)
+
+
 @app.post("/diagnosis")
 def diagnosis(
     payload: DiagnosisRequest,
@@ -396,15 +468,19 @@ def diagnosis(
         error_code=None if error_code == "None provided" else error_code,
     )
 
-    manual_context = ""
-    if manual_hit:
-        e = manual_hit["error"]
-        manual_context = f"""
-MANUAL CONTEXT (private, paraphrase only):
-System: {e.get('system')}
-Summary: {e.get('manual_summary')}
-Actions: {e.get('actions_summary')}
-"""
+    manual_context = _build_manual_context(
+        manual_hit,
+        brand=brand,
+        model=model,
+        series=series,
+        error_code=error_code,
+    )
+    manual_reference = _manual_reference_label(
+        manual_hit,
+        brand=brand,
+        model=model,
+        series=series,
+    )
 
     match = store.find_resolved_by_key(
         brand=brand,
@@ -413,90 +489,45 @@ Actions: {e.get('actions_summary')}
         error_code=None if error_code == "None provided" else error_code,
     )
 
-    origin = "ai"
-    diagnosis_text = ""
     matched_case_payload = None
-
-    if manual_hit:
-        origin = "manuals"
-        manual_error = manual_hit.get("error", {})
-        probable_cause = manual_error.get("manual_summary") or "Consultar detalle del manual disponible."
-        actions_summary = manual_error.get("actions_summary") or "Aplicar las acciones indicadas en el manual para este código."
-        reference = manual_hit.get("manual_path") or "Manual disponible"
-
-        diagnosis_text = (
-            f"🔍 PROBABLE CAUSE:\n- {probable_cause}\n\n"
-            f"📋 DIAGNOSTIC STEPS:\n{actions_summary}\n\n"
-            f"📚 REFERENCIA:\n- {reference}"
-        )
-
-        if match:
-            matched_case_payload = {
-                "id": match.id,
-                "public_name": match.creator_public_name,
-                "resolution_final": match.resolution_note,
-                "closed_at": match.closed_at,
-            }
-            resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
-            diagnosis_text += (
-                "\n\nSOLUCIÓN DE CASO SIMILAR (complemento):\n"
-                f"- Caso #{match.id}: {resolution_text}"
-            )
-
-        updated_case = store.update_case_diagnosis_data(
-            base_case.id,
-            diagnosis=diagnosis_text,
-            source=origin,
-            matched_case_id=match.id if match else None,
-            manual_path=manual_hit.get("manual_path"),
-            manual_meta=manual_hit,
-        )
-
-        return {
-            "case_id": updated_case.id if updated_case else base_case.id,
-            "origin": origin,
-            "manual_hit": manual_hit,
-            "matched_case": matched_case_payload,
-            "diagnosis_text": diagnosis_text,
-        }
-
+    similar_case_context = ""
     if match:
-        origin = "cases"
-        resolution_text = match.resolution_note or match.diagnosis or "Sin resolución documentada."
-        diagnosis_text = (
-            f"Diagnóstico basado en caso resuelto #{match.id}.\n\n"
-            f"RESUMEN DEL CASO SIMILAR:\n{match.diagnosis or 'Sin diagnóstico previo.'}\n\n"
-            f"SOLUCIÓN FINAL:\n{resolution_text}"
-        )
         matched_case_payload = {
             "id": match.id,
             "public_name": match.creator_public_name,
             "resolution_final": match.resolution_note,
             "closed_at": match.closed_at,
         }
+        similar_case_context = f"""
+SIMILAR RESOLVED CASE (example only, not guaranteed identical):
+Case ID: {match.id}
+Creator public name: {match.creator_public_name or "Not available"}
+Previous diagnosis text: {match.diagnosis or "Not available"}
+Resolution note: {match.resolution_note or "Not available"}
+"""
 
-        updated_case = store.update_case_diagnosis_data(
-            base_case.id,
-            diagnosis=diagnosis_text,
-            source=origin,
-            matched_case_id=match.id,
-        )
-
-        return {
-            "case_id": updated_case.id if updated_case else base_case.id,
-            "origin": origin,
-            "manual_hit": manual_hit,
-            "matched_case": matched_case_payload,
-            "diagnosis_text": diagnosis_text,
-        }
+    if manual_hit and match:
+        origin = "ai+manuals+cases"
+    elif manual_hit:
+        origin = "ai+manuals"
+    else:
+        origin = "ai"
 
     user_prompt = f"""
 IMPORTANT:
 {output_language_instruction}
 Do NOT speculate.
 Explain based on manuals and documented cases only.
+Manual context is authoritative when present.
+Similar resolved cases are supporting examples, not guaranteed to be the same fault.
+Provide practical field checks (visual, connectors, wiring, voltage/signal) and avoid generic "consult the manual" responses.
+Do not recommend proprietary manufacturer software/tools as a required first diagnostic step.
 
 {manual_context}
+{similar_case_context}
+
+REFERENCE FOR CITATION (friendly wording only):
+- {manual_reference}
 
 NEW DIAGNOSTIC CASE:
 
@@ -534,6 +565,9 @@ Provide your diagnostic analysis following the standard format.
             base_case.id,
             diagnosis=diagnosis_text,
             source=origin,
+            matched_case_id=match.id if match else None,
+            manual_path=manual_hit.get("manual_path") if manual_hit else None,
+            manual_meta=manual_hit,
         )
 
         return {
