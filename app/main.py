@@ -1,5 +1,6 @@
 import base64
 import json
+import logging
 import os
 import re
 from datetime import datetime
@@ -48,6 +49,7 @@ class ResolveCaseIn(BaseModel):
 
 
 app = FastAPI(title="ForkliftIA Backend")
+logger = logging.getLogger(__name__)
 
 app.add_middleware(
     CORSMiddleware,
@@ -70,6 +72,11 @@ from dotenv import load_dotenv
 load_dotenv()
 ADMIN_UIDS = {uid.strip() for uid in os.getenv("ADMIN_UIDS", "").split(",") if uid.strip()}
 PUBLIC_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_-]{3,32}$")
+
+
+@app.on_event("startup")
+def log_admin_uid_count() -> None:
+    logger.info("Admin UID count: %d", len(ADMIN_UIDS))
 
 def get_requester_uid(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
@@ -218,7 +225,11 @@ def get_me(uid: str = Depends(get_requester_uid)):
             .filter(UserProfileModel.uid == uid)
             .one_or_none()
         )
-        return UserProfile(uid=uid, public_name=profile.public_name if profile else None)
+        return UserProfile(
+            uid=uid,
+            public_name=profile.public_name if profile else None,
+            is_admin=is_admin(uid),
+        )
 
 
 @app.put("/me/public-name")
@@ -255,7 +266,11 @@ def set_public_name(payload: PublicNameUpdate, uid: str = Depends(get_requester_
             raise HTTPException(status_code=409, detail="Public name already taken")
 
         session.refresh(profile)
-        return UserProfile(uid=profile.uid, public_name=profile.public_name)
+        return UserProfile(
+            uid=profile.uid,
+            public_name=profile.public_name,
+            is_admin=is_admin(uid),
+        )
 
 
 @app.get("/cases")
