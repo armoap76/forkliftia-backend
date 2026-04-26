@@ -463,14 +463,28 @@ def _build_manual_context(
     return "\n".join(lines)
 
 
-PUBLIC_REFERENCE_TEXT = (
+PUBLIC_REFERENCE_TEXT_WITH_MANUAL = (
     "Manual técnico privado / biblioteca técnica en desarrollo.\n"
     "Si tiene dudas, consulte el manual de servicio del fabricante."
 )
+PUBLIC_REFERENCE_TEXT_NO_MANUAL = (
+    "No se encontró referencia técnica privada específica para este código/modelo.\n"
+    "Si tiene dudas, consulte el manual de servicio del fabricante."
+)
+NO_SIMILAR_CASES_TEXT = "No se encontraron casos similares documentados en la base."
+NO_MANUAL_ORIENTATIVE_TEXT = (
+    "No se encontró una referencia técnica privada específica para este código/modelo. "
+    "La siguiente orientación es una hipótesis técnica basada en los datos ingresados."
+)
 
 
-def _normalize_public_reference_section(diagnosis_text: str) -> str:
-    reference_block = f"📚 REFERENCIA:\n{PUBLIC_REFERENCE_TEXT}"
+def _normalize_public_reference_section(diagnosis_text: str, *, manual_context_present: bool) -> str:
+    reference_text = (
+        PUBLIC_REFERENCE_TEXT_WITH_MANUAL
+        if manual_context_present
+        else PUBLIC_REFERENCE_TEXT_NO_MANUAL
+    )
+    reference_block = f"📚 REFERENCIA:\n{reference_text}"
     pattern = re.compile(
         r"📚\s*(?:REFERENCE|REFERENCIA)\s*:\s*.*?(?=\n\s*[🔍📋⚠️💡]|$)",
         flags=re.IGNORECASE | re.DOTALL,
@@ -481,6 +495,21 @@ def _normalize_public_reference_section(diagnosis_text: str) -> str:
     return f"{diagnosis_text.rstrip()}\n\n{reference_block}"
 
 
+def _normalize_similar_cases_section(diagnosis_text: str, *, similar_case_present: bool) -> str:
+    if similar_case_present:
+        return diagnosis_text
+
+    similar_cases_block = f"💡 SIMILAR CASES:\n{NO_SIMILAR_CASES_TEXT}"
+    pattern = re.compile(
+        r"💡\s*SIMILAR\s+CASES\s*:\s*.*?(?=\n\s*[🔍📋⚠️📚]|$)",
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    normalized_text, replacements = pattern.subn(similar_cases_block, diagnosis_text)
+    if replacements:
+        return normalized_text
+    return f"{diagnosis_text.rstrip()}\n\n{similar_cases_block}"
+
+
 def _sanitize_public_diagnosis_text(
     diagnosis_text: str,
     *,
@@ -489,6 +518,7 @@ def _sanitize_public_diagnosis_text(
     series: str | None,
     controller: str | None,
     manual_hit: dict | None,
+    matched_case_present: bool,
 ) -> str:
     text = diagnosis_text
     generic_reference = "referencia técnica disponible"
@@ -522,6 +552,33 @@ def _sanitize_public_diagnosis_text(
     text = re.sub(r"(?i)\bcommon\s+[a-z0-9\-_]+\b", generic_reference, text)
     text = re.sub(r"(?i)\bapp/manuals/[^\s,;:)\]]+", generic_reference, text)
     text = re.sub(r"(?i)\berrors\.json\b", generic_reference, text)
+
+    if not manual_hit:
+        manual_support_patterns = [
+            r"(?i)\bseg[uú]n\s+la\s+referencia\s+t[eé]cnica\s+disponible\b",
+            r"(?i)\bseg[uú]n\s+el\s+manual\s+t[eé]cnico\s+privado\b",
+            r"(?i)\bde\s+acuerdo\s+con\s+la\s+biblioteca\s+t[eé]cnica\s+privada\b",
+        ]
+        for pattern in manual_support_patterns:
+            text = re.sub(pattern, NO_MANUAL_ORIENTATIVE_TEXT, text)
+
+    if not matched_case_present:
+        similar_case_patterns = [
+            r"(?i)\bcasos\s+documentados\s+muestran\b",
+            r"(?i)\ben\s+casos\s+similares\b",
+            r"(?i)\bse\s+ha\s+observado\b",
+        ]
+        for pattern in similar_case_patterns:
+            text = re.sub(pattern, "Hipótesis técnica orientativa:", text)
+
+    if not manual_hit and not matched_case_present and NO_MANUAL_ORIENTATIVE_TEXT not in text:
+        text = re.sub(
+            r"(🔍\s*PROBABLE\s+CAUSE\s*:\s*)",
+            rf"\1\n{NO_MANUAL_ORIENTATIVE_TEXT}\n",
+            text,
+            count=1,
+            flags=re.IGNORECASE,
+        )
 
     return text
 
@@ -616,16 +673,23 @@ Resolution note: {match.resolution_note or "Not available"}
     else:
         origin = "ai"
 
+    manual_context_present = bool(manual_hit)
+    similar_case_present = bool(match)
+
     user_prompt = f"""
 IMPORTANT:
 {output_language_instruction}
-Do NOT speculate.
-Explain based on manuals and documented cases only.
+manual_context_present: {str(manual_context_present).lower()}
+similar_case_present: {str(similar_case_present).lower()}
 Manual context is authoritative when present.
 Similar resolved cases are supporting examples, not guaranteed to be the same fault.
 Provide practical field checks (visual, connectors, wiring, voltage/signal) and avoid generic "consult the manual" responses.
 Do not recommend proprietary manufacturer software/tools as a required first diagnostic step.
-Do not mention brand, model, series, controller, file paths, folder names, or 'common' as the name/title of the manual. Refer to the source only as 'manual técnico privado', 'referencia técnica disponible', or 'biblioteca técnica privada'.
+Do not mention brand, model, series, controller, file paths, folder names, or 'common' as the name/title of the manual.
+Only cite manual/reference support if manual_context_present is true, and then refer to it only as 'manual técnico privado' or 'referencia técnica disponible'.
+Only cite similar/documented cases if similar_case_present is true.
+If manual_context_present is false and similar_case_present is false, explicitly state:
+'No se encontró una referencia técnica privada específica para este código/modelo. La siguiente orientación es una hipótesis técnica basada en los datos ingresados.'
 
 {manual_context}
 {similar_case_context}
@@ -660,7 +724,14 @@ Provide your diagnostic analysis following the standard format.
             max_output_tokens=900,
         )
 
-        diagnosis_text = _normalize_public_reference_section(resp.output_text)
+        diagnosis_text = _normalize_public_reference_section(
+            resp.output_text,
+            manual_context_present=manual_context_present,
+        )
+        diagnosis_text = _normalize_similar_cases_section(
+            diagnosis_text,
+            similar_case_present=similar_case_present,
+        )
         diagnosis_text = _sanitize_public_diagnosis_text(
             diagnosis_text,
             brand=brand,
@@ -668,6 +739,7 @@ Provide your diagnostic analysis following the standard format.
             series=series,
             controller=controller,
             manual_hit=manual_hit,
+            matched_case_present=similar_case_present,
         )
 
         updated_case = store.update_case_diagnosis_data(
