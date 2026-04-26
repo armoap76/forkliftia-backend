@@ -3,305 +3,2332 @@
   "model": "common",
   "series": "1151",
   "errors": {
-    "101": {
-      "system": "Mast load sensing",
-      "manual_summary": "The first optical load sensor on the mast reports a signal that does not match expected conditions when manual lifting mode is selected. This indicates implausible load detection.",
-      "actions_summary": [
-        "Inspect optical load sensor 1 alignment",
-        "Check wiring and connector condition",
-        "Verify correct manual mode selection"
+    "21": {
+      "canonical_code": "21",
+      "pages_found": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ],
-      "severity": "medium"
+      "lang_src": "unknown",
+      "fault_name": "/12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963...",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "21",
+        "/12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963... /12/2025 file:///C:/Users/Administrador/AppData/Local/Temp/dmcEA056D22-97C8-11d5-963..."
+      ]
+    },
+    "101": {
+      "canonical_code": "101",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "en",
+      "fault_name": "Signals from optical load sensor 1 of the mast forks do not match when manual mode is active",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "101",
+        "Signals of optical load sensor 1 of mast forks are not compatible when manual mode is selected"
+      ]
     },
     "102": {
-      "system": "Mast load sensing",
-      "manual_summary": "The second optical load sensor on the mast provides a signal that is inconsistent during manual lifting mode. Load detection cannot be validated.",
-      "actions_summary": [
-        "Inspect optical load sensor 2",
-        "Check sensor wiring and mounting",
-        "Verify correct operating mode"
+      "canonical_code": "102",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Signals from optical load sensor 2 on mast forks do not match when manual mode is active",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "102",
+        "Signals of optical load sensor 2 of mast forks are not compatible when manual mode is selected"
+      ]
     },
     "103": {
-      "system": "Control input",
-      "manual_summary": "The start button remains active for an excessive duration while automatic lifting is selected. This is interpreted as an abnormal control input.",
-      "actions_summary": [
-        "Check start button for sticking or damage",
-        "Inspect wiring for short circuits",
-        "Verify automatic lifting logic"
+      "canonical_code": "103",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Start button signal remains active over 10 seconds with automatic lifting mode chosen",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "103",
+        "Start button signal is active for more than 10 seconds while automatic lifting mode is selected"
+      ]
     },
     "110": {
-      "system": "Braking system",
-      "manual_summary": "A malfunction has been detected in brake control or brake adjustment. Braking performance may be compromised.",
-      "actions_summary": [
-        "Inspect brake control signals",
-        "Check brake adjustment and mechanical components",
-        "Verify brake control unit operation"
+      "canonical_code": "110",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Error detected in brake control and/or brake setting is defective",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "110",
+        "Error detected in brake control and/or brake setting is defective"
+      ]
     },
     "111": {
-      "system": "Braking system",
-      "manual_summary": "The electrical resistance of the brake coil is below the expected range, indicating a possible short circuit or internal fault.",
-      "actions_summary": [
-        "Measure brake coil resistance",
-        "Inspect wiring for short circuits",
-        "Replace brake coil if defective"
+      "canonical_code": "111",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Brake coil resistance is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "111",
+        "Brake coil resistance is too low"
+      ]
     },
     "112": {
-      "system": "Braking system",
-      "manual_summary": "The brake coil resistance is above the permissible range, suggesting an open circuit or degraded coil.",
-      "actions_summary": [
-        "Measure brake coil resistance",
-        "Inspect connectors and wiring",
-        "Replace brake coil if necessary"
+      "canonical_code": "112",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Brake coil resistance is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "112",
+        "Brake coil resistance is too high"
+      ]
     },
     "113": {
-      "system": "Braking system",
-      "manual_summary": "The current flowing through the brake coil is too low to ensure proper brake operation.",
-      "actions_summary": [
-        "Check brake coil power supply",
-        "Inspect wiring and connectors",
-        "Verify brake control output"
+      "canonical_code": "113",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Brake current is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "113",
+        "Brake current is too low"
+      ]
     },
     "115": {
-      "system": "Service mode",
-      "manual_summary": "The truck is currently detected in wheel change mode. Normal driving and lifting functions may be restricted.",
-      "actions_summary": [
-        "Exit wheel change mode if not required",
-        "Check wheel change mode switch",
-        "Verify service mode configuration"
+      "canonical_code": "115",
+      "pages_found": [
+        1
       ],
-      "severity": "low"
+      "lang_src": "en",
+      "fault_name": "Truck is in wheel change mode",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "115",
+        "Truck is in wheel change mode"
+      ]
     },
     "116": {
-      "system": "Mast sensing",
-      "manual_summary": "The mast position potentiometer is active while optical load sensor signals are inconsistent. Mast position and load data cannot be correlated.",
-      "actions_summary": [
-        "Inspect mast potentiometer",
-        "Check optical load sensor signals",
-        "Verify wiring and signal plausibility"
+      "canonical_code": "116",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Mast potentiometer operates while optical load sensor signals do not match",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "116",
+        "Mast potentiometer is actuated and signals of load sensors (optical) are incompatible"
+      ]
     },
     "117": {
-      "system": "Battery management",
-      "manual_summary": "The truck has entered a reduced battery mode because the current demand exceeds what the battery can deliver.",
-      "actions_summary": [
-        "Check battery condition and capacity",
-        "Inspect power demand and load conditions",
-        "Recharge or replace battery if required"
+      "canonical_code": "117",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Reduced battery mode because the consumed current is too high. Battery cannot provide the current needed by the LAC",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "117",
+        "Reduced battery mode since consumed current is too high. Battery can not supply current required of the LAC"
+      ]
     },
     "118": {
-      "system": "Battery management",
-      "manual_summary": "The battery state of charge has reached the first low threshold. Performance limitations may begin.",
-      "actions_summary": [
-        "Recharge the battery",
-        "Check battery health",
-        "Monitor state-of-charge indication"
+      "canonical_code": "118",
+      "pages_found": [
+        1
       ],
-      "severity": "low"
+      "lang_src": "en",
+      "fault_name": "Low State of Charge 1st level",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "118",
+        "Low State of Charge 1st level"
+      ]
     },
     "119": {
-      "system": "Battery management",
-      "manual_summary": "The battery state of charge has reached the second low threshold. Further functional restrictions may apply.",
-      "actions_summary": [
-        "Recharge the battery promptly",
-        "Inspect battery condition",
-        "Verify battery monitoring system"
+      "canonical_code": "119",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Low State of Charge 2st level",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "119",
+        "Low State of Charge 2st level"
+      ]
     },
     "120": {
-      "system": "Power electronics",
-      "manual_summary": "The pre-charging process of the power electronics via the controller was not completed successfully.",
-      "actions_summary": [
-        "Inspect pre-charge circuit components",
-        "Check contactors and wiring",
-        "Verify controller startup sequence"
+      "canonical_code": "120",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Pre-charging through controller failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "120",
+        "Pre-charging via controller failed"
+      ]
     },
     "121": {
-      "system": "Battery management",
-      "manual_summary": "The battery state of charge has reached a critical low level. Operation may be heavily restricted.",
-      "actions_summary": [
-        "Recharge the battery immediately",
-        "Inspect battery for degradation",
-        "Verify state-of-charge measurement"
+      "canonical_code": "121",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Low State of Charge 3st level",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "121",
+        "Low State of Charge 3st level"
+      ]
     },
     "131": {
-      "system": "Control electronics",
-      "manual_summary": "An internal control error has been detected. Additional fault codes are required to identify the root cause.",
-      "actions_summary": [
-        "Check for accompanying error codes",
-        "Cycle system power",
-        "Inspect control unit diagnostics"
+      "canonical_code": "131",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Internal control error: see additional active errors",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "131",
+        "Internal control error: see additional active errors"
+      ]
     },
     "140": {
-      "system": "Accelerator",
-      "manual_summary": "The combined voltage of the accelerator signals exceeds the allowed tolerance. Input plausibility is violated.",
-      "actions_summary": [
-        "Measure accelerator signal voltages",
-        "Inspect accelerator wiring",
-        "Check accelerator sensor calibration"
+      "canonical_code": "140",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Accelerator sum voltage exceeds tolerance",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "140",
+        "Accelerator sum voltage exceeds tolerance"
+      ]
     },
     "167": {
-      "system": "Battery management",
-      "manual_summary": "A general battery warning has been issued, indicating abnormal battery-related conditions.",
-      "actions_summary": [
-        "Check battery status and alarms",
-        "Inspect battery connections",
-        "Review battery diagnostics"
+      "canonical_code": "167",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Battery Warning",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "167",
+        "Battery Warning"
+      ]
     },
     "201": {
-      "system": "Sensor supply",
-      "manual_summary": "The sensor supply voltage is above the permissible range. Sensor readings may be unreliable.",
-      "actions_summary": [
-        "Measure sensor supply voltage",
-        "Inspect voltage regulation circuitry",
-        "Check for wiring faults"
+      "canonical_code": "201",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Supply voltage above limit at X1:26 > 5.1V instead of 4.3V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "201",
+        "Supply voltage too high at X1:26 > 5.1V instead of 4.3V"
+      ]
     },
     "202": {
-      "system": "Sensor supply",
-      "manual_summary": "The sensor supply voltage is below the permissible range, leading to unreliable sensor signals.",
-      "actions_summary": [
-        "Measure sensor supply voltage",
-        "Inspect wiring and connectors",
-        "Check controller power output"
+      "canonical_code": "202",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Supply voltage at X1:26 is below 3.5V when it should be 4.3V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "202",
+        "Supply voltage too low at X1:26 < 3.5V instead of 4.3V"
+      ]
     },
     "203": {
-      "system": "Tiller control",
-      "manual_summary": "The tiller switch signals are incompatible or an incorrect tiller type is configured.",
-      "actions_summary": [
-        "Verify tiller type configuration",
-        "Inspect tiller switch wiring",
-        "Check switch signal plausibility"
+      "canonical_code": "203",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Tiller switch signals (X1:36 and X1:38) are incompatible or wrong tiller type is selected",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "203",
+        "Tiller switch signals (X1:36 and X1:38) are incompatible or wrong tiller type is selected"
+      ]
     },
     "204": {
-      "system": "Creep control",
-      "manual_summary": "The creep switch signals do not match expected combinations, indicating implausible input states.",
-      "actions_summary": [
-        "Inspect creep switch wiring",
-        "Check switch operation",
-        "Verify input signal logic"
+      "canonical_code": "204",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Creep switch signals (X1:34 and X1:35) are incompatible",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "204",
+        "Creep switch signals (X1:34 and X1:35) are incompatible"
+      ]
+    },
+    "205": {
+      "canonical_code": "205",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "en",
+      "fault_name": "Only T16L: lifting height is simultaneously above 1500 mm and below 300 mm",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "205",
+        "Only T16L: lifting height is above 1500 mm and below 300 mm at the same time"
+      ]
     },
     "206": {
-      "system": "Power supply",
-      "manual_summary": "The battery voltage is below the minimum required level or the supply connection is interrupted.",
-      "actions_summary": [
-        "Measure battery voltage",
-        "Inspect battery connections",
-        "Recharge or replace battery"
+      "canonical_code": "206",
+      "pages_found": [
+        1
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Battery voltage is below 9V (undervoltage or input X1:2 disconnected)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "206",
+        "Battery voltage too low (< 9V) (undervoltage or disconnection of input X1:2)"
+      ]
     },
     "207": {
-      "system": "Drive control",
-      "manual_summary": "The vehicle speed exceeds the allowable limit for the current operating condition.",
-      "actions_summary": [
-        "Reduce driving speed",
-        "Check speed sensor signals",
-        "Verify control logic"
+      "canonical_code": "207",
+      "pages_found": [
+        1
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "Truck speed is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "207",
+        "Truck speed is too high"
+      ]
+    },
+    "208": {
+      "canonical_code": "208",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "en",
+      "fault_name": "Speed sensor signal interference (inputs X1:08 and X1:22)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "208",
+        "Interference of speed sensor signals (inputs X1:08 and X1:22)"
+      ]
+    },
+    "209": {
+      "canonical_code": "209",
+      "pages_found": [
+        1
+      ],
+      "lang_src": "en",
+      "fault_name": "Digital inputs switch with unrealistically high frequency",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "209",
+        "Digital inputs switch with unrealistically high frequency Page 1 of 7"
+      ]
+    },
+    "210": {
+      "canonical_code": "210",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal controller error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "210",
+        "Internal controller error"
+      ]
+    },
+    "211": {
+      "canonical_code": "211",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal controller error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "211",
+        "Internal controller error"
+      ]
+    },
+    "212": {
+      "canonical_code": "212",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal controller error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "212",
+        "Internal controller error"
+      ]
+    },
+    "213": {
+      "canonical_code": "213",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal controller error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "213",
+        "Internal controller error"
+      ]
+    },
+    "218": {
+      "canonical_code": "218",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Driver voltage is below 10 V",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "218",
+        "Driver voltage is too low (< 10 V)"
+      ]
+    },
+    "219": {
+      "canonical_code": "219",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal controller error. Entry \"Production test PASSED\" is missing in EEPROM",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "219",
+        "Internal controller error. Entry \"Production test PASSED\" is missing in EEPROM"
+      ]
+    },
+    "220": {
+      "canonical_code": "220",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Input X1:10 (analog belly signal) (BR1193: service brake) is outside the allowed range (> 20% of supply voltage AND < 80% of supply voltage).",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "220",
+        "Input X1:10 (analog belly signal) (BR1193: service brake) out of admissible range (> 20% of supply voltage AND < 80% of supply voltage)."
+      ]
+    },
+    "221": {
+      "canonical_code": "221",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Supply voltage belly is not stable",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "221",
+        "Supply voltage belly is not stable"
+      ]
+    },
+    "222": {
+      "canonical_code": "222",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Signals at 1X1:10 and 1X1:9 incompatible",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "222",
+        "Signals at 1X1:10 and 1X1:9 incompatible"
+      ]
+    },
+    "224": {
+      "canonical_code": "224",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Input X1:24 (accelerator) is outside the allowed range",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "224",
+        "Input X1:24 (accelerator) is out of admissible range"
+      ]
+    },
+    "225": {
+      "canonical_code": "225",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Input X1:39 (accelerator) is outside the permitted range",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "225",
+        "Input X1:39 (accelerator) is out of admissible range"
+      ]
+    },
+    "226": {
+      "canonical_code": "226",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Signal of accelerator are incompatible",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "226",
+        "Signal of accelerator are incompatible"
+      ]
+    },
+    "227": {
+      "canonical_code": "227",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Accelerator potentiometer voltage is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "227",
+        "Accelerator potentiometer voltage is too high"
+      ]
+    },
+    "228": {
+      "canonical_code": "228",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Accelerator potentiometer voltage is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "228",
+        "Accelerator potentiometer voltage is too low"
+      ]
+    },
+    "230": {
+      "canonical_code": "230",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "No reduction of motor torque though required",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "230",
+        "No reduction of motor torque though required"
+      ]
+    },
+    "231": {
+      "canonical_code": "231",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "No speed signal though torque is applied",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "231",
+        "No speed signal though torque is applied"
+      ]
+    },
+    "232": {
+      "canonical_code": "232",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Speed reduction signals (X1:7 and X1:28) are incompatible (error only active with CO controller)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "232",
+        "Speed reduction signals (X1:7 and X1:28) are incompatible (error only active with CO controller)"
+      ]
+    },
+    "234": {
+      "canonical_code": "234",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Input X1:37 (tiller potentiometer 1 signal) is outside the allowed range",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "234",
+        "Input X1:37 (signal of tiller potentiometer 1) is out of admissible range"
+      ]
+    },
+    "235": {
+      "canonical_code": "235",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Input X1:40 (signal of tiller potentiometer 1) is beyond the allowed range",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "235",
+        "Input X1:40 (signal of tiller potentiometer 1) is out of admissible range"
+      ]
+    },
+    "237": {
+      "canonical_code": "237",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Sum voltage at tiller base is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "237",
+        "Sum voltage at tiller base is too high"
+      ]
+    },
+    "238": {
+      "canonical_code": "238",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Sum voltage at tiller base is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "238",
+        "Sum voltage at tiller base is too low"
+      ]
+    },
+    "240": {
+      "canonical_code": "240",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Increased temperature in the controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "240",
+        "Increased temperature in the controller"
+      ]
+    },
+    "241": {
+      "canonical_code": "241",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Temperature error in the controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "241",
+        "Temperature error in the controller"
+      ]
+    },
+    "242": {
+      "canonical_code": "242",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Temperature error in the controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "242",
+        "Temperature error in the controller"
+      ]
+    },
+    "243": {
+      "canonical_code": "243",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Truck could not be switch into \"wheel change mode\"",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "243",
+        "Truck could not be switch into \"wheel change mode\""
+      ]
+    },
+    "244": {
+      "canonical_code": "244",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Discharging of power module capacitors at start-up failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "244",
+        "Discharging of power module capacitors at start-up failed"
+      ]
     },
     "245": {
-      "system": "Traction motor",
-      "manual_summary": "The traction motor temperature has exceeded the permissible limit. Thermal protection may be active.",
-      "actions_summary": [
-        "Allow motor to cool down",
-        "Check cooling and ventilation",
-        "Inspect load conditions"
+      "canonical_code": "245",
+      "pages_found": [
+        2
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Motor temperature is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "245",
+        "Motor temperature is too high"
+      ]
+    },
+    "246": {
+      "canonical_code": "246",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Motor temperature error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "246",
+        "Motor temperature error"
+      ]
+    },
+    "247": {
+      "canonical_code": "247",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Motor temperature error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "247",
+        "Motor temperature error"
+      ]
+    },
+    "248": {
+      "canonical_code": "248",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Error when using wheel change mode",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "248",
+        "Error when using wheel change mode"
+      ]
+    },
+    "251": {
+      "canonical_code": "251",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error control safety relay",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "251",
+        "Internal error control safety relay"
+      ]
+    },
+    "252": {
+      "canonical_code": "252",
+      "pages_found": [
+        2
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error control safety relay Page 2 of 7",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "252",
+        "Internal error control safety relay Page 2 of 7"
+      ]
+    },
+    "253": {
+      "canonical_code": "253",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error control safety relay",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "253",
+        "Error control safety relay"
+      ]
+    },
+    "254": {
+      "canonical_code": "254",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error control safety relay",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "254",
+        "Error control safety relay"
+      ]
+    },
+    "257": {
+      "canonical_code": "257",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Lead or gel battery is selected in Pathfinder but \"BMS Heartbeat\" is received",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "257",
+        "Lead or gel battery is selected in Pathfinder but \"BMS Heartbeat\" is received"
+      ]
+    },
+    "258": {
+      "canonical_code": "258",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Li-Ion battery is selected in Pathfinder but \"BMS Heartbeat\" is NOT operational",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "258",
+        "Li-Ion battery is selected in Pathfinder but \"BMS Heartbeat\" is NOT operational"
+      ]
+    },
+    "259": {
+      "canonical_code": "259",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Lead or gel battery is selected in Pathfinder but \"BMS Heartbeat\" is received",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "259",
+        "Lead or gel battery is selected in Pathfinder but \"BMS Heartbeat\" is received"
+      ]
+    },
+    "260": {
+      "canonical_code": "260",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Incorrect battery status. Battery is not ready for operation",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "260",
+        "Wrong battery status. Battery is not ready to operate"
+      ]
+    },
+    "261": {
+      "canonical_code": "261",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error control main contactor",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "261",
+        "Error control main contactor"
+      ]
+    },
+    "262": {
+      "canonical_code": "262",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error control main contactor",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "262",
+        "Error control main contactor"
+      ]
+    },
+    "263": {
+      "canonical_code": "263",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Switching contact main contactor defective",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "263",
+        "Switching contact main contactor defective"
+      ]
+    },
+    "264": {
+      "canonical_code": "264",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Switching contact main contactor defective",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "264",
+        "Switching contact main contactor defective"
+      ]
+    },
+    "265": {
+      "canonical_code": "265",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "(Only Li-ion trucks) Battery discharge current is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "265",
+        "(Only Li-ion trucks) Battery discharge current is too high"
+      ]
+    },
+    "266": {
+      "canonical_code": "266",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "(Only Li-ion trucks) Battery state of charge equals zero (SOC = 0)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "266",
+        "(Only Li-ion trucks) Battery state of charge equals zero (SOC = 0)"
+      ]
+    },
+    "267": {
+      "canonical_code": "267",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "(Only Li-ion trucks) Battery alarm",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "267",
+        "(Only Li-ion trucks) Battery alarm"
+      ]
+    },
+    "268": {
+      "canonical_code": "268",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "(Only Li-ion trucks) Control signal is not ready to operate or is not identified",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "268",
+        "(Only Li-ion trucks) Control signal is not ready to operated or is not recognized"
+      ]
+    },
+    "269": {
+      "canonical_code": "269",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "(Only Li-ion trucks) Brand ID battery does not correspond to brand ID traction controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "269",
+        "(Only Li-ion trucks) Brand ID battery does not match brand ID traction controller"
+      ]
+    },
+    "270": {
+      "canonical_code": "270",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Li-ion with mast: Diagnosis of the charger heartbeat",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "270",
+        "Li-ion with mast: Diagnosis of the charger heartbeat"
+      ]
+    },
+    "271": {
+      "canonical_code": "271",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "271",
+        "Configuration error"
+      ]
+    },
+    "272": {
+      "canonical_code": "272",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "272",
+        "Configuration error"
+      ]
+    },
+    "273": {
+      "canonical_code": "273",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "273",
+        "Configuration error"
+      ]
+    },
+    "274": {
+      "canonical_code": "274",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "274",
+        "Configuration error"
+      ]
+    },
+    "275": {
+      "canonical_code": "275",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "275",
+        "Configuration error"
+      ]
+    },
+    "281": {
+      "canonical_code": "281",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "When the brake is activated, the coil current exceeds 0.4A",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "281",
+        "With activated brake, the coil current is > 0.4A"
+      ]
+    },
+    "282": {
+      "canonical_code": "282",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "While brake is deactivated, the coil current exceeds 0.4A",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "282",
+        "With deactivated brake, the coil current is > 0.4A"
+      ]
+    },
+    "283": {
+      "canonical_code": "283",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "No brake coil current detected even though voltage is present (voltage > 3V; current < 0.4A)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "283",
+        "There is no brake coil current though voltage is applied (voltage > 3V; current < 0.4A)"
+      ]
+    },
+    "284": {
+      "canonical_code": "284",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Brake coil current is present despite voltage being applied (voltage > 3V; current < 0.4A)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "284",
+        "There is brake coil current though voltage is applied (voltage > 3V; current < 0.4A)"
+      ]
+    },
+    "285": {
+      "canonical_code": "285",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error during release of brake",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "285",
+        "Error during release of brake"
+      ]
+    },
+    "286": {
+      "canonical_code": "286",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Error during release of brake",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "286",
+        "Error during release of brake"
+      ]
+    },
+    "290": {
+      "canonical_code": "290",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error: digital input signals differ between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "290",
+        "Internal error: digital input signals are different in main and safety controller"
+      ]
+    },
+    "291": {
+      "canonical_code": "291",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error: analog input battery voltage differs between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "291",
+        "Internal error: analog input battery voltage is different in main and safety controller"
+      ]
+    },
+    "292": {
+      "canonical_code": "292",
+      "pages_found": [
+        3
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal fault: analog input signals from the belly (BR1193: service brake) switch (X1:10) and/or butterfly switch (X1:24) and/or tiller base potentiometer",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "292",
+        "Internal error: analog input signals for belly (BR1193: service brake) -switch (X1:10) and/or butterfly switch (X1:24) and/or tiller base potentiometer Page 3 of 7"
+      ]
+    },
+    "293": {
+      "canonical_code": "293",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal fault: analog input signal for brake (X1:31) and/or main contactor varies between main and safety controllers",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "293",
+        "Internal error: analog input signal for brake (X1:31) and/or main contactor is different in main and safety controller"
+      ]
+    },
+    "294": {
+      "canonical_code": "294",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error: analog input signal for capacitor voltage (UCAP) differs between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "294",
+        "Internal error: analog input signal for capacitor voltage (UCAP) is different in main and safety controller"
+      ]
+    },
+    "295": {
+      "canonical_code": "295",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal malfunction: detected motor speed differs between main and safety controllers",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "295",
+        "Internal error: identified motor speed is different in main and safety controller"
+      ]
+    },
+    "296": {
+      "canonical_code": "296",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error: main and safety controller detect different signals for wheel change mode",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "296",
+        "Internal error: main and safety controller identifies different signals for wheel change mode"
+      ]
+    },
+    "297": {
+      "canonical_code": "297",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error: analog input signals differ between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "297",
+        "Internal error: analog input signals are different in main and safety controller"
+      ]
+    },
+    "302": {
+      "canonical_code": "302",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Current sensor error, phase U (current is too high)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "302",
+        "Current sensor error, phase U (current is too high)"
+      ]
+    },
+    "303": {
+      "canonical_code": "303",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Current sensor error, phase U (current is too low)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "303",
+        "Current sensor error, phase U (current is too low)"
+      ]
+    },
+    "304": {
+      "canonical_code": "304",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Current sensor fault, phase W (current exceeds limit)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "304",
+        "Current sensor error, phase W (current is too high)"
+      ]
+    },
+    "305": {
+      "canonical_code": "305",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Current sensor fault, phase W (current below expected level)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "305",
+        "Current sensor error, phase W (current is too low)"
+      ]
     },
     "330": {
-      "system": "Power electronics",
-      "manual_summary": "A permanent fault has been detected in the driver circuits of the power transistors.",
-      "actions_summary": [
-        "Inspect power transistor driver circuits",
-        "Check control unit outputs",
-        "Replace power electronics if required"
+      "canonical_code": "330",
+      "pages_found": [
+        4
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Driver circuits of power transistors show permanent error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "330",
+        "Driver circuits of power transistors show permanent error"
+      ]
+    },
+    "340": {
+      "canonical_code": "340",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "The capacitor voltage is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "340",
+        "The capacitor voltage is too high"
+      ]
     },
     "351": {
-      "system": "Power electronics",
-      "manual_summary": "One phase of the motor power supply is interrupted, preventing proper motor operation.",
-      "actions_summary": [
-        "Inspect phase wiring and connectors",
-        "Check power module outputs",
-        "Verify motor connection integrity"
+      "canonical_code": "351",
+      "pages_found": [
+        4
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Phase U is interrupted",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "351",
+        "Phase U is interrupted"
+      ]
+    },
+    "352": {
+      "canonical_code": "352",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Phase V is interrupted",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "352",
+        "Phase V is interrupted"
+      ]
+    },
+    "353": {
+      "canonical_code": "353",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Phase W is interrupted",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "353",
+        "Phase W is interrupted"
+      ]
+    },
+    "355": {
+      "canonical_code": "355",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Signals of mast sensors (200 mm, 800 mm and 1500 mm) do not match",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "355",
+        "Signals of mast sensors (200 mm, 800 mm and 1500 mm) do not match"
+      ]
+    },
+    "356": {
+      "canonical_code": "356",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast sensor at 1500 mm detects the forks, but the sensors at 200 mm and 800 mm fail to detect them",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "356",
+        "Mast sensor 1500 mm recognizes the forks. The sensors 200 mm and 800 mm do not"
+      ]
+    },
+    "357": {
+      "canonical_code": "357",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast sensor at 800 mm detects the forks; the 200 mm sensor fails to detect them",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "357",
+        "Mast sensor 800 mm recognizes the forks. The sensor 200 mm does not"
+      ]
+    },
+    "358": {
+      "canonical_code": "358",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast sensors at 800 mm and 1500 mm detect the forks, but the 200 mm sensor does not",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "358",
+        "Mast sensor 800 mm and 1500 mm recognize the forks. The sensor 200 mm does not"
+      ]
+    },
+    "359": {
+      "canonical_code": "359",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "The mast sensor at 1500 mm detects the forks, but the 800 mm sensor does not.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "359",
+        "Mast sensor 1500 mm recognizes the forks. The sensor 800 mm does not"
+      ]
+    },
+    "360": {
+      "canonical_code": "360",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Forks up and forks down or below 200 mm signals detected simultaneously (X1:14 open and X1:07 grounded with X1:23 open)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "360",
+        "At same time forks up detected (X1:14 = open) and forks down / below 200 mm detected (X1:07 = GND and X1:23 = open)"
+      ]
+    },
+    "361": {
+      "canonical_code": "361",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Only for Autolift: automatic lifting/lowering is selected at same time (X1:20 = GND and X1:28 = GND)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "361",
+        "Only for Autolift: automatic lifting/lowering is selected at same time (X1:20 = GND and X1:28 = GND)"
+      ]
+    },
+    "362": {
+      "canonical_code": "362",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Only for Autolift: signals of selector button for automatic mast lifting/lowering are not compatible: X1:6 = open and X1:20 = open and X1:28 = open 363 Only for Autolift: signals of load sensor 1 of forks are not compatible with selected automatic mast lifting. X1:5 and X1:19 are both open or closed (GND). 364 Only for Autolift: signals of load sensor 2 of forks are not compatible with selected automatic mast lifting. X1:36 and X1:38 are both open or closed (GND).",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "362",
+        "Only for Autolift: signals of selector button for automatic mast lifting/lowering are not compatible: X1:6 = open and X1:20 = open and X1:28 = open 363 Only for Autolift: signals of load sensor 1 of forks are not compatible with selected automatic mast lifting. X1:5 and X1:19 are both open or closed (GND). 364 Only for Autolift: signals of load sensor 2 of forks are not compatible with selected automatic mast lifting. X1:36 and X1:38 are both open or closed (GND)."
+      ]
+    },
+    "365": {
+      "canonical_code": "365",
+      "pages_found": [
+        4
+      ],
+      "lang_src": "en",
+      "fault_name": "Signals of forks at 200 mm are inconsistent (X1:7 and X1:23 are both open or both closed)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "365",
+        "Signals of forks at 200 mm are not compatible (X1:7 and X1:23 are both open or closed) Page 4 of 7"
+      ]
+    },
+    "366": {
+      "canonical_code": "366",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage is applied to the proportional valve but there is no current",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "366",
+        "Voltage is applied to the proportional valve but there is no current"
+      ]
+    },
+    "367": {
+      "canonical_code": "367",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Current detected in proportional valve although no voltage is applied",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "367",
+        "Current measured in proportional valve but no voltage applied"
+      ]
+    },
+    "368": {
+      "canonical_code": "368",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Difference between redundant mast lifting signals at EXV_10_Basic truck ((X1:5 = open and X1:4 = open) OR (X1:5 = GND and X1:4 = GND) 369 Difference between redundant mast lowering signals at EXV_10_Basic truck ((X1:19 = open and X1:18 = open) OR (X1:19 = GND and X1:18 = GND))",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "368",
+        "Divergence between redundant mast lifting commands at EXV_10_Basic truck ((X1:5 = open and X1:4 = open) OR (X1:5 = GND and X1:4 = GND) 369 Divergence between redundant mast lowering commands at EXV_10_Basic truck ((X1:19 = open and X1:18 = open) OR (X1:19 = GND and X1:18 = GND))"
+      ]
+    },
+    "370": {
+      "canonical_code": "370",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Initial lifting/lowering inputs are simultaneously active",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "370",
+        "Initial lifting/lowering inputs are simultaneously active"
+      ]
+    },
+    "371": {
+      "canonical_code": "371",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "GND applied to X1:15 though no request exists",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "371",
+        "GND applied to X1:15 though no request exists"
+      ]
+    },
+    "372": {
+      "canonical_code": "372",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "No ground signal is applied to X1:15 despite a request being present",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "372",
+        "No GND applied to X1:15 though request exists"
+      ]
+    },
+    "373": {
+      "canonical_code": "373",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Power connection Li has a voltage difference of 3 V compared with the + connection of the power unit (only if there is no lifting request)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "373",
+        "Power connection Li has a voltage difference of 3 V compared with the + connection of the power unit (only if there is no lifting request)"
+      ]
+    },
+    "374": {
+      "canonical_code": "374",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "The lift motor voltage is below the setpoint",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "374",
+        "The lift motor voltage is lower than setpoint"
+      ]
+    },
+    "375": {
+      "canonical_code": "375",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "X1:3 is switched despite no request being present",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "375",
+        "X1:3 is switched though no request exists"
+      ]
+    },
+    "376": {
+      "canonical_code": "376",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "X1:3 is not switched although a request exists",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "376",
+        "X1:3 is not switched though request exists"
+      ]
+    },
+    "377": {
+      "canonical_code": "377",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Over-current in power unit lifting",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "377",
+        "Over-current in power unit lifting"
+      ]
+    },
+    "378": {
+      "canonical_code": "378",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage at lifting potentiometer (X1:11) is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "378",
+        "Voltage at lifting potentiometer (X1:11) is too low"
+      ]
+    },
+    "379": {
+      "canonical_code": "379",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage on lifting potentiometer (X1:11) is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "379",
+        "Voltage at lifting potentiometer (X1:11) is too high"
+      ]
+    },
+    "380": {
+      "canonical_code": "380",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error: truck without mast, but mast potentiometer signal is active (X:11 > 0.5V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "380",
+        "Configuration error: truck without mast, but mast potentiometer signal is active (X:11 > 0.5V)"
+      ]
+    },
+    "381": {
+      "canonical_code": "381",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error: truck does not have an initial lifting button, yet the input signal is present (X1:4 < 3V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "381",
+        "Configuration error: truck without initial lifting button, but input signal is active (X1:4 < 3V)"
+      ]
+    },
+    "382": {
+      "canonical_code": "382",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration fault: truck lacks initial lowering button, but initial lowering button signal is active (X1:18 < 3V)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "382",
+        "Configuration error: truck without initial lowering button, but initial lowering button is active (X1:18 < 3V)"
+      ]
+    },
+    "383": {
+      "canonical_code": "383",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast potentiometer signals (X1:11 and X1:25) outside permitted range (<92.5% or >107.5%)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "383",
+        "Mast potentiometer signals (X1:11 and X1:25) out of admissible range (<92.5% or >107.5%)"
+      ]
+    },
+    "384": {
+      "canonical_code": "384",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "MOSFET of output X1:16 stays ON when it should be OFF",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "384",
+        "MOSFET of output X1:16 remains ON whereas it is commanded to switch OFF"
+      ]
+    },
+    "385": {
+      "canonical_code": "385",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "MOSFET of output X1:16 stays OFF although it is instructed to turn ON",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "385",
+        "MOSFET of output X1:16 remains OFF whereas it is commanded to switch ON"
+      ]
+    },
+    "386": {
+      "canonical_code": "386",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "MOSFET of output X1:33 stays ON though it is supposed to switch OFF",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "386",
+        "MOSFET of output X1:33 remains ON whereas it is commanded to switch OFF"
+      ]
+    },
+    "387": {
+      "canonical_code": "387",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "MOSFET of output X1:33 remains OFF whereas it is commanded to switch ON",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "387",
+        "MOSFET of output X1:33 remains OFF whereas it is commanded to switch ON"
+      ]
+    },
+    "388": {
+      "canonical_code": "388",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error: input signal is active (X1:5 < 3V), must, however, not be connected",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "388",
+        "Configuration error: input signal is active (X1:5 < 3V), must, however, not be connected"
+      ]
+    },
+    "389": {
+      "canonical_code": "389",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Configuration error: input signal is active (X1:19 < 3V), must, however, not be connected",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "389",
+        "Configuration error: input signal is active (X1:19 < 3V), must, however, not be connected"
+      ]
+    },
+    "390": {
+      "canonical_code": "390",
+      "pages_found": [
+        5
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals for pump motor and/or mast potentiometer voltage differ between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "390",
+        "Analog input signals for pump motor and/or mast potentiometer voltage are different in main and safety controller Page 5 of 7"
+      ]
+    },
+    "391": {
+      "canonical_code": "391",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals for proportional valve and/or black/white valve differ between main and safety controllers",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "391",
+        "Analog input signals for proportional valve and/or black/white valve are different in main and safety controller"
+      ]
+    },
+    "392": {
+      "canonical_code": "392",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage difference at \"digital valve 2\" between main and safety processor is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "392",
+        "Difference voltage is too high at \"digital valve 2\" between main and safety processor"
+      ]
+    },
+    "393": {
+      "canonical_code": "393",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals for proportional valve differ between main and safety controller",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "393",
+        "Analog input signals for proportional valve are different in main and safety controller"
+      ]
+    },
+    "394": {
+      "canonical_code": "394",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Initial lift is not at the top (1X1:04 = mass) and mast lift is not within 200mm below or above (1X1:07 = open and 1X1:23 = mass)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "394",
+        "Initial lift not on top (1X1:04 = mass) and mast lifting not below / above 200mm (1X1:07 = open and 1X1:23 = mass)"
+      ]
+    },
+    "395": {
+      "canonical_code": "395",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage at the lifting potentiometer (X1:25) is too low",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "395",
+        "Voltage at the lifting potentiometer (X1:25) is too low"
+      ]
+    },
+    "396": {
+      "canonical_code": "396",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Voltage at the lifting potentiometer (X1:25) is too high",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "396",
+        "Voltage at the lifting potentiometer (X1:25) is too high"
+      ]
+    },
+    "399": {
+      "canonical_code": "399",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Deprecated hydraulic parameter set chosen in diagnostics",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "399",
+        "Obsolete hydraulic parameter combination selected in diagnostics"
+      ]
     },
     "400": {
-      "system": "Safety system",
-      "manual_summary": "The safety self-test failed because the safety relay remained energized when a shutdown was requested.",
-      "actions_summary": [
-        "Inspect safety relay operation",
-        "Check safety controller outputs",
-        "Replace relay if malfunctioning"
+      "canonical_code": "400",
+      "pages_found": [
+        6
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Self-test failed. Safety relay coil stays energized even though safety controller requested switch-off",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "400",
+        "Self-test failed. Safety relay coil continues to be energized though safety controller requested switch-off"
+      ]
     },
     "401": {
-      "system": "Safety system",
-      "manual_summary": "The safety self-test failed because a contactor remained closed when an opening command was issued.",
-      "actions_summary": [
-        "Inspect main contactor for welding",
-        "Check safety controller commands",
-        "Replace contactor if necessary"
+      "canonical_code": "401",
+      "pages_found": [
+        6
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Self-test failure. Contactor stays closed or welded even though the safety controller commands it to open during power-up test",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "401",
+        "Self-test failed. Contactor remains closed/welded whereas it is commanded by safety controller to open at power-up test"
+      ]
+    },
+    "402": {
+      "canonical_code": "402",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Self-test failed. Cut-off test of digital valve 1 failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "402",
+        "Self-test failed. Cut-off test of digital valve 1 failed"
+      ]
+    },
+    "403": {
+      "canonical_code": "403",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Self-test failed. Cut-off test of proportional valve failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "403",
+        "Self-test failed. Cut-off test of proportional valve failed"
+      ]
+    },
+    "404": {
+      "canonical_code": "404",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Cut-off test of X1:16 failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "404",
+        "Cut-off test of X1:16 failed"
+      ]
+    },
+    "405": {
+      "canonical_code": "405",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Cut-off test of brake failed",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "405",
+        "Cut-off test of brake failed"
+      ]
+    },
+    "406": {
+      "canonical_code": "406",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "406",
+        "Internal error"
+      ]
     },
     "407": {
-      "system": "Sensor supply",
-      "manual_summary": "The sensor supply voltage is outside the allowable operating range, causing invalid sensor readings.",
-      "actions_summary": [
-        "Measure sensor supply voltage",
-        "Inspect power regulation",
-        "Check for wiring faults"
+      "canonical_code": "407",
+      "pages_found": [
+        6
       ],
-      "severity": "high"
+      "lang_src": "en",
+      "fault_name": "Internal error: sensor supply voltage is outside allowable range (3.5 to 5.1mV)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "407",
+        "Internal error: sensor supply voltage is out of admissible range (3.5 to 5.1mV)"
+      ]
+    },
+    "408": {
+      "canonical_code": "408",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Invalid truck ID or truck ID changes during operation in the safety controller or lifting/lowering delay times exceed limits",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "408",
+        "Unvalid truck ID or truck ID changes during operating time in the safety controller or lifting/lowering delay times out of range"
+      ]
+    },
+    "410": {
+      "canonical_code": "410",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "410",
+        "Internal error"
+      ]
+    },
+    "411": {
+      "canonical_code": "411",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Internal error",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "411",
+        "Internal error"
+      ]
+    },
+    "420": {
+      "canonical_code": "420",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Different values of digital inputs of main and safety processor",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "420",
+        "Different values of digital inputs of main and safety processor"
+      ]
+    },
+    "421": {
+      "canonical_code": "421",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Different values of analog battery voltage of main and safety processor",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "421",
+        "Different values of analog battery voltage of main and safety processor"
+      ]
+    },
+    "422": {
+      "canonical_code": "422",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals of main and safety processor deviate from each other",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "422",
+        "Analog input signals of main and safety processor deviate from each other"
+      ]
+    },
+    "423": {
+      "canonical_code": "423",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals of main and safety processor differ from each other",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "423",
+        "Analog input signals of main and safety processor deviate from each other"
+      ]
+    },
+    "424": {
+      "canonical_code": "424",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals of main and safety processor deviate from each other",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "424",
+        "Analog input signals of main and safety processor deviate from each other"
+      ]
+    },
+    "425": {
+      "canonical_code": "425",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals of main and safety processor deviate from each other",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "425",
+        "Analog input signals of main and safety processor deviate from each other"
+      ]
+    },
+    "426": {
+      "canonical_code": "426",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Analog input signals of main and safety processor deviate from each other",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "426",
+        "Analog input signals of main and safety processor deviate from each other"
+      ]
+    },
+    "430": {
+      "canonical_code": "430",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Positive torque setpoint, but negative slip.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "430",
+        "Positive torque setpoint, but negative slip."
+      ]
+    },
+    "431": {
+      "canonical_code": "431",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Negative torque setpoint, but positive slip.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "431",
+        "Negative torque setpoint, but positive slip."
+      ]
+    },
+    "432": {
+      "canonical_code": "432",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Low torque setpoint, but slip exceeds limit value",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "432",
+        "Low torque setpoint, but slip exceeds limit value"
+      ]
+    },
+    "440": {
+      "canonical_code": "440",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Lower force-setpoint out of low-limit",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "440",
+        "Lower force-setpoint out of low-limit"
+      ]
+    },
+    "441": {
+      "canonical_code": "441",
+      "pages_found": [
+        6
+      ],
+      "lang_src": "en",
+      "fault_name": "Higher force setpoint exceeds the upper limit Page 6 of 7",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "441",
+        "Higher force setpoint out of high-limit Page 6 of 7"
+      ]
+    },
+    "442": {
+      "canonical_code": "442",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "The tiller is in the rest position, but the brake is not engaged",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "442",
+        "Tiller is in rest position, but the brake is not applied"
+      ]
     },
     "443": {
-      "system": "Operator safety",
-      "manual_summary": "The tiller is in the working position and the belly switch is activated, but the truck does not move as expected.",
-      "actions_summary": [
-        "Inspect belly switch operation",
-        "Check safety logic inputs",
-        "Verify drive enable conditions"
+      "canonical_code": "443",
+      "pages_found": [
+        7
       ],
-      "severity": "medium"
+      "lang_src": "en",
+      "fault_name": "The tiller is in the operating position and the belly switch is pressed, but the truck does not move.",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "443",
+        "Tiller is in working position and belly switch is pressed, truck is not moving"
+      ]
+    },
+    "444": {
+      "canonical_code": "444",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Stop requested but no deceleration",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "444",
+        "Stop requested but no deceleration"
+      ]
+    },
+    "445": {
+      "canonical_code": "445",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Stop requested but no deceleration",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "445",
+        "Stop requested but no deceleration"
+      ]
+    },
+    "450": {
+      "canonical_code": "450",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Power connection Li shows a voltage difference of 3 V compared to the + terminal of the power unit (only if no lifting is requested)",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "450",
+        "Power connection Li has a voltage diffrence of 3 V compared with the + connection of the power unit (only if there is no lifting request)"
+      ]
+    },
+    "451": {
+      "canonical_code": "451",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "X1:3 is engaged despite no request being present",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "451",
+        "X1:3 is switched though no request exists"
+      ]
+    },
+    "452": {
+      "canonical_code": "452",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "GND is applied to X1:15 even though a request is present",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "452",
+        "GND applied to X1:15 though request exists"
+      ]
+    },
+    "453": {
+      "canonical_code": "453",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Compatibility problems with sensor fork at 200 mm",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "453",
+        "Compatibility problems with sensor fork at 200 mm"
+      ]
+    },
+    "455": {
+      "canonical_code": "455",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast lifting is active though no request exists",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "455",
+        "Mast lifting is active though no request exists"
+      ]
+    },
+    "456": {
+      "canonical_code": "456",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Mast lowering is active although no command is present",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "456",
+        "Mast lowering is active though no request exists"
+      ]
+    },
+    "457": {
+      "canonical_code": "457",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Initial lifting is active though no request exists",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "457",
+        "Initial lifting is active though no request exists"
+      ]
+    },
+    "458": {
+      "canonical_code": "458",
+      "pages_found": [
+        7
+      ],
+      "lang_src": "en",
+      "fault_name": "Initial lowering is active even though no request is present Page 7 of 7",
+      "manual_action_rephrased_src": "",
+      "search_aliases": [
+        "458",
+        "Initial lowering is active though no request exists Page 7 of 7"
+      ]
     }
+  },
+  "audit": {
+    "profile": "numeric",
+    "total_detected": 178,
+    "returned_count": 178,
+    "llm_enabled": true,
+    "notes": "Keys in 'errors' are display_code as found. Use canonical_code for search."
   }
 }
