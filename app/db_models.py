@@ -98,5 +98,6 @@ class CaseComment(Base):
     author_public_name = Column(String, nullable=True)
     body = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     case = relationship("Case", back_populates="comments")

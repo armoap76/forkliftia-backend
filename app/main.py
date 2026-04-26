@@ -12,6 +12,7 @@ from app.manuals_store import search_manual_error
 from app.models import (
     CaseComment,
     CaseCommentCreate,
+    CaseCommentUpdate,
     CaseCreate,
     DiagnosisRequest,
     CaseUpdate,
@@ -359,6 +360,37 @@ def list_case_comments(case_id: int) -> list[CaseComment]:
     if comments is None:
         raise HTTPException(status_code=404, detail="Case not found")
     return comments
+
+
+@app.patch("/cases/{case_id}/comments/{comment_id}")
+def update_case_comment(
+    case_id: int,
+    comment_id: int,
+    payload: CaseCommentUpdate,
+    uid: str = Depends(get_requester_uid),
+):
+    case = store.get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case not found")
+
+    if case.status == "resolved":
+        raise HTTPException(
+            status_code=409,
+            detail="Case is resolved; comments are closed",
+        )
+
+    comment = store.get_comment(case_id, comment_id)
+    if not comment:
+        raise HTTPException(status_code=404, detail="Comment not found")
+
+    if comment.author_uid != uid and not is_admin(uid):
+        raise HTTPException(status_code=403, detail="Not authorized to modify this comment")
+
+    updated = store.update_comment(case_id, comment_id, payload.body)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Comment not found")
+
+    return updated
 
 
 def _build_manual_context(
