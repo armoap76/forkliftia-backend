@@ -33,6 +33,12 @@ class DummyStore:
     def create_comment(self, case_id: int, author_uid: str, body: str):  # pragma: no cover - not used
         return {"id": 1}
 
+    def get_comment(self, case_id: int, comment_id: int):  # pragma: no cover - not used
+        return None
+
+    def update_comment(self, case_id: int, comment_id: int, body: str):  # pragma: no cover - not used
+        return None
+
 
 @pytest.fixture
 def client():
@@ -110,3 +116,13 @@ def test_comment_allowed_when_open(client):
     response = test_client.post("/cases/6/comments", json={"body": "New comment"})
 
     assert response.status_code == 200
+
+
+def test_comment_edit_blocked_when_resolved(client):
+    test_client, main = client
+    main.store = DummyStore(DummyCase(case_id=7, status="resolved"))
+
+    response = test_client.patch("/cases/7/comments/1", json={"body": "Updated"})
+
+    assert response.status_code == 409
+    assert response.json() == {"detail": "Case is resolved; comments are closed"}

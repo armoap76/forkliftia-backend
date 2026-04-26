@@ -249,6 +249,7 @@ class DatabaseCaseStore(CaseStore):
             author_public_name=db_comment.author_public_name,
             body=db_comment.body,
             created_at=db_comment.created_at,
+            updated_at=db_comment.updated_at,
         )
 
     def create_comment(
@@ -269,6 +270,7 @@ class DatabaseCaseStore(CaseStore):
                 author_uid=author_uid,
                 author_public_name=profile.public_name if profile else None,
                 body=body,
+                updated_at=datetime.utcnow(),
             )
             session.add(comment)
             session.commit()
@@ -288,3 +290,38 @@ class DatabaseCaseStore(CaseStore):
                 .all()
             )
             return [self._to_comment(c) for c in comments]
+
+    def get_comment(self, case_id: int, comment_id: int) -> Optional[CaseComment]:
+        with self.session_factory() as session:
+            comment = (
+                session.query(CaseCommentModel)
+                .filter(
+                    CaseCommentModel.case_id == case_id,
+                    CaseCommentModel.id == comment_id,
+                )
+                .one_or_none()
+            )
+            if not comment:
+                return None
+            return self._to_comment(comment)
+
+    def update_comment(
+        self, case_id: int, comment_id: int, body: str
+    ) -> Optional[CaseComment]:
+        with self.session_factory() as session:
+            db_comment = (
+                session.query(CaseCommentModel)
+                .filter(
+                    CaseCommentModel.case_id == case_id,
+                    CaseCommentModel.id == comment_id,
+                )
+                .one_or_none()
+            )
+            if not db_comment:
+                return None
+
+            db_comment.body = body
+            db_comment.updated_at = datetime.utcnow()
+            session.commit()
+            session.refresh(db_comment)
+            return self._to_comment(db_comment)

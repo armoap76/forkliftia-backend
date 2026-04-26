@@ -38,3 +38,11 @@ class CaseStore(ABC):
 
     @abstractmethod
     def list_comments(self, case_id: int) -> Optional[list[CaseComment]]: ...
+
+    @abstractmethod
+    def get_comment(self, case_id: int, comment_id: int) -> Optional[CaseComment]: ...
+
+    @abstractmethod
+    def update_comment(
+        self, case_id: int, comment_id: int, body: str
+    ) -> Optional[CaseComment]: ...

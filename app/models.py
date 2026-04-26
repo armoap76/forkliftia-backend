@@ -117,6 +117,18 @@ class CaseComment(BaseModel):
     author_public_name: Optional[str] = None
     body: str
     created_at: datetime
+    updated_at: datetime
+
+
+class CaseCommentUpdate(BaseModel):
+    body: str = Field(..., min_length=1, max_length=2000)
+
+    @field_validator("body")
+    def trim_body(cls, v):
+        text = (v or "").strip()
+        if not text:
+            raise ValueError("body cannot be empty")
+        return text
 
 
 class DiagnosisRequest(BaseModel):
