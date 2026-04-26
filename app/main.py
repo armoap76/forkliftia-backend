@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 
 from app.db_models import UserProfile as UserProfileModel
 from app.manuals_store import search_manual_error
@@ -155,6 +156,22 @@ def validate_public_name(value: str) -> str:
     return public_name
 
 
+def get_user_public_name(uid: str) -> str | None:
+    with get_session() as session:
+        return (
+            session.query(UserProfileModel.public_name)
+            .filter(UserProfileModel.uid == uid)
+            .scalar()
+        )
+
+
+def require_user_public_name(uid: str) -> str:
+    public_name = get_user_public_name(uid)
+    if not public_name:
+        raise HTTPException(status_code=409, detail="PUBLIC_NAME_REQUIRED")
+    return public_name
+
+
 store = DatabaseCaseStore(get_session)
 
 
@@ -236,8 +253,20 @@ def get_me(uid: str = Depends(get_requester_uid)):
 @app.put("/me/public-name")
 def set_public_name(payload: PublicNameUpdate, uid: str = Depends(get_requester_uid)):
     desired_name = validate_public_name(payload.public_name)
+    desired_name_normalized = desired_name.lower()
 
     with get_session() as session:
+        taken_by_other = (
+            session.query(UserProfileModel.uid)
+            .filter(
+                func.lower(UserProfileModel.public_name) == desired_name_normalized,
+                UserProfileModel.uid != uid,
+            )
+            .first()
+        )
+        if taken_by_other:
+            raise HTTPException(status_code=409, detail="PUBLIC_NAME_TAKEN")
+
         profile = (
             session.query(UserProfileModel)
             .filter(UserProfileModel.uid == uid)
@@ -264,7 +293,7 @@ def set_public_name(payload: PublicNameUpdate, uid: str = Depends(get_requester_
             session.commit()
         except IntegrityError:
             session.rollback()
-            raise HTTPException(status_code=409, detail="Public name already taken")
+            raise HTTPException(status_code=409, detail="PUBLIC_NAME_TAKEN")
 
         session.refresh(profile)
         return UserProfile(
@@ -287,6 +316,7 @@ def update_case(
     payload: CaseUpdate,
     uid: str = Depends(get_requester_uid),
 ):
+    require_user_public_name(uid)
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -315,6 +345,7 @@ def resolve_case(
     payload: ResolveCaseIn,
     uid: str = Depends(get_requester_uid),
 ):
+    require_user_public_name(uid)
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="case not found")
@@ -337,6 +368,7 @@ def create_case_comment(
     payload: CaseCommentCreate,
     uid: str = Depends(get_requester_uid),
 ):
+    require_user_public_name(uid)
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -369,6 +401,7 @@ def update_case_comment(
     payload: CaseCommentUpdate,
     uid: str = Depends(get_requester_uid),
 ):
+    require_user_public_name(uid)
     case = store.get_case(case_id)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -498,6 +531,7 @@ def diagnosis(
     payload: DiagnosisRequest,
     uid: str = Depends(get_requester_uid),
 ):
+    require_user_public_name(uid)
     client = get_openai_client()
 
     # Datos del frontend
