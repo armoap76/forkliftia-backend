@@ -61,12 +61,15 @@ def client():
 
     original_store = main.store
     original_admin_uids = set(main.ADMIN_UIDS)
+    original_require_public_name = main.require_user_public_name
     main.app.dependency_overrides[main.get_requester_uid] = lambda: "author-1"
+    main.require_user_public_name = lambda _uid: "AuthorOne"
     test_client = TestClient(main.app)
     yield test_client, main
     main.app.dependency_overrides.clear()
     main.ADMIN_UIDS.clear()
     main.ADMIN_UIDS.update(original_admin_uids)
+    main.require_user_public_name = original_require_public_name
     main.store = original_store
 
 
